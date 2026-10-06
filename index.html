@@ -3,204 +3,464 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>jarvisAI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#020914">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>JARVIS Mark VII</title>
+  
+  <!-- Embedded High-Tech Arc Reactor SVG App Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23020914' stroke='%2300f0ff' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='36' fill='none' stroke='%230099ff' stroke-width='2' stroke-dasharray='6,4'/%3E%3Cpolygon points='50,18 78,68 22,68' fill='none' stroke='%2300f0ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%2300f0ff' filter='drop-shadow(0 0 8px %2300f0ff)'/%3E%3C/svg%3E">
+
+  <!-- Manifest for Home Screen PWA Installation -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22J.A.R.V.I.S.%20AI%22%2C%22short_name%22%3A%22JARVIS%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020914%22%2C%22theme_color%22%3A%22%23020914%22%7D">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    :root {
+      --primary: #00f0ff;
+      --primary-dim: rgba(0, 240, 255, 0.2);
+      --primary-glow: rgba(0, 240, 255, 0.6);
+      --accent-gold: #ffaa00;
+      --accent-green: #00ffaa;
+      --bg: #01060f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+
     body {
-      background: radial-gradient(circle at center, #071729 0%, #02070e 80%, #000205 100%);
-      color: #7ce8ff;
+      background: radial-gradient(circle at center, #06182c 0%, #020914 65%, #000307 100%);
+      color: var(--primary);
       font-family: 'Rajdhani', sans-serif;
       min-height: 100vh;
+      min-height: 100dvh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 16px 32px;
+      padding: 16px 14px 24px;
+      position: relative;
     }
+
+    /* Ambient HUD grid overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Vignette Scanline Scan */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 51%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.6;
+    }
+
+    /* Cinematic Boot Sequence */
     #bootScreen {
       position: fixed;
       inset: 0;
-      background: #02070e;
-      z-index: 100;
+      background: #020914;
+      z-index: 200;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 30px;
-      transition: opacity 0.6s ease;
+      padding: 24px;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .reactor-core {
-      width: 90px;
-      height: 90px;
-      border: 3px solid #00f0ff;
-      border-radius: 50%;
+
+    .reactor-container {
+      position: relative;
+      width: 130px;
+      height: 130px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 25px;
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.5);
-      animation: reactorPulse 1.2s infinite alternate;
+      margin-bottom: 30px;
     }
-    .reactor-inner {
-      width: 44px;
-      height: 44px;
-      background: #00f0ff;
+
+    .reactor-ring-outer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px dashed var(--primary);
       border-radius: 50%;
-      box-shadow: 0 0 25px #00f0ff;
+      animation: spinClockwise 12s linear infinite;
     }
-    @keyframes reactorPulse {
-      from { transform: scale(0.94); opacity: 0.7; }
-      to { transform: scale(1.06); opacity: 1; }
+
+    .reactor-ring-mid {
+      position: absolute;
+      width: 82%;
+      height: 82%;
+      border: 2px solid rgba(0, 240, 255, 0.4);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spinCounter 6s linear infinite;
     }
-    .boot-title {
+
+    .reactor-core {
+      width: 54px;
+      height: 54px;
+      background: radial-gradient(circle, #ffffff 10%, #00f0ff 60%, rgba(0,240,255,0.2) 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 35px var(--primary-glow), inset 0 0 15px #fff;
+      animation: coreBreath 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes spinClockwise { to { transform: rotate(360deg); } }
+    @keyframes spinCounter { to { transform: rotate(-360deg); } }
+    @keyframes coreBreath {
+      from { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 25px var(--primary-glow); }
+      to { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px #00f0ff, 0 0 20px #fff; }
+    }
+
+    .boot-header {
       font-family: 'Orbitron', monospace;
-      font-size: 1.8rem;
-      letter-spacing: 0.35em;
-      color: #c9f6ff;
-      margin-bottom: 12px;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.45em;
+      color: #e6fbff;
+      text-shadow: 0 0 20px var(--primary-glow);
+      margin-left: 0.45em;
     }
-    .boot-bar-box {
-      width: 250px;
-      height: 6px;
-      background: rgba(0, 240, 255, 0.15);
-      border-radius: 3px;
+
+    .boot-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      color: rgba(0, 240, 255, 0.7);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .boot-progress-frame {
+      width: 290px;
+      margin: 28px 0 14px;
+    }
+
+    .boot-bar-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      border-radius: 4px;
       overflow: hidden;
-      margin: 16px 0;
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      position: relative;
     }
-    .boot-bar {
+
+    .boot-bar-fill {
       height: 100%;
       width: 0%;
-      background: #00f0ff;
-      box-shadow: 0 0 10px #00f0ff;
-      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #0099ff, #00f0ff);
+      box-shadow: 0 0 15px var(--primary);
+      transition: width 0.4s ease-out;
     }
-    .boot-status {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.75rem;
+
+    .boot-status-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
       letter-spacing: 0.15em;
-      color: #3fa8c9;
-      height: 18px;
+      color: #8beaff;
+      text-align: center;
+      height: 20px;
+      margin-top: 8px;
     }
-    .power-btn {
-      margin-top: 25px;
-      background: rgba(0, 240, 255, 0.15);
-      border: 1px solid #00f0ff;
-      color: #00f0ff;
-      padding: 14px 28px;
+
+    .init-button {
+      margin-top: 30px;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
       font-family: 'Orbitron', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      padding: 16px 36px;
+      border-radius: 40px;
       cursor: pointer;
       text-transform: uppercase;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    header { text-align: center; }
-    h1 {
-      font-family: 'Orbitron', monospace;
-      font-size: 2.1rem;
-      letter-spacing: 0.35em;
-      color: #c9f6ff;
-      text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+
+    .init-button:active {
+      transform: scale(0.96);
+      background: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 40px var(--primary);
     }
-    .subtext {
-      font-size: 0.8rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #3fa8c9;
-      margin-top: 4px;
-    }
-    .canvas-container {
+
+    /* Main HUD Header */
+    header {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.25);
       position: relative;
-      width: 310px;
-      height: 310px;
+      z-index: 10;
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      color: #fff;
+      text-shadow: 0 0 12px var(--primary);
+    }
+
+    .brand-version {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(0, 240, 255, 0.65);
+      letter-spacing: 0.15em;
+    }
+
+    .telemetry-time {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-align: right;
+    }
+
+    /* Holographic Center Area */
+    .hud-stage {
+      position: relative;
+      width: 320px;
+      height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: auto 0;
+      z-index: 10;
     }
+
+    /* Rotating Vector Reticles */
+    .reticle-outer {
+      position: absolute;
+      inset: 0;
+      border: 1px dashed rgba(0, 240, 255, 0.25);
+      border-radius: 50%;
+      animation: spinClockwise 30s linear infinite;
+    }
+
+    .reticle-mid {
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-left: 2px solid var(--primary);
+      border-right: 2px solid var(--primary);
+      border-radius: 50%;
+      animation: spinCounter 16s linear infinite;
+    }
+
+    .reticle-inner {
+      position: absolute;
+      inset: 38px;
+      border: 1px dotted rgba(0, 240, 255, 0.3);
+      border-radius: 50%;
+    }
+
     canvas {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.5));
+      z-index: 5;
     }
-    .hud-card {
-      background: rgba(4, 18, 33, 0.75);
-      border: 1px solid rgba(0, 229, 255, 0.3);
-      border-radius: 12px;
-      padding: 14px 20px;
-      text-align: center;
+
+    /* HUD Corner Brackets and Readouts */
+    .hud-readouts {
+      position: absolute;
       width: 100%;
-      max-width: 340px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 20px rgba(0, 195, 255, 0.15);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(0, 240, 255, 0.5);
+      pointer-events: none;
+      z-index: 6;
     }
+
+    /* Interactive Interface Console */
+    .hud-console {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(3, 14, 28, 0.75);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 14px;
+      padding: 16px 18px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.12), inset 0 0 20px rgba(0, 240, 255, 0.05);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Technical Corner Notches */
+    .hud-console::before, .hud-console::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-color: var(--primary);
+      pointer-events: none;
+    }
+    .hud-console::before { top: -2px; left: -2px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
+    .hud-console::after { bottom: -2px; right: -2px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+
+    .status-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
     .state-indicator {
       font-family: 'Orbitron', monospace;
-      font-size: 0.95rem;
-      letter-spacing: 0.15em;
-      color: #00e5ff;
-      margin-bottom: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
     }
+
+    .system-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+      animation: coreBreath 1s infinite alternate;
+    }
+
     .transcript-box {
-      font-size: 0.95rem;
-      color: #e2f8ff;
-      min-height: 22px;
+      font-size: 1.05rem;
       font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #effaff;
+      min-height: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .metrics-bar {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0, 240, 255, 0.18);
+      padding-top: 8px;
+      margin-top: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(0, 240, 255, 0.6);
     }
   </style>
 </head>
 <body>
 
+  <!-- Cinematic Mark VII Startup Screen -->
   <div id="bootScreen">
-    <div class="reactor-core">
-      <div class="reactor-inner"></div>
+    <div class="reactor-container">
+      <div class="reactor-ring-outer"></div>
+      <div class="reactor-ring-mid"></div>
+      <div class="reactor-core"></div>
     </div>
-    <div class="boot-title">jarvisAI</div>
-    <div class="boot-bar-box">
-      <div id="bootBar" class="boot-bar"></div>
+    <div class="boot-header">J.A.R.V.I.S.</div>
+    <div class="boot-sub">MARK VII NEURAL OPERATING SYSTEM</div>
+
+    <div class="boot-progress-frame">
+      <div class="boot-bar-track">
+        <div id="bootBar" class="boot-bar-fill"></div>
+      </div>
+      <div id="bootStatus" class="boot-status-text">INITIALIZATION PENDING</div>
     </div>
-    <div id="bootStatus" class="boot-status">STARK INDUSTRIES SECURE OS</div>
-    <button id="powerOnBtn" class="power-btn">INITIALIZE CORE</button>
+
+    <button id="powerOnBtn" class="init-button">INITIALIZE SUITE</button>
   </div>
 
+  <!-- HUD Top Deck -->
   <header>
-    <h1>jarvisAI</h1>
-    <div class="subtext">MARK VII NEURAL INTERFACE</div>
+    <div>
+      <div class="brand-title">J.A.R.V.I.S.</div>
+      <div class="brand-version">SYSTEM // MARK VII PROTOTYPE</div>
+    </div>
+    <div>
+      <div id="hudClock" class="telemetry-time">00:00:00 ZULU</div>
+      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.5); text-align: right;">LOC: SECURE HUD</div>
+    </div>
   </header>
 
-  <div class="canvas-container">
+  <!-- Central Holographic Chamber -->
+  <div class="hud-stage">
+    <div class="reticle-outer"></div>
+    <div class="reticle-mid"></div>
+    <div class="reticle-inner"></div>
+    
+    <div class="hud-readouts">
+      <div>OUTPUT<br><span id="corePower" style="color:#fff;">100%</span></div>
+      <div style="text-align: right;">NEURAL LINK<br><span id="neuralStatus" style="color:var(--accent-green);">STABLE</span></div>
+    </div>
+
     <canvas id="holoCanvas"></canvas>
   </div>
 
-  <div class="hud-card">
-    <div id="stateIndicator" class="state-indicator">STANDBY</div>
-    <div id="transcriptBox" class="transcript-box">Awaiting voice command...</div>
+  <!-- Operational HUD Console -->
+  <div class="hud-console">
+    <div class="status-badge-row">
+      <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
+      <div id="systemDot" class="system-dot"></div>
+    </div>
+    <div id="transcriptBox" class="transcript-box">Awaiting operational command...</div>
+    <div class="metrics-bar">
+      <span>FLUX: OPTIMAL</span>
+      <span>FREQ: 432.8 GHZ</span>
+      <span>DEFENSES: ACTIVE</span>
+    </div>
   </div>
 
   <script>
+    // Live Telemetry Clock
+    function updateClock() {
+      const now = new Date();
+      const zulu = now.toTimeString().split(' ')[0] + ' LOC';
+      document.getElementById('hudClock').innerText = zulu;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // High DPI Canvas Setup
     const canvas = document.getElementById('holoCanvas');
     const ctx = canvas.getContext('2d');
-    const stateText = document.getElementById('stateIndicator');
-    const transcriptText = document.getElementById('transcriptBox');
-    const bootScreen = document.getElementById('bootScreen');
-    const bootBar = document.getElementById('bootBar');
-    const bootStatus = document.getElementById('bootStatus');
-    const powerOnBtn = document.getElementById('powerOnBtn');
-
-    let dpr = window.devicePixelRatio || 1;
-    let size = 310;
+    const size = 320;
+    const dpr = window.devicePixelRatio || 1;
     canvas.width = size * dpr;
     canvas.height = size * dpr;
     ctx.scale(dpr, dpr);
 
-    let state = 'IDLE';
+    let state = 'IDLE'; // IDLE, LISTENING_WAKE, AWAKE_LISTENING, SPEAKING
     let rotation = 0;
     let pulse = 0;
+    let silenceTimer = null;
 
-    const numPoints = 140;
+    // Mathematical Holographic Lattice (Fibonacci Sphere Distribution)
+    const numPoints = 180;
     const points = [];
     for (let i = 0; i < numPoints; i++) {
       const phi = Math.acos(-1 + (2 * i) / numPoints);
@@ -212,24 +472,56 @@
       });
     }
 
-    function renderHologram() {
+    // Holographic Vector Renderer
+    function renderHolo() {
       ctx.clearRect(0, 0, size, size);
       const cx = size / 2;
       const cy = size / 2;
-      const radius = 90 + Math.sin(pulse) * (state === 'AWAKE_LISTENING' || state === 'SPEAKING' ? 12 : 4);
 
-      rotation += (state === 'AWAKE_LISTENING' || state === 'SPEAKING') ? 0.035 : 0.012;
-      pulse += 0.08;
+      let primaryRgb = '0, 240, 255';
+      let speed = 0.012;
+      let expand = 5;
 
-      let primaryColor = '0, 229, 255';
-      if (state === 'AWAKE_LISTENING') primaryColor = '255, 174, 0';
-      if (state === 'SPEAKING') primaryColor = '0, 255, 170';
+      if (state === 'AWAKE_LISTENING') {
+        primaryRgb = '255, 170, 0';
+        speed = 0.038;
+        expand = 15;
+      } else if (state === 'SPEAKING') {
+        primaryRgb = '0, 255, 170';
+        speed = 0.028;
+        expand = 22;
+      }
 
+      rotation += speed;
+      pulse += 0.07;
+
+      const currentRadius = 90 + Math.sin(pulse) * expand;
+
+      // Draw Rotating Core Wireframe Rings
       ctx.beginPath();
-      ctx.arc(cx, cy, radius + 20, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${primaryColor}, 0.25)`;
+      ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${primaryRgb}, 0.2)`;
+      ctx.lineWidth = 1.5;
       ctx.stroke();
 
+      // Sound Wave Spectrum Simulators (Flanking Rings)
+      if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
+        for (let i = 0; i < 16; i++) {
+          let barHeight = Math.sin(pulse * 2 + i) * 16 + 18;
+          ctx.strokeStyle = `rgba(${primaryRgb}, 0.5)`;
+          ctx.beginPath();
+          ctx.moveTo(cx - 110 - i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx - 110 - i * 3, cy + barHeight / 2);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(cx + 110 + i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx + 110 + i * 3, cy + barHeight / 2);
+          ctx.stroke();
+        }
+      }
+
+      // 3D Point Projection
       const cosR = Math.cos(rotation);
       const sinR = Math.sin(rotation);
 
@@ -237,207 +529,284 @@
         let x1 = p.x * cosR - p.z * sinR;
         let z1 = p.z * cosR + p.x * sinR;
         let y1 = p.y;
-        let scale = 180 / (220 + z1 * radius);
-        let px = cx + x1 * radius * scale;
-        let py = cy + y1 * radius * scale;
+
+        let perspective = 200 / (240 + z1 * currentRadius);
+        let px = cx + x1 * currentRadius * perspective;
+        let py = cy + y1 * currentRadius * perspective;
         let alpha = (z1 + 1) / 2;
 
         ctx.beginPath();
-        ctx.arc(px, py, 2.2 * scale, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${primaryColor}, ${Math.max(0.2, alpha)})`;
+        ctx.arc(px, py, 2.2 * perspective, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${primaryRgb}, ${Math.max(0.15, alpha)})`;
         ctx.fill();
       });
 
-      requestAnimationFrame(renderHologram);
+      requestAnimationFrame(renderHolo);
     }
-    renderHologram();
+    renderHolo();
 
+    // Cinematic Web Audio Synthesizer (Stark Sound Effects)
     let audioCtx = null;
-    function playTone(freq, dur) {
+    function getAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      const now = audioCtx.currentTime;
-      osc.frequency.setValueAtTime(freq, now);
-      gain.gain.setValueAtTime(0.2, now);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + dur);
-      osc.start(now);
-      osc.stop(now + dur);
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
     }
 
-    function playChime(awake = true) {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      const now = audioCtx.currentTime;
-      if (awake) {
+    // Multi-Tone Boot Sound
+    function playBootHarmonic(freq, dur) {
+      const actx = getAudio();
+      const osc1 = actx.createOscillator();
+      const osc2 = actx.createOscillator();
+      const gain = actx.createGain();
+
+      osc1.type = 'triangle';
+      osc2.type = 'sine';
+      osc1.frequency.setValueAtTime(freq, actx.currentTime);
+      osc2.frequency.setValueAtTime(freq * 1.5, actx.currentTime);
+
+      gain.gain.setValueAtTime(0.2, actx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + dur);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(actx.destination);
+
+      osc1.start();
+      osc2.start();
+      osc1.stop(actx.currentTime + dur);
+      osc2.stop(actx.currentTime + dur);
+    }
+
+    // Wake and Standby Chimes
+    function playChime(isAwake = true) {
+      const actx = getAudio();
+      const now = actx.currentTime;
+      const osc = actx.createOscillator();
+      const gain = actx.createGain();
+
+      osc.type = 'sine';
+      if (isAwake) {
         osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+        osc.frequency.exponentialRampToValueAtTime(1320, now + 0.3);
       } else {
-        osc.frequency.setValueAtTime(660, now);
-        osc.frequency.exponentialRampToValueAtTime(330, now + 0.2);
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(440, now + 0.25);
       }
-      gain.gain.setValueAtTime(0.25, now);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+
+      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+      osc.connect(gain);
+      gain.connect(actx.destination);
       osc.start(now);
-      osc.stop(now + 0.25);
+      osc.stop(now + 0.35);
     }
 
+    // Voice Engine: Paul Bettany British Jarvis Profile Selector
     let jarvisVoice = null;
-    function pickJarvisVoice() {
+    function loadVoices() {
       const voices = window.speechSynthesis.getVoices();
-      jarvisVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Oliver')))
-                 || voices.find(v => v.lang.includes('en-GB'))
-                 || voices.find(v => v.lang.includes('en-'));
+      // Look explicitly for British English Male or High Quality Natural voices
+      jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
+                    (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Oliver') || v.name.includes('Arthur')))
+                 || voices.find(v => v.lang === 'en-GB')
+                 || voices.find(v => v.lang.startsWith('en'));
     }
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = pickJarvisVoice;
-      pickJarvisVoice();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+      loadVoices();
     }
 
     function speak(text, callback) {
       state = 'SPEAKING';
-      stateText.innerText = "JARVIS RESPONDING";
-      stateText.style.color = "#00ffaa";
+      updateStatus("JARVIS RESPONDING", "var(--accent-green)");
       window.speechSynthesis.cancel();
 
+      // Temporarily halt mic while speaking to eliminate feedback loops
+      if (recognition) {
+        try { recognition.stop(); } catch(e) {}
+      }
+
       const utterance = new SpeechSynthesisUtterance(text);
-      if (!jarvisVoice) pickJarvisVoice();
+      if (!jarvisVoice) loadVoices();
       if (jarvisVoice) utterance.voice = jarvisVoice;
-      utterance.pitch = 0.88;
+      
+      // Calibrated Formants: 0.84 pitch and 0.98 rate gives the signature calm British resonance
+      utterance.pitch = 0.84;
       utterance.rate = 0.98;
 
-      utterance.onend = () => { if (callback) callback(); };
+      utterance.onend = () => {
+        if (callback) {
+          callback();
+        } else {
+          setStandby();
+        }
+      };
+
       window.speechSynthesis.speak(utterance);
     }
 
+    function updateStatus(label, color) {
+      const stateEl = document.getElementById('stateIndicator');
+      const dotEl = document.getElementById('systemDot');
+      stateEl.innerText = label;
+      stateEl.style.color = color;
+      dotEl.style.background = color;
+      dotEl.style.boxShadow = `0 0 10px ${color}`;
+    }
+
+    function setStandby() {
+      state = 'LISTENING_WAKE';
+      updateStatus('STANDBY // SAY "JARVIS"', 'var(--primary)');
+      document.getElementById('transcriptBox').innerText = 'Awaiting wake word...';
+      if (recognition) {
+        try { recognition.start(); } catch(e) {}
+      }
+    }
+
+    // Continuous Speech Recognition Engine
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
 
-    function initSpeech() {
+    function initRecognition() {
       if (!SpeechRecognition) {
-        transcriptText.innerText = "Speech API not supported in this browser.";
+        document.getElementById('transcriptBox').innerText = "Speech engine unavailable.";
         return;
       }
       recognition = new SpeechRecognition();
       recognition.continuous = true;
-      recognition.interimResults = false;
+      recognition.interimResults = true;
       recognition.lang = 'en-GB';
 
       recognition.onresult = (event) => {
-        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-        transcriptText.innerText = `"${transcript}"`;
+        let interim = '';
+        let final = '';
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            final += event.results[i][0].transcript;
+          } else {
+            interim += event.results[i][0].transcript;
+          }
+        }
+
+        const heard = (final || interim).trim().toLowerCase();
+        if (!heard) return;
+
+        document.getElementById('transcriptBox').innerText = `"${heard}"`;
 
         if (state === 'LISTENING_WAKE') {
-          if (transcript.includes('jarvis') || transcript.includes('hey jarvis')) {
+          if (heard.includes('jarvis') || heard.includes('hey jarvis') || heard.includes('service')) {
             playChime(true);
             state = 'AWAKE_LISTENING';
-            stateText.innerText = "ONLINE - LISTENING";
-            stateText.style.color = "#ffae00";
-            speak("At your service, sir. How may I assist you?", () => {
+            updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
+            speak("At your service, sir. What are your orders?", () => {
               state = 'AWAKE_LISTENING';
-              stateText.innerText = "AWAITING INQUIRY";
-              stateText.style.color = "#ffae00";
+              updateStatus("LISTENING TO COMMAND...", "var(--accent-gold)");
+              document.getElementById('transcriptBox').innerText = "Speak now, sir...";
+              try { recognition.start(); } catch(e) {}
             });
           }
         } else if (state === 'AWAKE_LISTENING') {
-          handleUserQuery(transcript);
+          // Reset silence timer on every spoken syllable
+          clearTimeout(silenceTimer);
+          silenceTimer = setTimeout(() => {
+            handleTacticalCommand(heard);
+          }, 1100);
         }
       };
 
       recognition.onerror = (e) => {
         if (e.error !== 'no-speech') {
-          console.log("Speech recognition status:", e.error);
+          console.log("Mic status:", e.error);
         }
       };
 
       recognition.onend = () => {
-        if (state !== 'IDLE') {
+        if (state !== 'IDLE' && state !== 'SPEAKING') {
           try { recognition.start(); } catch(e) {}
         }
       };
     }
 
-    function handleUserQuery(query) {
-      let reply = "All systems functioning within normal parameters, sir.";
-      if (query.includes("who are you")) {
-        reply = "I am jarvisAI, your tactical intelligence and neural operational assistant.";
-      } else if (query.includes("time")) {
-        reply = `The current time is ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
-      } else if (query.includes("status")) {
-        reply = "Power levels at one hundred percent. Defenses active. Neural links secured.";
-      } else if (query.includes("sleep") || query.includes("shut down") || query.includes("standby")) {
-        reply = "Entering standby protocols. Simply say Jarvis whenever you require me.";
-        speak(reply, () => {
-          state = 'LISTENING_WAKE';
-          stateText.innerText = 'STANDBY: SAY "JARVIS"';
-          stateText.style.color = '#00e5ff';
+    // Dynamic Dialogue Logic
+    function handleTacticalCommand(cmd) {
+      clearTimeout(silenceTimer);
+      let response = "Understood, sir. Operating at peak efficiency.";
+
+      if (cmd.includes("who are you") || cmd.includes("identity")) {
+        response = "I am J.A.R.V.I.S., your Just A Rather Very Intelligent System. Neural links and HUD arrays fully operational.";
+      } else if (cmd.includes("status") || cmd.includes("diagnostics")) {
+        response = "All systems green. Arc Reactor output steady at one hundred percent. Defense shielding optimal. No external breaches detected.";
+      } else if (cmd.includes("time")) {
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        response = `The time is precisely ${timeStr}, sir.`;
+      } else if (cmd.includes("protocol") || cmd.includes("tactical")) {
+        response = "Tactical combat and telemetry overrides active, sir. Ready for your instructions.";
+      } else if (cmd.includes("sleep") || cmd.includes("standby") || cmd.includes("shut down")) {
+        response = "Entering passive monitoring mode. Simply say Jarvis whenever you require me, sir.";
+        speak(response, () => {
           playChime(false);
+          setStandby();
         });
         return;
       }
 
-      speak(reply, () => {
-        state = 'LISTENING_WAKE';
-        stateText.innerText = 'STANDBY: SAY "JARVIS"';
-        stateText.style.color = '#00e5ff';
+      speak(response, () => {
+        setStandby();
       });
     }
 
-    const steps = [
-      { text: "POWERING ARC REACTOR CORE...", pct: "25%", f: 420 },
-      { text: "INITIALIZING NEURAL NETWORKS...", pct: "50%", f: 560 },
-      { text: "ESTABLISHING TACTICAL PROTOCOLS...", pct: "75%", f: 720 },
-      { text: "CALIBRATING HOLOGRAPHIC ARRAY...", pct: "95%", f: 880 },
-      { text: "ALL SYSTEMS ONLINE", pct: "100%", f: 1050 }
+    // Cinematic 7-Stage Stark Diagnostic Boot Sequence
+    const bootSteps = [
+      { text: "CALIBRATING ARC REACTOR CONVERTER...", pct: "15%", freq: 320 },
+      { text: "ESTABLISHING SECURE STARK PROTOCOLS...", pct: "32%", freq: 440 },
+      { text: "INITIALIZING QUANTUM NEURAL ARRAYS...", pct: "48%", freq: 560 },
+      { text: "SYNCING SATELLITE TELEMETRY...", pct: "65%", freq: 680 },
+      { text: "CALIBRATING HOLOGRAPHIC RETICLE...", pct: "82%", freq: 820 },
+      { text: "ENGAGING ACOUSTIC FILTERS...", pct: "94%", freq: 960 },
+      { text: "ALL SYSTEMS OPERATIONAL // READY", pct: "100%", freq: 1180 }
     ];
 
-    powerOnBtn.addEventListener('click', async () => {
-      powerOnBtn.style.display = 'none';
+    const powerBtn = document.getElementById('powerOnBtn');
+    powerBtn.addEventListener('click', async () => {
+      powerBtn.style.display = 'none';
 
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === 'suspended') await audioCtx.resume();
+      // Initialize Audio Context immediately on tap
+      getAudio();
 
+      // Request hardware microphone stream directly
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        stream.getTracks().forEach(track => track.stop());
-      } catch (err) {
-        console.log("Mic prompt handled or not required:", err);
-      }
+        stream.getTracks().forEach(t => t.stop());
+      } catch (err) {}
 
-      initSpeech();
+      initRecognition();
 
-      let idx = 0;
-      function runNextStep() {
-        if (idx < steps.length) {
-          bootStatus.innerText = steps[idx].text;
-          bootBar.style.width = steps[idx].pct;
-          playTone(steps[idx].f, 0.1);
-          idx++;
-          setTimeout(runNextStep, 550);
+      let step = 0;
+      function runDiagnostic() {
+        if (step < bootSteps.length) {
+          document.getElementById('bootStatus').innerText = bootSteps[step].text;
+          document.getElementById('bootBar').style.width = bootSteps[step].pct;
+          playBootHarmonic(bootSteps[step].freq, 0.18);
+          step++;
+          setTimeout(runDiagnostic, 550);
         } else {
           setTimeout(() => {
+            const bootScreen = document.getElementById('bootScreen');
             bootScreen.style.opacity = '0';
             setTimeout(() => {
               bootScreen.style.display = 'none';
               playChime(true);
-              state = 'LISTENING_WAKE';
-              stateText.innerText = 'STANDBY: SAY "JARVIS"';
-              stateText.style.color = '#00e5ff';
-              transcriptText.innerText = 'Listening for "Jarvis"...';
-              if (recognition) {
-                try { recognition.start(); } catch(e) {}
-              }
-              speak("System boot complete. Jarvis is online, sir.");
-            }, 600);
-          }, 350);
+              setStandby();
+              speak("System boot complete. Jarvis is online, sir. Standing by.");
+            }, 800);
+          }, 400);
         }
       }
-      runNextStep();
+      runDiagnostic();
     });
   </script>
 </body>
