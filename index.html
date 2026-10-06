@@ -4,18 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>jarvisAI</title>
-
-  <!-- PWA Settings -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#02070e">
-
-  <!-- App Manifest with Arc Reactor Icon -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22jarvisAI%22%2C%22short_name%22%3A%22jarvisAI%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2302070e%22%2C%22theme_color%22%3A%22%2302070e%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27%23030b14%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27180%27%20fill%3D%27none%27%20stroke%3D%27%2300f0ff%27%20stroke-width%3D%2716%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27120%27%20fill%3D%27none%27%20stroke%3D%27%2300b4d8%27%20stroke-dasharray%3D%2720%2C15%27%20stroke-width%3D%2712%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%2755%27%20fill%3D%27%2300f0ff%27%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='120' fill='%23030b14'/><circle cx='256' cy='256' r='180' fill='none' stroke='%2300f0ff' stroke-width='16'/><circle cx='256' cy='256' r='120' fill='none' stroke='%2300b4d8' stroke-dasharray='20,15' stroke-width='12'/><circle cx='256' cy='256' r='55' fill='%2300f0ff'/></svg>">
-
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
@@ -31,7 +19,6 @@
       justify-content: space-between;
       padding: 24px 16px 32px;
     }
-
     #bootScreen {
       position: fixed;
       inset: 0;
@@ -42,7 +29,7 @@
       align-items: center;
       justify-content: center;
       padding: 30px;
-      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.6s ease;
     }
     .reactor-core {
       width: 90px;
@@ -111,10 +98,6 @@
       text-transform: uppercase;
       box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
     }
-    .power-btn:active {
-      transform: scale(0.96);
-    }
-
     header { text-align: center; }
     h1 {
       font-family: 'Orbitron', monospace;
@@ -171,7 +154,6 @@
 </head>
 <body>
 
-  <!-- Loading / Boot Screen -->
   <div id="bootScreen">
     <div class="reactor-core">
       <div class="reactor-inner"></div>
@@ -184,7 +166,6 @@
     <button id="powerOnBtn" class="power-btn">INITIALIZE CORE</button>
   </div>
 
-  <!-- Holographic Interface -->
   <header>
     <h1>jarvisAI</h1>
     <div class="subtext">MARK VII NEURAL INTERFACE</div>
@@ -200,17 +181,10 @@
   </div>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      const swCode = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
-    }
-
     const canvas = document.getElementById('holoCanvas');
     const ctx = canvas.getContext('2d');
     const stateText = document.getElementById('stateIndicator');
     const transcriptText = document.getElementById('transcriptBox');
-
     const bootScreen = document.getElementById('bootScreen');
     const bootBar = document.getElementById('bootBar');
     const bootStatus = document.getElementById('bootStatus');
@@ -254,10 +228,7 @@
       ctx.beginPath();
       ctx.arc(cx, cy, radius + 20, 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(${primaryColor}, 0.25)`;
-      ctx.setLineDash([8, 12]);
-      ctx.lineWidth = 2;
       ctx.stroke();
-      ctx.setLineDash([]);
 
       const cosR = Math.cos(rotation);
       const sinR = Math.sin(rotation);
@@ -266,7 +237,6 @@
         let x1 = p.x * cosR - p.z * sinR;
         let z1 = p.z * cosR + p.x * sinR;
         let y1 = p.y;
-
         let scale = 180 / (220 + z1 * radius);
         let px = cx + x1 * radius * scale;
         let py = cy + y1 * radius * scale;
@@ -275,10 +245,7 @@
         ctx.beginPath();
         ctx.arc(px, py, 2.2 * scale, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${primaryColor}, ${Math.max(0.2, alpha)})`;
-        ctx.shadowColor = `rgb(${primaryColor})`;
-        ctx.shadowBlur = 8;
         ctx.fill();
-        ctx.shadowBlur = 0;
       });
 
       requestAnimationFrame(renderHologram);
@@ -320,6 +287,18 @@
       osc.stop(now + 0.25);
     }
 
+    let jarvisVoice = null;
+    function pickJarvisVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      jarvisVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Oliver')))
+                 || voices.find(v => v.lang.includes('en-GB'))
+                 || voices.find(v => v.lang.includes('en-'));
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = pickJarvisVoice;
+      pickJarvisVoice();
+    }
+
     function speak(text, callback) {
       state = 'SPEAKING';
       stateText.innerText = "JARVIS RESPONDING";
@@ -327,12 +306,10 @@
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.pitch = 0.95;
-      utterance.rate = 1.02;
-
-      const voices = window.speechSynthesis.getVoices();
-      const british = voices.find(v => v.lang.includes('en-GB') || v.name.includes('UK') || v.name.includes('British'));
-      if (british) utterance.voice = british;
+      if (!jarvisVoice) pickJarvisVoice();
+      if (jarvisVoice) utterance.voice = jarvisVoice;
+      utterance.pitch = 0.88;
+      utterance.rate = 0.98;
 
       utterance.onend = () => { if (callback) callback(); };
       window.speechSynthesis.speak(utterance);
@@ -340,11 +317,16 @@
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
-    if (SpeechRecognition) {
+
+    function initSpeech() {
+      if (!SpeechRecognition) {
+        transcriptText.innerText = "Speech API not supported in this browser.";
+        return;
+      }
       recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = false;
-      recognition.lang = 'en-US';
+      recognition.lang = 'en-GB';
 
       recognition.onresult = (event) => {
         const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
@@ -364,6 +346,12 @@
           }
         } else if (state === 'AWAKE_LISTENING') {
           handleUserQuery(transcript);
+        }
+      };
+
+      recognition.onerror = (e) => {
+        if (e.error !== 'no-speech') {
+          console.log("Speech recognition status:", e.error);
         }
       };
 
@@ -408,10 +396,20 @@
       { text: "ALL SYSTEMS ONLINE", pct: "100%", f: 1050 }
     ];
 
-    powerOnBtn.addEventListener('click', () => {
+    powerOnBtn.addEventListener('click', async () => {
       powerOnBtn.style.display = 'none';
+
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(track => track.stop());
+      } catch (err) {
+        console.log("Mic prompt handled or not required:", err);
+      }
+
+      initSpeech();
 
       let idx = 0;
       function runNextStep() {
@@ -435,7 +433,7 @@
                 try { recognition.start(); } catch(e) {}
               }
               speak("System boot complete. Jarvis is online, sir.");
-            }, 700);
+            }, 600);
           }, 350);
         }
       }
