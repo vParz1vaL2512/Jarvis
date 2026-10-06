@@ -8,13 +8,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>JARVIS Mark VII</title>
   
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23010814' stroke='%2300f0ff' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='36' fill='none' stroke='%230099ff' stroke-width='2' stroke-dasharray='6,4'/%3E%3Cpolygon points='50,18 78,68 22,68' fill='none' stroke='%2300f0ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%2300f0ff' filter='drop-shadow(0 0 8px %2300f0ff)'/%3E%3C/svg%3E">
-  
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22J.A.R.V.I.S.%20AI%20Mark%20VII%22%2C%22short_name%22%3A%22JARVIS%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23010814%22%2C%22theme_color%22%3A%22%23010814%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'46'%20fill%3D'%23010814'%20stroke%3D'%2300f0ff'%20stroke-width%3D'4'%2F%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'36'%20fill%3D'none'%20stroke%3D'%230099ff'%20stroke-width%3D'2'%20stroke-dasharray%3D'6%2C4'%2F%253E%253Cpolygon%20points%3D'50%2C18%2078%2C68%2022%2C68'%20fill%3D'none'%20stroke%3D'%2300f0ff'%20stroke-width%3D'3'%2F%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'14'%20fill%3D'%2300f0ff'%20filter%3D'drop-shadow(0%200%208px%20%2300f0ff)'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="manifest" href="manifest.json">
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- Puter.js provides zero-key AI capabilities across models -->
   <script src="https://js.puter.com/v2/"></script>
 
   <style>
@@ -24,14 +21,13 @@
       --primary-glow: rgba(0, 240, 255, 0.65);
       --accent-gold: #ffaa00;
       --accent-green: #00ffaa;
-      --accent-red: #ff3344;
       --bg: #010814;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
 
     body {
-      background: radial-gradient(circle at center, #051930 0%, #020b18 60%, #000308 100%);
+      background: radial-gradient(circle at center, #06203a 0%, #020c1a 60%, #00040a 100%);
       color: var(--primary);
       font-family: 'Rajdhani', sans-serif;
       min-height: 100vh;
@@ -71,23 +67,21 @@
 
     .hud-corner {
       position: fixed;
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       pointer-events: none;
       z-index: 8;
     }
-    .hud-corner.tl { top: 8px; left: 8px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
-    .hud-corner.tr { top: 8px; right: 8px; border-top: 2px solid var(--primary); border-right: 2px solid var(--primary); }
-    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2px solid var(--primary); border-left: 2px solid var(--primary); }
-    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+    .hud-corner.tl { top: 8px; left: 8px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.tr { top: 8px; right: 8px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
 
-    /* =========================================
-       CLEAN STARK BOOT SCREEN
-       ========================================= */
+    /* BOOT SCREEN */
     #bootScreen {
       position: fixed;
       inset: 0;
-      background: #01060e;
+      background: radial-gradient(circle at center, #072648 0%, #010712 80%);
       z-index: 200;
       display: flex;
       flex-direction: column;
@@ -99,12 +93,12 @@
 
     .reactor-container {
       position: relative;
-      width: 140px;
-      height: 140px;
+      width: 165px;
+      height: 165px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .reactor-ring-outer {
@@ -113,7 +107,7 @@
       height: 100%;
       border: 2px dashed var(--primary);
       border-radius: 50%;
-      animation: spinClockwise 12s linear infinite;
+      animation: spinClockwise 10s linear infinite;
     }
 
     .reactor-ring-mid {
@@ -124,46 +118,46 @@
       border-top-color: var(--primary);
       border-bottom-color: var(--primary);
       border-radius: 50%;
-      animation: spinCounter 6s linear infinite;
+      animation: spinCounter 5s linear infinite;
     }
 
     .reactor-core {
-      width: 58px;
-      height: 58px;
-      background: radial-gradient(circle, #ffffff 10%, #00f0ff 60%, rgba(0,240,255,0.2) 100%);
+      width: 64px;
+      height: 64px;
+      background: radial-gradient(circle, #ffffff 15%, #00f0ff 65%, rgba(0,240,255,0.2) 100%);
       border-radius: 50%;
-      box-shadow: 0 0 35px var(--primary-glow), inset 0 0 15px #fff;
-      animation: corePulse 1.8s ease-in-out infinite alternate;
+      box-shadow: 0 0 50px var(--primary-glow), inset 0 0 18px #fff;
+      animation: corePulse 1.6s ease-in-out infinite alternate;
     }
 
     @keyframes spinClockwise { to { transform: rotate(360deg); } }
     @keyframes spinCounter { to { transform: rotate(-360deg); } }
     @keyframes corePulse {
       from { transform: scale(0.92); opacity: 0.85; box-shadow: 0 0 25px var(--primary-glow); }
-      to { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px #00f0ff, 0 0 25px #fff; }
+      to { transform: scale(1.12); opacity: 1; box-shadow: 0 0 70px #00f0ff, 0 0 25px #fff; }
     }
 
     .boot-header {
       font-family: 'Orbitron', monospace;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 900;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.45em;
       color: #effaff;
       text-shadow: 0 0 24px var(--primary-glow);
-      margin-left: 0.4em;
+      margin-left: 0.45em;
     }
 
     .boot-sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.28em;
+      font-size: 0.82rem;
+      letter-spacing: 0.3em;
       color: rgba(0, 240, 255, 0.7);
       margin-top: 6px;
       text-transform: uppercase;
     }
 
     .boot-progress-frame {
-      width: 300px;
+      width: 310px;
       margin: 18px 0 10px;
     }
 
@@ -171,7 +165,7 @@
       width: 100%;
       height: 8px;
       background: rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.35);
+      border: 1px solid rgba(0, 240, 255, 0.4);
       border-radius: 4px;
       overflow: hidden;
     }
@@ -181,12 +175,12 @@
       width: 0%;
       background: linear-gradient(90deg, #0077ff, #00f0ff);
       box-shadow: 0 0 16px var(--primary);
-      transition: width 0.3s ease-out;
+      transition: width 0.7s ease-out;
     }
 
     .boot-status-text {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       letter-spacing: 0.15em;
       color: #92ecff;
       text-align: center;
@@ -197,7 +191,7 @@
     .init-button {
       margin-top: 20px;
       background: rgba(0, 240, 255, 0.12);
-      border: 1px solid var(--primary);
+      border: 1.5px solid var(--primary);
       color: var(--primary);
       font-family: 'Orbitron', monospace;
       font-size: 0.95rem;
@@ -222,7 +216,7 @@
       border: 1.5px solid var(--accent-green);
       color: var(--accent-green);
       font-family: 'Orbitron', monospace;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       padding: 10px 24px;
@@ -230,6 +224,7 @@
       cursor: pointer;
     }
 
+    /* HUD */
     header {
       width: 100%;
       max-width: 440px;
@@ -244,7 +239,7 @@
 
     .brand-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 900;
       letter-spacing: 0.25em;
       color: #fff;
@@ -343,17 +338,17 @@
       top: 25px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
-      line-height: 1.3;
+      line-height: 1.35;
       pointer-events: none;
       z-index: 6;
     }
-    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.6); }
-    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.6); }
+    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.65); }
+    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.65); }
 
     .subtitles-card {
       width: 100%;
       max-width: 440px;
-      background: rgba(2, 10, 22, 0.9);
+      background: rgba(2, 10, 22, 0.92);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
       border-radius: 12px;
       padding: 10px 14px;
@@ -385,7 +380,7 @@
 
     .sub-text {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.12rem;
+      font-size: 1.15rem;
       font-weight: 700;
       line-height: 1.25;
       letter-spacing: 0.02em;
@@ -397,7 +392,7 @@
     .hud-console {
       width: 100%;
       max-width: 440px;
-      background: rgba(2, 12, 26, 0.85);
+      background: rgba(2, 12, 26, 0.88);
       border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 12px;
       padding: 10px 12px;
@@ -512,7 +507,7 @@
   <div class="hud-corner bl"></div>
   <div class="hud-corner br"></div>
 
-  <!-- CLEAN STARK BOOT SCREEN -->
+  <!-- BOOT SCREEN -->
   <div id="bootScreen">
     <div class="reactor-container">
       <div class="reactor-ring-outer"></div>
@@ -526,14 +521,14 @@
       <div class="boot-bar-track">
         <div id="bootBar" class="boot-bar-fill"></div>
       </div>
-      <div id="bootStatus" class="boot-status-text">INITIALIZATION READY</div>
+      <div id="bootStatus" class="boot-status-text">SYSTEM STANDBY // READY</div>
     </div>
 
     <button id="powerOnBtn" class="init-button">INITIALIZE SUITE</button>
     <button id="installBtn">⬇ INSTALL MARK VII HUD TO DEVICE</button>
   </div>
 
-  <!-- ACTIVE HUD TOP BAR -->
+  <!-- HUD BAR -->
   <header>
     <div>
       <div class="brand-title">J.A.R.V.I.S.</div>
@@ -545,7 +540,7 @@
     </div>
   </header>
 
-  <!-- HOLOGRAPHIC FLIGHT DECK -->
+  <!-- HOLOGRAPHIC STAGE -->
   <div class="hud-stage">
     <div class="reticle-outer"></div>
     <div class="reticle-mid"></div>
@@ -574,7 +569,7 @@
     <canvas id="holoCanvas"></canvas>
   </div>
 
-  <!-- DEDICATED HIGH-CONTRAST SUBTITLES DECK -->
+  <!-- SUBTITLES DECK -->
   <div class="subtitles-card">
     <div class="sub-channel">
       <div class="sub-tag user">[ USER DIRECTIVE ]</div>
@@ -586,7 +581,7 @@
     </div>
   </div>
 
-  <!-- CONSOLE WITH 3-LINE OPTIONS AND TRANSMIT BOX -->
+  <!-- CONSOLE -->
   <div class="hud-console">
     <div class="status-badge-row">
       <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
@@ -615,15 +610,15 @@
   </div>
 
   <script>
-    // Real Service Worker Registration for PWA on Android / Pixel
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(err => {
-        console.warn("Service worker notice:", err);
+        console.warn("Service worker registration:", err);
       });
     }
 
     let deferredPrompt;
     const installBtn = document.getElementById('installBtn');
+
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
@@ -748,7 +743,6 @@
     }
     renderHolo();
 
-    // CLEAN IRON MAN AUDIO SUITE (Short repulsor swell + cinematic power chord)
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -756,30 +750,45 @@
       return audioCtx;
     }
 
-    function playRepulsorPowerUp() {
+    function playCinematicStarkAudio() {
       const actx = getAudio();
       const now = actx.currentTime;
 
-      // Clean rising whoosh
-      const osc = actx.createOscillator();
-      const gain = actx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(140, now);
-      osc.frequency.exponentialRampToValueAtTime(880, now + 1.2);
+      // 1. Deep Sub-Bass Impact
+      const bass = actx.createOscillator();
+      const bassGain = actx.createGain();
+      bass.type = 'triangle';
+      bass.frequency.setValueAtTime(130, now);
+      bass.frequency.exponentialRampToValueAtTime(36, now + 4.2);
 
-      gain.gain.setValueAtTime(0.01, now);
-      gain.gain.linearRampToValueAtTime(0.2, now + 0.8);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.3);
+      bassGain.gain.setValueAtTime(0.01, now);
+      bassGain.gain.linearRampToValueAtTime(0.38, now + 0.6);
+      bassGain.gain.exponentialRampToValueAtTime(0.001, now + 4.5);
 
-      osc.connect(gain);
-      gain.connect(actx.destination);
-      osc.start(now);
-      osc.stop(now + 1.35);
+      bass.connect(bassGain);
+      bassGain.connect(actx.destination);
+      bass.start(now);
+      bass.stop(now + 4.6);
 
-      // Resonant harmonic chime
+      // 2. High-Tech Repulsor Charging Whine
+      const rep = actx.createOscillator();
+      const repGain = actx.createGain();
+      rep.type = 'sine';
+      rep.frequency.setValueAtTime(260, now + 0.4);
+      rep.frequency.exponentialRampToValueAtTime(2200, now + 4.0);
+
+      repGain.gain.setValueAtTime(0.001, now + 0.4);
+      repGain.gain.linearRampToValueAtTime(0.14, now + 3.2);
+      repGain.gain.exponentialRampToValueAtTime(0.001, now + 4.2);
+
+      rep.connect(repGain);
+      repGain.connect(actx.destination);
+      rep.start(now + 0.4);
+      rep.stop(now + 4.3);
+
       setTimeout(() => {
         playCinematicChime();
-      }, 1000);
+      }, 4100);
     }
 
     function playCinematicChime() {
@@ -793,13 +802,13 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, now + idx * 0.05);
 
-        gain.gain.setValueAtTime(0.12, now + idx * 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.0 + idx * 0.05);
+        gain.gain.setValueAtTime(0.14, now + idx * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.1 + idx * 0.05);
 
         osc.connect(gain);
         gain.connect(actx.destination);
         osc.start(now + idx * 0.05);
-        osc.stop(now + 1.2);
+        osc.stop(now + 1.3);
       });
     }
 
@@ -1001,7 +1010,6 @@
       return contextInfo;
     }
 
-    // MULTI-AI FAILSAFE CORE (Puter.js + Fallback)
     async function handleTacticalCommand(cmd) {
       clearTimeout(silenceTimer);
 
@@ -1027,17 +1035,15 @@ Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Nev
 
         let aiReply = "";
 
-        // Primary: Puter.js Zero-Key AI (Always active, no blocked keys)
         if (window.puter && puter.ai) {
           try {
             const response = await puter.ai.chat(prompt);
             aiReply = (typeof response === 'string' ? response : (response.message ? response.message.content : JSON.stringify(response)));
           } catch(err) {
-            console.warn("Puter engine failed, trying secondary route:", err);
+            console.warn("Puter engine offline, trying fallback:", err);
           }
         }
 
-        // Secondary Fallback if Puter is unreachable
         if (!aiReply) {
           const fallbackRes = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`);
           if (fallbackRes.ok) {
@@ -1076,10 +1082,10 @@ Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Nev
     });
 
     const bootSteps = [
-      { text: "CORE SPOOL INITIALIZED", pct: "25%" },
-      { text: "ESTABLISHING NEURAL UPLINK...", pct: "50%" },
-      { text: "ATMOSPHERIC SENSORS ONLINE", pct: "75%" },
-      { text: "ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%" }
+      { text: "TURBINE INJECTION // CHARGING ARC CORES", pct: "25%" },
+      { text: "SATELLITE TELEMETRY // LINKING STARK-SAT", pct: "50%" },
+      { text: "QUANTUM NEURAL NODES // SYNAPSE OPTIMAL", pct: "75%" },
+      { text: "MARK VII ONLINE // ALL PROTOCOLS ARMED", pct: "100%" }
     ];
 
     const powerBtn = document.getElementById('powerOnBtn');
@@ -1087,7 +1093,7 @@ Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Nev
       powerBtn.style.display = 'none';
 
       getAudio();
-      playRepulsorPowerUp();
+      playCinematicStarkAudio();
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -1102,7 +1108,7 @@ Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Nev
           document.getElementById('bootStatus').innerText = bootSteps[step].text;
           document.getElementById('bootBar').style.width = bootSteps[step].pct;
           step++;
-          setTimeout(runDiagnostic, 500);
+          setTimeout(runDiagnostic, 1100);
         } else {
           setTimeout(() => {
             const bootScreen = document.getElementById('bootScreen');
@@ -1110,9 +1116,9 @@ Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Nev
             setTimeout(() => {
               bootScreen.style.display = 'none';
               setStandby();
-              speak("System boot complete. Jarvis is online, sir. Standing by.");
+              speak("System boot complete. Mark Seven suit diagnostics show all systems nominal. Jarvis is online and at your service, sir.");
             }, 800);
-          }, 300);
+          }, 400);
         }
       }
       runDiagnostic();
