@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>jarvisAI</title>
+
+  <!-- PWA Settings -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#02070e">
+
+  <!-- App Manifest with Arc Reactor Icon -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22jarvisAI%22%2C%22short_name%22%3A%22jarvisAI%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2302070e%22%2C%22theme_color%22%3A%22%2302070e%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27%23030b14%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27180%27%20fill%3D%27none%27%20stroke%3D%27%2300f0ff%27%20stroke-width%3D%2716%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27120%27%20fill%3D%27none%27%20stroke%3D%27%2300b4d8%27%20stroke-dasharray%3D%2720%2C15%27%20stroke-width%3D%2712%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%2755%27%20fill%3D%27%2300f0ff%27%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='120' fill='%23030b14'/><circle cx='256' cy='256' r='180' fill='none' stroke='%2300f0ff' stroke-width='16'/><circle cx='256' cy='256' r='120' fill='none' stroke='%2300b4d8' stroke-dasharray='20,15' stroke-width='12'/><circle cx='256' cy='256' r='55' fill='%2300f0ff'/></svg>">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      background: radial-gradient(circle at center, #071729 0%, #02070e 80%, #000205 100%);
+      color: #7ce8ff;
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 16px 32px;
+    }
+
+    #bootScreen {
+      position: fixed;
+      inset: 0;
+      background: #02070e;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reactor-core {
+      width: 90px;
+      height: 90px;
+      border: 3px solid #00f0ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.5);
+      animation: reactorPulse 1.2s infinite alternate;
+    }
+    .reactor-inner {
+      width: 44px;
+      height: 44px;
+      background: #00f0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 25px #00f0ff;
+    }
+    @keyframes reactorPulse {
+      from { transform: scale(0.94); opacity: 0.7; }
+      to { transform: scale(1.06); opacity: 1; }
+    }
+    .boot-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      letter-spacing: 0.35em;
+      color: #c9f6ff;
+      margin-bottom: 12px;
+    }
+    .boot-bar-box {
+      width: 250px;
+      height: 6px;
+      background: rgba(0, 240, 255, 0.15);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 16px 0;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+    .boot-bar {
+      height: 100%;
+      width: 0%;
+      background: #00f0ff;
+      box-shadow: 0 0 10px #00f0ff;
+      transition: width 0.3s ease;
+    }
+    .boot-status {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #3fa8c9;
+      height: 18px;
+    }
+    .power-btn {
+      margin-top: 25px;
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+      padding: 14px 28px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      border-radius: 30px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+    .power-btn:active {
+      transform: scale(0.96);
+    }
+
+    header { text-align: center; }
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.1rem;
+      letter-spacing: 0.35em;
+      color: #c9f6ff;
+      text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+    }
+    .subtext {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #3fa8c9;
+      margin-top: 4px;
+    }
+    .canvas-container {
+      position: relative;
+      width: 310px;
+      height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.5));
+    }
+    .hud-card {
+      background: rgba(4, 18, 33, 0.75);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 340px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.15);
+    }
+    .state-indicator {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: #00e5ff;
+      margin-bottom: 6px;
+    }
+    .transcript-box {
+      font-size: 0.95rem;
+      color: #e2f8ff;
+      min-height: 22px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading / Boot Screen -->
+  <div id="bootScreen">
+    <div class="reactor-core">
+      <div class="reactor-inner"></div>
+    </div>
+    <div class="boot-title">jarvisAI</div>
+    <div class="boot-bar-box">
+      <div id="bootBar" class="boot-bar"></div>
+    </div>
+    <div id="bootStatus" class="boot-status">STARK INDUSTRIES SECURE OS</div>
+    <button id="powerOnBtn" class="power-btn">INITIALIZE CORE</button>
+  </div>
+
+  <!-- Holographic Interface -->
+  <header>
+    <h1>jarvisAI</h1>
+    <div class="subtext">MARK VII NEURAL INTERFACE</div>
+  </header>
+
+  <div class="canvas-container">
+    <canvas id="holoCanvas"></canvas>
+  </div>
+
+  <div class="hud-card">
+    <div id="stateIndicator" class="state-indicator">STANDBY</div>
+    <div id="transcriptBox" class="transcript-box">Awaiting voice command...</div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      const swCode = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
+    }
+
+    const canvas = document.getElementById('holoCanvas');
+    const ctx = canvas.getContext('2d');
+    const stateText = document.getElementById('stateIndicator');
+    const transcriptText = document.getElementById('transcriptBox');
+
+    const bootScreen = document.getElementById('bootScreen');
+    const bootBar = document.getElementById('bootBar');
+    const bootStatus = document.getElementById('bootStatus');
+    const powerOnBtn = document.getElementById('powerOnBtn');
+
+    let dpr = window.devicePixelRatio || 1;
+    let size = 310;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    ctx.scale(dpr, dpr);
+
+    let state = 'IDLE';
+    let rotation = 0;
+    let pulse = 0;
+
+    const numPoints = 140;
+    const points = [];
+    for (let i = 0; i < numPoints; i++) {
+      const phi = Math.acos(-1 + (2 * i) / numPoints);
+      const theta = Math.sqrt(numPoints * Math.PI) * phi;
+      points.push({
+        x: Math.cos(theta) * Math.sin(phi),
+        y: Math.sin(theta) * Math.sin(phi),
+        z: Math.cos(phi)
+      });
+    }
+
+    function renderHologram() {
+      ctx.clearRect(0, 0, size, size);
+      const cx = size / 2;
+      const cy = size / 2;
+      const radius = 90 + Math.sin(pulse) * (state === 'AWAKE_LISTENING' || state === 'SPEAKING' ? 12 : 4);
+
+      rotation += (state === 'AWAKE_LISTENING' || state === 'SPEAKING') ? 0.035 : 0.012;
+      pulse += 0.08;
+
+      let primaryColor = '0, 229, 255';
+      if (state === 'AWAKE_LISTENING') primaryColor = '255, 174, 0';
+      if (state === 'SPEAKING') primaryColor = '0, 255, 170';
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius + 20, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${primaryColor}, 0.25)`;
+      ctx.setLineDash([8, 12]);
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const cosR = Math.cos(rotation);
+      const sinR = Math.sin(rotation);
+
+      points.forEach(p => {
+        let x1 = p.x * cosR - p.z * sinR;
+        let z1 = p.z * cosR + p.x * sinR;
+        let y1 = p.y;
+
+        let scale = 180 / (220 + z1 * radius);
+        let px = cx + x1 * radius * scale;
+        let py = cy + y1 * radius * scale;
+        let alpha = (z1 + 1) / 2;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 2.2 * scale, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${primaryColor}, ${Math.max(0.2, alpha)})`;
+        ctx.shadowColor = `rgb(${primaryColor})`;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      requestAnimationFrame(renderHologram);
+    }
+    renderHologram();
+
+    let audioCtx = null;
+    function playTone(freq, dur) {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      const now = audioCtx.currentTime;
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + dur);
+      osc.start(now);
+      osc.stop(now + dur);
+    }
+
+    function playChime(awake = true) {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      const now = audioCtx.currentTime;
+      if (awake) {
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+      } else {
+        osc.frequency.setValueAtTime(660, now);
+        osc.frequency.exponentialRampToValueAtTime(330, now + 0.2);
+      }
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    }
+
+    function speak(text, callback) {
+      state = 'SPEAKING';
+      stateText.innerText = "JARVIS RESPONDING";
+      stateText.style.color = "#00ffaa";
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.pitch = 0.95;
+      utterance.rate = 1.02;
+
+      const voices = window.speechSynthesis.getVoices();
+      const british = voices.find(v => v.lang.includes('en-GB') || v.name.includes('UK') || v.name.includes('British'));
+      if (british) utterance.voice = british;
+
+      utterance.onend = () => { if (callback) callback(); };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+        transcriptText.innerText = `"${transcript}"`;
+
+        if (state === 'LISTENING_WAKE') {
+          if (transcript.includes('jarvis') || transcript.includes('hey jarvis')) {
+            playChime(true);
+            state = 'AWAKE_LISTENING';
+            stateText.innerText = "ONLINE - LISTENING";
+            stateText.style.color = "#ffae00";
+            speak("At your service, sir. How may I assist you?", () => {
+              state = 'AWAKE_LISTENING';
+              stateText.innerText = "AWAITING INQUIRY";
+              stateText.style.color = "#ffae00";
+            });
+          }
+        } else if (state === 'AWAKE_LISTENING') {
+          handleUserQuery(transcript);
+        }
+      };
+
+      recognition.onend = () => {
+        if (state !== 'IDLE') {
+          try { recognition.start(); } catch(e) {}
+        }
+      };
+    }
+
+    function handleUserQuery(query) {
+      let reply = "All systems functioning within normal parameters, sir.";
+      if (query.includes("who are you")) {
+        reply = "I am jarvisAI, your tactical intelligence and neural operational assistant.";
+      } else if (query.includes("time")) {
+        reply = `The current time is ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
+      } else if (query.includes("status")) {
+        reply = "Power levels at one hundred percent. Defenses active. Neural links secured.";
+      } else if (query.includes("sleep") || query.includes("shut down") || query.includes("standby")) {
+        reply = "Entering standby protocols. Simply say Jarvis whenever you require me.";
+        speak(reply, () => {
+          state = 'LISTENING_WAKE';
+          stateText.innerText = 'STANDBY: SAY "JARVIS"';
+          stateText.style.color = '#00e5ff';
+          playChime(false);
+        });
+        return;
+      }
+
+      speak(reply, () => {
+        state = 'LISTENING_WAKE';
+        stateText.innerText = 'STANDBY: SAY "JARVIS"';
+        stateText.style.color = '#00e5ff';
+      });
+    }
+
+    const steps = [
+      { text: "POWERING ARC REACTOR CORE...", pct: "25%", f: 420 },
+      { text: "INITIALIZING NEURAL NETWORKS...", pct: "50%", f: 560 },
+      { text: "ESTABLISHING TACTICAL PROTOCOLS...", pct: "75%", f: 720 },
+      { text: "CALIBRATING HOLOGRAPHIC ARRAY...", pct: "95%", f: 880 },
+      { text: "ALL SYSTEMS ONLINE", pct: "100%", f: 1050 }
+    ];
+
+    powerOnBtn.addEventListener('click', () => {
+      powerOnBtn.style.display = 'none';
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      let idx = 0;
+      function runNextStep() {
+        if (idx < steps.length) {
+          bootStatus.innerText = steps[idx].text;
+          bootBar.style.width = steps[idx].pct;
+          playTone(steps[idx].f, 0.1);
+          idx++;
+          setTimeout(runNextStep, 550);
+        } else {
+          setTimeout(() => {
+            bootScreen.style.opacity = '0';
+            setTimeout(() => {
+              bootScreen.style.display = 'none';
+              playChime(true);
+              state = 'LISTENING_WAKE';
+              stateText.innerText = 'STANDBY: SAY "JARVIS"';
+              stateText.style.color = '#00e5ff';
+              transcriptText.innerText = 'Listening for "Jarvis"...';
+              if (recognition) {
+                try { recognition.start(); } catch(e) {}
+              }
+              speak("System boot complete. Jarvis is online, sir.");
+            }, 700);
+          }, 350);
+        }
+      }
+      runNextStep();
+    });
+  </script>
+</body>
+</html>
