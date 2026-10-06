@@ -21,6 +21,7 @@
       --primary-glow: rgba(0, 240, 255, 0.65);
       --accent-gold: #ffaa00;
       --accent-green: #00ffaa;
+      --accent-red: #ff3344;
       --bg: #010814;
     }
 
@@ -37,8 +38,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 12px 16px;
+      justify-content: flex-start;
+      padding: 8px 10px 14px;
       position: relative;
     }
 
@@ -49,7 +50,7 @@
       background: 
         linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background-size: 20px 20px;
       pointer-events: none;
       z-index: 1;
     }
@@ -58,175 +59,171 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.38) 51%);
+      background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 51%);
       background-size: 100% 4px;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .hud-corner {
       position: fixed;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       pointer-events: none;
       z-index: 8;
     }
-    .hud-corner.tl { top: 8px; left: 8px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.tr { top: 8px; right: 8px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
-    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.tl { top: 6px; left: 6px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.tr { top: 6px; right: 6px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.bl { bottom: 6px; left: 6px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.br { bottom: 6px; right: 6px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
 
-    /* =========================================
-       10-SECOND PACKED SCI-FI BOOT SCREEN
-       ========================================= */
+    /* BOOT SCREEN */
     #bootScreen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #092c52 0%, #020a16 75%, #00040a 100%);
-      z-index: 200;
+      background: radial-gradient(circle at center, #0a2f58 0%, #030e1d 65%, #00040a 100%);
+      z-index: 300;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
     }
 
-    /* Vertical scanning laser */
-    .boot-laser {
+    .boot-laser-horiz {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, #00f0ff, transparent);
-      box-shadow: 0 0 15px #00f0ff;
-      animation: laserSweep 3s ease-in-out infinite alternate;
+      box-shadow: 0 0 16px #00f0ff;
+      animation: sweepVert 3s ease-in-out infinite alternate;
       pointer-events: none;
-      z-index: 5;
     }
-    @keyframes laserSweep {
-      0% { top: 5%; opacity: 0.2; }
-      50% { opacity: 0.8; }
-      100% { top: 95%; opacity: 0.2; }
+    @keyframes sweepVert {
+      0% { top: 4%; opacity: 0.15; }
+      50% { opacity: 0.9; }
+      100% { top: 96%; opacity: 0.15; }
     }
 
-    .reactor-container {
+    .boot-stage-container {
       position: relative;
-      width: 170px;
-      height: 170px;
+      width: 200px;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
-
-    .reactor-ring-outer {
+    .boot-reactor-ring-1 {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px dashed var(--primary);
+      width: 190px;
+      height: 190px;
+      border: 1.5px dashed var(--primary);
       border-radius: 50%;
-      animation: spinClockwise 12s linear infinite;
+      animation: spinCW 14s linear infinite;
     }
-
-    .reactor-ring-mid {
+    .boot-reactor-ring-2 {
       position: absolute;
-      width: 82%;
-      height: 82%;
-      border: 2px solid rgba(0, 240, 255, 0.35);
+      width: 155px;
+      height: 155px;
+      border: 2px solid rgba(0, 240, 255, 0.3);
       border-top-color: var(--primary);
       border-bottom-color: var(--primary);
       border-radius: 50%;
-      animation: spinCounter 6s linear infinite;
+      animation: spinCCW 7s linear infinite;
     }
-
-    .reactor-core {
-      width: 68px;
-      height: 68px;
+    .boot-reactor-ring-3 {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 1px dotted rgba(255, 170, 0, 0.7);
+      border-radius: 50%;
+      animation: spinCW 5s linear infinite;
+    }
+    .boot-reactor-core {
+      width: 72px;
+      height: 72px;
       background: radial-gradient(circle, #ffffff 15%, #00f0ff 65%, rgba(0,240,255,0.2) 100%);
       border-radius: 50%;
-      box-shadow: 0 0 50px var(--primary-glow), inset 0 0 18px #fff;
-      animation: corePulse 1.6s ease-in-out infinite alternate;
+      box-shadow: 0 0 50px var(--primary-glow), inset 0 0 16px #fff;
+      animation: coreSwell 1.8s ease-in-out infinite alternate;
     }
 
-    @keyframes spinClockwise { to { transform: rotate(360deg); } }
-    @keyframes spinCounter { to { transform: rotate(-360deg); } }
-    @keyframes corePulse {
-      from { transform: scale(0.92); opacity: 0.85; box-shadow: 0 0 25px var(--primary-glow); }
-      to { transform: scale(1.12); opacity: 1; box-shadow: 0 0 70px #00f0ff, 0 0 25px #fff; }
+    @keyframes spinCW { to { transform: rotate(360deg); } }
+    @keyframes spinCCW { to { transform: rotate(-360deg); } }
+    @keyframes coreSwell {
+      from { transform: scale(0.92); box-shadow: 0 0 25px var(--primary-glow); }
+      to { transform: scale(1.1); box-shadow: 0 0 75px #00f0ff, 0 0 20px #fff; }
     }
 
-    .boot-header {
+    .boot-title {
       font-family: 'Orbitron', monospace;
       font-size: 2.2rem;
       font-weight: 900;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.45em;
       color: #effaff;
       text-shadow: 0 0 24px var(--primary-glow);
-      margin-left: 0.4em;
+      margin-left: 0.45em;
     }
-
-    .boot-sub {
+    .boot-subtitle {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 0.28em;
-      color: rgba(0, 240, 255, 0.7);
+      color: rgba(0, 240, 255, 0.75);
       margin-top: 4px;
       text-transform: uppercase;
     }
 
-    /* Live Telemetry Data Box in Boot */
-    .boot-telemetry-grid {
-      width: 320px;
-      background: rgba(0, 20, 45, 0.65);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+    .boot-telemetry-panel {
+      width: 330px;
+      background: rgba(0, 24, 52, 0.7);
+      border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 8px;
       padding: 8px 12px;
       margin-top: 14px;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem;
-      color: rgba(0, 240, 255, 0.8);
+      font-size: 0.74rem;
+      color: rgba(0, 240, 255, 0.85);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px;
+      gap: 6px;
     }
 
-    .boot-progress-frame {
-      width: 320px;
-      margin: 14px 0 6px;
+    .boot-track-box {
+      width: 330px;
+      margin-top: 14px;
     }
-
-    .boot-bar-track {
+    .boot-track {
       width: 100%;
       height: 8px;
-      background: rgba(0, 240, 255, 0.1);
+      background: rgba(0, 240, 255, 0.12);
       border: 1px solid rgba(0, 240, 255, 0.4);
       border-radius: 4px;
       overflow: hidden;
     }
-
-    .boot-bar-fill {
+    .boot-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #0077ff, #00f0ff);
       box-shadow: 0 0 16px var(--primary);
       transition: width 0.9s cubic-bezier(0.2, 0.8, 0.3, 1);
     }
-
-    .boot-status-text {
+    .boot-text-readout {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.82rem;
-      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
       color: #92ecff;
       text-align: center;
-      height: 22px;
+      height: 20px;
       margin-top: 8px;
     }
 
-    .init-button {
+    .btn-stark-init {
       margin-top: 18px;
       background: rgba(0, 240, 255, 0.12);
       border: 1.5px solid var(--primary);
@@ -235,93 +232,128 @@
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: 0.28em;
-      padding: 16px 36px;
-      border-radius: 40px;
+      padding: 14px 34px;
+      border-radius: 36px;
       cursor: pointer;
       text-transform: uppercase;
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 14px rgba(0, 240, 255, 0.2);
     }
-
-    .init-button:active {
+    .btn-stark-init:active {
       transform: scale(0.96);
       background: rgba(0, 240, 255, 0.3);
     }
 
-    /* HUD */
+    /* HEADER */
     header {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 6px 8px;
+      padding: 4px 6px 6px;
       border-bottom: 1px solid rgba(0, 240, 255, 0.25);
       position: relative;
       z-index: 10;
     }
-
     .brand-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.22em;
       color: #fff;
       text-shadow: 0 0 12px var(--primary);
     }
-
     .brand-sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.68rem;
-      color: rgba(0, 240, 255, 0.65);
-      letter-spacing: 0.15em;
+      font-size: 0.65rem;
+      color: rgba(0, 240, 255, 0.7);
+      letter-spacing: 0.12em;
     }
-
     .telemetry-time {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--primary);
       text-align: right;
     }
 
+    /* NAVIGATION RAIL */
+    .tab-rail {
+      width: 100%;
+      max-width: 460px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin: 6px 0;
+      position: relative;
+      z-index: 10;
+    }
+    .tab-btn {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      color: rgba(0, 240, 255, 0.7);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      padding: 6px 2px;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .tab-btn.active {
+      background: rgba(0, 240, 255, 0.25);
+      border-color: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+    }
+
+    .deck-panel {
+      width: 100%;
+      max-width: 460px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    .deck-panel.active { display: flex; }
+
+    /* TAB 1: HOME DECK */
     .hud-stage {
       position: relative;
       width: 320px;
-      height: 250px;
+      height: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 4px 0;
-      z-index: 10;
+      margin: 2px 0;
     }
-
     .reticle-outer {
       position: absolute;
-      width: 240px;
-      height: 240px;
+      width: 230px;
+      height: 230px;
       border: 1px dashed rgba(0, 240, 255, 0.3);
       border-radius: 50%;
-      animation: spinClockwise 32s linear infinite;
+      animation: spinCW 32s linear infinite;
     }
-
     .reticle-mid {
       position: absolute;
-      width: 210px;
-      height: 210px;
+      width: 200px;
+      height: 200px;
       border: 1px solid rgba(0, 240, 255, 0.2);
       border-left: 2px solid var(--primary);
       border-right: 2px solid var(--primary);
       border-radius: 50%;
-      animation: spinCounter 16s linear infinite;
+      animation: spinCCW 16s linear infinite;
     }
-
     .reticle-inner {
       position: absolute;
-      width: 175px;
-      height: 175px;
+      width: 165px;
+      height: 165px;
       border: 1px dotted rgba(0, 240, 255, 0.4);
       border-radius: 50%;
     }
-
     .hud-pitch-ladder {
       position: absolute;
       width: 100%;
@@ -330,80 +362,68 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 30px 10px;
+      padding: 25px 8px;
     }
-
     .pitch-line {
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: rgba(0, 240, 255, 0.35);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
     }
     .pitch-line::before, .pitch-line::after {
       content: "";
-      width: 25px;
+      width: 24px;
       height: 1px;
       background: rgba(0, 240, 255, 0.4);
     }
-
-    canvas {
+    canvas#holoCanvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       z-index: 5;
     }
-
     .hud-flank-left, .hud-flank-right {
       position: absolute;
-      top: 25px;
+      top: 20px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
       line-height: 1.35;
       pointer-events: none;
       z-index: 6;
     }
-    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.65); }
-    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.65); }
+    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.7); }
+    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.7); }
 
+    /* SUBTITLES */
     .subtitles-card {
       width: 100%;
-      max-width: 440px;
-      background: rgba(2, 10, 22, 0.92);
+      background: rgba(2, 12, 26, 0.9);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
       border-radius: 12px;
-      padding: 10px 14px;
+      padding: 10px 12px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
       margin: 4px 0 8px;
-      position: relative;
-      z-index: 10;
     }
-
-    .sub-channel {
-      margin-bottom: 6px;
-    }
-    .sub-channel:last-child {
-      margin-bottom: 0;
-    }
-
+    .sub-channel { margin-bottom: 6px; }
+    .sub-channel:last-child { margin-bottom: 0; }
     .sub-tag {
       font-family: 'Orbitron', monospace;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       display: inline-block;
       margin-bottom: 2px;
     }
     .sub-tag.user { color: var(--accent-gold); }
     .sub-tag.jarvis { color: var(--primary); }
-
     .sub-text {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       line-height: 1.25;
       letter-spacing: 0.02em;
@@ -412,59 +432,51 @@
     .sub-text.user { color: #ffe6aa; }
     .sub-text.jarvis { color: #ffffff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
 
+    /* CONSOLE */
     .hud-console {
       width: 100%;
-      max-width: 440px;
-      background: rgba(2, 12, 26, 0.88);
+      background: rgba(2, 12, 26, 0.9);
       border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 12px;
       padding: 10px 12px;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.12);
-      position: relative;
-      z-index: 10;
     }
-
     .status-badge-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 6px;
     }
-
     .state-indicator {
       font-family: 'Orbitron', monospace;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.15em;
       color: var(--primary);
       text-shadow: 0 0 10px var(--primary-glow);
     }
-
     .system-dot {
       width: 8px;
       height: 8px;
       background: var(--primary);
       border-radius: 50%;
       box-shadow: 0 0 10px var(--primary);
-      animation: corePulse 1s infinite alternate;
+      animation: coreSwell 1s infinite alternate;
     }
-
     .tactical-drawer {
       display: grid;
       grid-template-columns: 1fr;
       gap: 4px;
       margin-bottom: 6px;
     }
-
     .tactical-option-btn {
       background: rgba(0, 240, 255, 0.08);
       border: 1px solid rgba(0, 240, 255, 0.28);
       color: rgba(225, 248, 255, 0.9);
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       padding: 6px 10px;
       border-radius: 6px;
       text-align: left;
@@ -473,18 +485,12 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .tactical-option-btn:active {
       background: rgba(0, 240, 255, 0.28);
       border-color: var(--primary);
       transform: scale(0.98);
     }
-
-    .chat-row {
-      display: flex;
-      gap: 6px;
-    }
-
+    .chat-row { display: flex; gap: 6px; }
     .chat-input {
       flex: 1;
       background: rgba(0, 20, 40, 0.75);
@@ -497,13 +503,11 @@
       padding: 8px 12px;
       outline: none;
     }
-
     .chat-input::placeholder {
       color: rgba(0, 240, 255, 0.45);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
     }
-
     .chat-send-btn {
       background: rgba(0, 240, 255, 0.16);
       border: 1px solid var(--primary);
@@ -516,10 +520,133 @@
       border-radius: 8px;
       cursor: pointer;
     }
-
     .chat-send-btn:active {
       background: var(--primary);
       color: #000;
+    }
+
+    /* TAB 2: COGNITION CHAT */
+    .cognition-controls {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      background: rgba(0, 20, 40, 0.5);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+    }
+    .mode-toggle-btn {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .chat-history-log {
+      width: 100%;
+      height: 380px;
+      overflow-y: auto;
+      background: rgba(2, 10, 20, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .chat-entry {
+      font-size: 0.95rem;
+      line-height: 1.35;
+      padding: 8px 10px;
+      border-radius: 6px;
+      max-width: 90%;
+    }
+    .chat-entry.user {
+      align-self: flex-end;
+      background: rgba(255, 170, 0, 0.12);
+      border: 1px solid rgba(255, 170, 0, 0.35);
+      color: #ffe6aa;
+    }
+    .chat-entry.jarvis {
+      align-self: flex-start;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: #ffffff;
+    }
+
+    /* TAB 3: HOLO-FABRICATOR */
+    .holo-viewport {
+      width: 100%;
+      height: 280px;
+      background: rgba(0, 16, 36, 0.8);
+      border: 1.5px dashed var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .holo-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .holo-placeholder {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: rgba(0, 240, 255, 0.6);
+      text-align: center;
+      padding: 20px;
+    }
+    .holo-laser-sweep {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #00ffaa;
+      box-shadow: 0 0 15px #00ffaa;
+      display: none;
+      animation: sweepVert 2s ease-in-out infinite alternate;
+    }
+
+    /* TAB 4: INTEL RADAR */
+    .radar-card-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .radar-card {
+      background: rgba(0, 20, 45, 0.65);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .radar-card-title {
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+    }
+    .radar-card-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .radar-card-sub {
+      font-size: 0.65rem;
+      color: rgba(0, 240, 255, 0.6);
     }
   </style>
 </head>
@@ -530,637 +657,50 @@
   <div class="hud-corner bl"></div>
   <div class="hud-corner br"></div>
 
-  <!-- 10-SECOND CINEMATIC BOOT SCREEN -->
+  <!-- 10-STAGE CINEMATIC DIAGNOSTIC BOOT SCREEN -->
   <div id="bootScreen">
-    <div class="boot-laser"></div>
+    <div class="boot-laser-horiz"></div>
 
-    <div class="reactor-container">
-      <div class="reactor-ring-outer"></div>
-      <div class="reactor-ring-mid"></div>
-      <div class="reactor-core"></div>
+    <div class="boot-stage-container">
+      <div class="boot-reactor-ring-1"></div>
+      <div class="boot-reactor-ring-2"></div>
+      <div class="boot-reactor-ring-3"></div>
+      <div class="boot-reactor-core"></div>
     </div>
-    <div class="boot-header">J.A.R.V.I.S.</div>
-    <div class="boot-sub">STARK NEURAL OPERATING SUITE</div>
 
-    <div class="boot-progress-frame">
-      <div class="boot-bar-track">
-        <div id="bootBar" class="boot-bar-fill"></div>
+    <div class="boot-title">J.A.R.V.I.S.</div>
+    <div class="boot-subtitle">STARK TACTICAL OPERATING SYSTEM</div>
+
+    <div class="boot-track-box">
+      <div class="boot-track">
+        <div id="bootBar" class="boot-fill"></div>
       </div>
-      <div id="bootStatus" class="boot-status-text">PRESS INITIALIZE TO ENGAGE POWER</div>
+      <div id="bootStatus" class="boot-text-readout">PRESS INITIALIZE TO ENGAGE POWER</div>
     </div>
 
-    <!-- Live Telemetry Matrix -->
-    <div id="bootTelemetryGrid" class="boot-telemetry-grid">
-      <div>MEM // <span id="bootMem" style="color:#fff;">0x7FFE0014</span></div>
+    <div class="boot-telemetry-panel">
+      <div>REG // <span id="bootReg" style="color:#fff;">0x7FFE0014</span></div>
       <div>CORE FLUX // <span id="bootFlux" style="color:var(--accent-green);">STANDBY</span></div>
-      <div>PRESSURE // <span id="bootPressure" style="color:#fff;">1.01 BAR</span></div>
-      <div>GRID // <span id="bootGrid" style="color:var(--accent-gold);">ARMED</span></div>
+      <div>PRESSURE // <span id="bootPress" style="color:#fff;">1.01 BAR</span></div>
+      <div>LINK // <span id="bootSat" style="color:var(--accent-gold);">ARMED</span></div>
     </div>
 
-    <button id="powerOnBtn" class="init-button">INITIALIZE SUITE</button>
+    <button id="powerOnBtn" class="btn-stark-init">INITIALIZE SUITE</button>
   </div>
 
   <!-- HUD BAR -->
   <header>
     <div>
       <div class="brand-title">J.A.R.V.I.S.</div>
-      <div class="brand-sub">STARK NEURAL SUITE // MK VII</div>
+      <div class="brand-sub">NEURAL OPERATING SUITE // MK VII</div>
     </div>
     <div>
-      <div id="hudClock" class="telemetry-time">00:00:00 ZULU</div>
-      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.6); text-align: right;">GRID // CYMRU CELL</div>
+      <div id="hudClock" class="telemetry-time">00:00:00 LOC</div>
+      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.65); text-align: right;">GRID // CYMRU CELL</div>
     </div>
   </header>
 
-  <!-- HOLOGRAPHIC STAGE -->
-  <div class="hud-stage">
-    <div class="reticle-outer"></div>
-    <div class="reticle-mid"></div>
-    <div class="reticle-inner"></div>
-
-    <div class="hud-pitch-ladder">
-      <div class="pitch-line"><span>+10</span><span>PITCH</span><span>+10</span></div>
-      <div class="pitch-line"><span>00</span><span>HORIZON</span><span>00</span></div>
-      <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
-    </div>
-
-    <div class="hud-flank-left">
-      <div>PWR: <span style="color:#fff;">100%</span></div>
-      <div>FLUX: <span id="fluxReadout">432.8 GHZ</span></div>
-      <div>RPM: <span id="rpmReadout">14,200</span></div>
-      <div>TEMP: <span style="color:var(--accent-green);">32°C NOM</span></div>
-    </div>
-
-    <div class="hud-flank-right">
-      <div>NEURAL: <span style="color:var(--accent-green);">ONLINE</span></div>
-      <div>LINK: <span style="color:#fff;">STARK-SAT</span></div>
-      <div>SUB: <span style="color:var(--accent-gold);">ACTIVE</span></div>
-      <div>DEF: <span style="color:var(--primary);">ARMED</span></div>
-    </div>
-
-    <canvas id="holoCanvas"></canvas>
-  </div>
-
-  <!-- SUBTITLES DECK -->
-  <div class="subtitles-card">
-    <div class="sub-channel">
-      <div class="sub-tag user">[ USER DIRECTIVE ]</div>
-      <div id="userSubtitle" class="sub-text user">Awaiting operational command...</div>
-    </div>
-    <div class="sub-channel">
-      <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
-      <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
-    </div>
-  </div>
-
-  <!-- CONSOLE -->
-  <div class="hud-console">
-    <div class="status-badge-row">
-      <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
-      <div id="systemDot" class="system-dot"></div>
-    </div>
-
-    <div class="tactical-drawer">
-      <button class="tactical-option-btn" onclick="triggerQuick('What is the current date and local time?')">
-        <span>01 // CHRONO SCAN (LOCAL TIME & DATE)</span>
-        <span style="color:var(--primary);">[CHECK]</span>
-      </button>
-      <button class="tactical-option-btn" onclick="triggerQuick('Scan the local weather telemetry.')">
-        <span>02 // ATMOSPHERIC RADAR (WEATHER SCAN)</span>
-        <span style="color:var(--primary);">[PROBE]</span>
-      </button>
-      <button class="tactical-option-btn" onclick="triggerQuick('Report on Blaengwynfi, the Afan Valley, and the Rhondda Tunnel.')">
-        <span>03 // LOCAL GRID TELEMETRY (BLAENGWYNFI)</span>
-        <span style="color:var(--primary);">[SCAN]</span>
-      </button>
-    </div>
-
-    <div class="chat-row">
-      <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything: weather, time in Tokyo, science..." />
-      <button id="sendBtn" class="chat-send-btn">TRANSMIT</button>
-    </div>
-  </div>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(err => {
-        console.warn("Service worker registration:", err);
-      });
-    }
-
-    function updateClock() {
-      const now = new Date();
-      const zulu = now.toTimeString().split(' ')[0] + ' LOC';
-      document.getElementById('hudClock').innerText = zulu;
-
-      const flux = (432 + Math.random() * 2).toFixed(1);
-      document.getElementById('fluxReadout').innerText = `${flux} GHZ`;
-      const rpm = Math.floor(14150 + Math.random() * 120);
-      document.getElementById('rpmReadout').innerText = `${rpm.toLocaleString()}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    const canvas = document.getElementById('holoCanvas');
-    const ctx = canvas.getContext('2d');
-    const size = 320;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    ctx.scale(dpr, dpr);
-
-    let state = 'IDLE';
-    let rotation = 0;
-    let pulse = 0;
-    let silenceTimer = null;
-
-    const numPoints = 200;
-    const points = [];
-    for (let i = 0; i < numPoints; i++) {
-      const phi = Math.acos(-1 + (2 * i) / numPoints);
-      const theta = Math.sqrt(numPoints * Math.PI) * phi;
-      points.push({
-        x: Math.cos(theta) * Math.sin(phi),
-        y: Math.sin(theta) * Math.sin(phi),
-        z: Math.cos(phi)
-      });
-    }
-
-    function renderHolo() {
-      ctx.clearRect(0, 0, size, size);
-      const cx = size / 2;
-      const cy = size / 2;
-
-      let primaryRgb = '0, 240, 255';
-      let speed = 0.012;
-      let expand = 6;
-
-      if (state === 'AWAKE_LISTENING') {
-        primaryRgb = '255, 170, 0';
-        speed = 0.038;
-        expand = 15;
-      } else if (state === 'SPEAKING') {
-        primaryRgb = '0, 255, 170';
-        speed = 0.026;
-        expand = 22;
-      }
-
-      rotation += speed;
-      pulse += 0.07;
-
-      const currentRadius = 78 + Math.sin(pulse) * expand;
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${primaryRgb}, 0.25)`;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
-        for (let i = 0; i < 16; i++) {
-          let barHeight = Math.sin(pulse * 2.2 + i) * 16 + 18;
-          ctx.strokeStyle = `rgba(${primaryRgb}, 0.55)`;
-          ctx.beginPath();
-          ctx.moveTo(cx - 95 - i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx - 95 - i * 3, cy + barHeight / 2);
-          ctx.stroke();
-
-          ctx.beginPath();
-          ctx.moveTo(cx + 95 + i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx + 95 + i * 3, cy + barHeight / 2);
-          ctx.stroke();
-        }
-      }
-
-      const cosR = Math.cos(rotation);
-      const sinR = Math.sin(rotation);
-
-      points.forEach(p => {
-        let x1 = p.x * cosR - p.z * sinR;
-        let z1 = p.z * cosR + p.x * sinR;
-        let y1 = p.y;
-
-        let perspective = 200 / (240 + z1 * currentRadius);
-        let px = cx + x1 * currentRadius * perspective;
-        let py = cy + y1 * currentRadius * perspective;
-        let alpha = (z1 + 1) / 2;
-
-        ctx.beginPath();
-        ctx.arc(px, py, 2.2 * perspective, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${primaryRgb},${Math.max(0.18, alpha)})`;
-        ctx.fill();
-      });
-
-      requestAnimationFrame(renderHolo);
-    }
-    renderHolo();
-
-    /* =========================================================
-       DEEP CINEMATIC AUDIO (NO HIGH PITCH WHINE)
-       - Sub-bass rumble
-       - Heavy hydraulic servo clicks
-       - Low resonant activation chime
-       ========================================================= */
-    let audioCtx = null;
-    function getAudio() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      return audioCtx;
-    }
-
-    // Heavy hydraulic mechanical relay click
-    function playMechanicalClick() {
-      const actx = getAudio();
-      const now = actx.currentTime;
-      const osc = actx.createOscillator();
-      const gain = actx.createGain();
-
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(140, now);
-      osc.frequency.exponentialRampToValueAtTime(30, now + 0.08);
-
-      gain.gain.setValueAtTime(0.35, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-
-      osc.connect(gain);
-      gain.connect(actx.destination);
-      osc.start(now);
-      osc.stop(now + 0.09);
-    }
-
-    // Continuous 10-second deep cinematic turbine build
-    function playDeepTurbineSpool() {
-      const actx = getAudio();
-      const now = actx.currentTime;
-
-      // 1. Heavy low-frequency sub-bass swell
-      const sub = actx.createOscillator();
-      const subGain = actx.createGain();
-      sub.type = 'sawtooth';
-      sub.frequency.setValueAtTime(38, now);
-      sub.frequency.exponentialRampToValueAtTime(85, now + 9.5);
-
-      const filter = actx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(90, now);
-      filter.frequency.exponentialRampToValueAtTime(260, now + 9.5);
-
-      subGain.gain.setValueAtTime(0.01, now);
-      subGain.gain.linearRampToValueAtTime(0.32, now + 5.0);
-      subGain.gain.exponentialRampToValueAtTime(0.001, now + 10.0);
-
-      sub.connect(filter);
-      filter.connect(subGain);
-      subGain.connect(actx.destination);
-      sub.start(now);
-      sub.stop(now + 10.0);
-    }
-
-    function playCinematicChime() {
-      const actx = getAudio();
-      const now = actx.currentTime;
-      const notes = [440.00, 554.37, 659.25, 880.00]; // Rich A-Major chord
-
-      notes.forEach((freq, idx) => {
-        const osc = actx.createOscillator();
-        const gain = actx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.06);
-
-        gain.gain.setValueAtTime(0.15, now + idx * 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2 + idx * 0.06);
-
-        osc.connect(gain);
-        gain.connect(actx.destination);
-        osc.start(now + idx * 0.06);
-        osc.stop(now + 1.4);
-      });
-    }
-
-    function playChime(isAwake = true) {
-      if (isAwake) {
-        playCinematicChime();
-      } else {
-        const actx = getAudio();
-        const now = actx.currentTime;
-        const osc = actx.createOscillator();
-        const gain = actx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(220, now + 0.3);
-        gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-        osc.connect(gain);
-        gain.connect(actx.destination);
-        osc.start(now);
-        osc.stop(now + 0.35);
-      }
-    }
-
-    let jarvisVoice = null;
-    function loadVoices() {
-      const voices = window.speechSynthesis.getVoices();
-      jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
-                    (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Oliver') || v.name.includes('Arthur')))
-                 || voices.find(v => v.lang === 'en-GB')
-                 || voices.find(v => v.lang.startsWith('en'));
-    }
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-      loadVoices();
-    }
-
-    function speak(text, callback) {
-      state = 'SPEAKING';
-      updateStatus("JARVIS RESPONDING", "var(--accent-green)");
-      document.getElementById('jarvisSubtitle').innerText = text;
-      window.speechSynthesis.cancel();
-
-      if (recognition) {
-        try { recognition.stop(); } catch(e) {}
-      }
-
-      const utterance = new SpeechSynthesisUtterance(text);
-      if (!jarvisVoice) loadVoices();
-      if (jarvisVoice) utterance.voice = jarvisVoice;
-      
-      utterance.pitch = 0.85;
-      utterance.rate = 1.0;
-
-      utterance.onend = () => {
-        if (callback) {
-          callback();
-        } else {
-          setStandby();
-        }
-      };
-
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function updateStatus(label, color) {
-      const stateEl = document.getElementById('stateIndicator');
-      const dotEl = document.getElementById('systemDot');
-      stateEl.innerText = label;
-      stateEl.style.color = color;
-      dotEl.style.background = color;
-      dotEl.style.boxShadow = `0 0 10px ${color}`;
-    }
-
-    function setStandby() {
-      state = 'LISTENING_WAKE';
-      updateStatus('STANDBY // SAY "JARVIS"', 'var(--primary)');
-      if (recognition) {
-        try { recognition.start(); } catch(e) {}
-      }
-    }
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    let recognition = null;
-
-    function initRecognition() {
-      if (!SpeechRecognition) {
-        document.getElementById('userSubtitle').innerText = "Vocal recognition offline. Text interface ready.";
-        return;
-      }
-      recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = 'en-GB';
-
-      recognition.onresult = (event) => {
-        let interim = '';
-        let final = '';
-
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          if (event.results[i].isFinal) {
-            final += event.results[i][0].transcript;
-          } else {
-            interim += event.results[i][0].transcript;
-          }
-        }
-
-        const heard = (final || interim).trim();
-        if (!heard) return;
-
-        document.getElementById('userSubtitle').innerText = `"${heard}"`;
-
-        const lowerHeard = heard.toLowerCase();
-
-        if (state === 'LISTENING_WAKE') {
-          if (lowerHeard.includes('jarvis') || lowerHeard.includes('hey jarvis') || lowerHeard.includes('service')) {
-            playCinematicChime();
-            state = 'AWAKE_LISTENING';
-            updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
-            speak("At your service, sir. What are your orders?", () => {
-              state = 'AWAKE_LISTENING';
-              updateStatus("LISTENING TO COMMAND...", "var(--accent-gold)");
-              document.getElementById('userSubtitle').innerText = "Speak now, sir...";
-              try { recognition.start(); } catch(e) {}
-            });
-          }
-        } else if (state === 'AWAKE_LISTENING') {
-          clearTimeout(silenceTimer);
-          silenceTimer = setTimeout(() => {
-            handleTacticalCommand(heard);
-          }, 1100);
-        }
-      };
-
-      recognition.onerror = (e) => {
-        if (e.error !== 'no-speech') {
-          console.log("Mic status:", e.error);
-        }
-      };
-
-      recognition.onend = () => {
-        if (state !== 'IDLE' && state !== 'SPEAKING') {
-          try { recognition.start(); } catch(e) {}
-        }
-      };
-    }
-
-    async function fetchLiveAtmosphericContext(query) {
-      const q = query.toLowerCase();
-      let contextInfo = "";
-
-      const now = new Date();
-      const dateString = now.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-      const timeString = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      contextInfo += `[CURRENT DEVICE SENSORS: Exact Local Date: ${dateString}. Current Local Time: ${timeString}.] `;
-
-      const timeZones = [
-        { name: 'tokyo', tz: 'Asia/Tokyo' },
-        { name: 'japan', tz: 'Asia/Tokyo' },
-        { name: 'new york', tz: 'America/New_York' },
-        { name: 'los angeles', tz: 'America/Los_Angeles' },
-        { name: 'california', tz: 'America/Los_Angeles' },
-        { name: 'paris', tz: 'Europe/Paris' },
-        { name: 'france', tz: 'Europe/Paris' },
-        { name: 'sydney', tz: 'Australia/Sydney' },
-        { name: 'dubai', tz: 'Asia/Dubai' },
-        { name: 'london', tz: 'Europe/London' }
-      ];
-
-      for (const t of timeZones) {
-        if (q.includes(t.name)) {
-          const remoteTime = new Intl.DateTimeFormat('en-GB', { timeZone: t.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
-          contextInfo += `[SATELLITE CHRONO: Current time in ${t.name.toUpperCase()} is${remoteTime}.] `;
-        }
-      }
-
-      if (q.includes('weather') || q.includes('temperature') || q.includes('forecast') || q.includes('rain') || q.includes('radar')) {
-        try {
-          let lat = 51.65;
-          let lon = -3.60;
-          let locName = "Blaengwynfi / Afan Valley";
-
-          if (q.includes('london')) { lat = 51.50; lon = -0.12; locName = "London"; }
-          else if (q.includes('cardiff')) { lat = 51.48; lon = -3.18; locName = "Cardiff"; }
-          else if (q.includes('new york')) { lat = 40.71; lon = -74.00; locName = "New York"; }
-          else if (q.includes('paris')) { lat = 48.85; lon = 2.35; locName = "Paris"; }
-          else if (q.includes('tokyo')) { lat = 35.67; lon = 139.65; locName = "Tokyo"; }
-
-          const wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m&timezone=auto`);
-          if (wRes.ok) {
-            const wData = await wRes.json();
-            const curr = wData.current;
-            contextInfo += `[LIVE ATMOSPHERIC SENSORS FOR ${locName}: Temperature is${curr.temperature_2m}°C (Feels like ${curr.apparent_temperature}°C), Wind Speed${curr.wind_speed_10m} km/h, Humidity ${curr.relative_humidity_2m}\%, Precipitation${curr.precipitation} mm.] `;
-          }
-        } catch (e) {
-          console.warn("Weather telemetry sync offline:", e);
-        }
-      }
-
-      return contextInfo;
-    }
-
-    async function handleTacticalCommand(cmd) {
-      clearTimeout(silenceTimer);
-
-      document.getElementById('userSubtitle').innerText = `"${cmd}"`;
-
-      if (cmd.toLowerCase().includes("sleep") || cmd.toLowerCase().includes("standby") || cmd.toLowerCase().includes("shut down")) {
-        speak("Entering passive monitoring mode. Simply say Jarvis whenever you require me, sir.", () => {
-          playChime(false);
-          setStandby();
-        });
-        return;
-      }
-
-      updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
-
-      try {
-        const liveSensors = await fetchLiveAtmosphericContext(cmd);
-
-        const prompt = `System Directive: You are J.A.R.V.I.S. from Iron Man. Address the user as 'Sir'. 
-You have universal knowledge of science, history, coding, and the hyper-local geography of Blaengwynfi, Wales (Rhondda Tunnel 3,443 yds, River Gwynfi, River Afan, A4107 Bwlch route, Miners Hall).
-Live sensor data: ${liveSensors}
-Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Never use asterisks or formatting symbols. User query: ${cmd}`;
-
-        let aiReply = "";
-
-        if (window.puter && puter.ai) {
-          try {
-            const response = await puter.ai.chat(prompt);
-            aiReply = (typeof response === 'string' ? response : (response.message ? response.message.content : JSON.stringify(response)));
-          } catch(err) {
-            console.warn("Puter engine offline, trying fallback:", err);
-          }
-        }
-
-        if (!aiReply) {
-          const fallbackRes = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`);
-          if (fallbackRes.ok) {
-            aiReply = await fallbackRes.text();
-          }
-        }
-
-        if (!aiReply) throw new Error("No uplink available");
-
-        aiReply = aiReply.replace(/[*_#`]/g, '').trim();
-        speak(aiReply, () => setStandby());
-
-      } catch (err) {
-        console.error("AI Error:", err);
-        speak("I encountered an anomaly connecting to the satellite uplink, sir.", () => setStandby());
-      }
-    }
-
-    function triggerQuick(queryText) {
-      handleTacticalCommand(queryText);
-    }
-
-    const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-
-    function sendChatMessage() {
-      const text = chatInput.value.trim();
-      if (!text) return;
-      chatInput.value = '';
-      handleTacticalCommand(text);
-    }
-
-    sendBtn.addEventListener('click', sendChatMessage);
-    chatInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') sendChatMessage();
-    });
-
-    // 10-SECOND CINEMATIC DIAGNOSTIC SEQUENCE (10 STAGES)
-    const bootSteps = [
-      { text: "STAGE 01 // COLD REACTOR SUB-BASS SPOOL", pct: "10%", mem: "0x7F0001", flux: "12.4 GHZ", p: "1.02 BAR" },
-      { text: "STAGE 02 // HYDRAULIC SERVO ENGAGEMENT", pct: "20%", mem: "0x7F004A", flux: "45.0 GHZ", p: "1.15 BAR" },
-      { text: "STAGE 03 // QUANTUM NEURAL REGISTERS MAPPED", pct: "30%", mem: "0x7F102B", flux: "120.8 GHZ", p: "1.42 BAR" },
-      { text: "STAGE 04 // SATELLITE ORBITAL UPLINK SYNC", pct: "40%", mem: "0x7F2210", flux: "210.3 GHZ", p: "1.80 BAR" },
-      { text: "STAGE 05 // CYMRU & AFAN TERRAIN TOPOLOGY", pct: "50%", mem: "0x7F33A9", flux: "290.0 GHZ", p: "2.10 BAR" },
-      { text: "STAGE 06 // FLIGHT HORIZON & RETICLE MATRIX", pct: "60%", mem: "0x7F4812", flux: "340.5 GHZ", p: "2.40 BAR" },
-      { text: "STAGE 07 // CHRONO & ATMOSPHERIC SENSORS", pct: "70%", mem: "0x7F59C4", flux: "390.2 GHZ", p: "2.75 BAR" },
-      { text: "STAGE 08 // HIGH-DEFINITION AUDIO BUS ONLINE", pct: "80%", mem: "0x7F6DF8", flux: "410.9 GHZ", p: "3.00 BAR" },
-      { text: "STAGE 09 // DEFENSIVE PLATING & CORE CHARGE", pct: "90%", mem: "0x7F7E01", flux: "432.8 GHZ", p: "3.20 BAR" },
-      { text: "STAGE 10 // ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%", mem: "0x7FFFFF", flux: "ONLINE", p: "NOMINAL" }
-    ];
-
-    const powerBtn = document.getElementById('powerOnBtn');
-    powerBtn.addEventListener('click', async () => {
-      powerBtn.style.display = 'none';
-
-      getAudio();
-      playDeepTurbineSpool();
-
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        stream.getTracks().forEach(t => t.stop());
-      } catch (err) {}
-
-      initRecognition();
-
-      let step = 0;
-      function runDiagnostic() {
-        if (step < bootSteps.length) {
-          const cur = bootSteps[step];
-          document.getElementById('bootStatus').innerText = cur.text;
-          document.getElementById('bootBar').style.width = cur.pct;
-          document.getElementById('bootMem').innerText = cur.mem;
-          document.getElementById('bootFlux').innerText = cur.flux;
-          document.getElementById('bootPressure').innerText = cur.p;
-          playMechanicalClick();
-          step++;
-          setTimeout(runDiagnostic, 1000);
-        } else {
-          setTimeout(() => {
-            const bootScreen = document.getElementById('bootScreen');
-            bootScreen.style.opacity = '0';
-            playCinematicChime();
-            setTimeout(() => {
-              bootScreen.style.display = 'none';
-              setStandby();
-              speak("System boot complete. Mark Seven suit diagnostics show all systems nominal. Jarvis is online and at your service, sir.");
-            }, 800);
-          }, 400);
-        }
-      }
-      runDiagnostic();
-    });
-  </script>
-</body>
-</html>
+  <!-- NAVIGATION TABS -->
+  <div class="tab-rail">
+    <button class="tab-btn active" onclick="switchTab('tabHome', this)">01 // HOME</button>
+    <button class="tab-btn" onclick="switch
