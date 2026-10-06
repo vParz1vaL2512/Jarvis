@@ -34,38 +34,58 @@
       font-family: 'Rajdhani', sans-serif;
       min-height: 100vh;
       min-height: 100dvh;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px 18px;
+      padding: 10px 12px 16px;
       position: relative;
     }
 
+    /* Ambient Holographic Matrix Grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: 
-        linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
-      background-size: 26px 26px;
+        linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
       pointer-events: none;
       z-index: 1;
     }
 
+    /* Scanlines */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.35) 51%);
+      background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.38) 51%);
       background-size: 100% 4px;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
+    /* Outer HUD Tactical Corner Brackets */
+    .hud-corner {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      border-color: rgba(0, 240, 255, 0.5);
+      pointer-events: none;
+      z-index: 8;
+    }
+    .hud-corner.tl { top: 8px; left: 8px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
+    .hud-corner.tr { top: 8px; right: 8px; border-top: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2px solid var(--primary); border-left: 2px solid var(--primary); }
+    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+
+    /* =========================================
+       15-SECOND CINEMATIC BOOT SCREEN
+       ========================================= */
     #bootScreen {
       position: fixed;
       inset: 0;
@@ -81,12 +101,12 @@
 
     .reactor-container {
       position: relative;
-      width: 150px;
-      height: 150px;
+      width: 145px;
+      height: 145px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .reactor-ring-outer {
@@ -110,8 +130,8 @@
     }
 
     .reactor-core {
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       background: radial-gradient(circle, #ffffff 10%, #00f0ff 60%, rgba(0,240,255,0.2) 100%);
       border-radius: 50%;
       box-shadow: 0 0 35px var(--primary-glow), inset 0 0 15px #fff;
@@ -137,7 +157,7 @@
 
     .boot-sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       letter-spacing: 0.3em;
       color: rgba(0, 240, 255, 0.7);
       margin-top: 6px;
@@ -145,8 +165,8 @@
     }
 
     .boot-progress-frame {
-      width: 320px;
-      margin: 22px 0 10px;
+      width: 310px;
+      margin: 20px 0 10px;
     }
 
     .boot-bar-track {
@@ -191,7 +211,7 @@
     }
 
     .init-button {
-      margin-top: 24px;
+      margin-top: 22px;
       background: rgba(0, 240, 255, 0.12);
       border: 1px solid var(--primary);
       color: var(--primary);
@@ -215,7 +235,7 @@
 
     #installBtn {
       display: none;
-      margin-top: 14px;
+      margin-top: 12px;
       background: rgba(0, 255, 170, 0.16);
       border: 1px solid var(--accent-green);
       color: var(--accent-green);
@@ -227,13 +247,16 @@
       cursor: pointer;
     }
 
+    /* =========================================
+       ACTIVE HUD INTERFACE
+       ========================================= */
     header {
       width: 100%;
       max-width: 440px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 10px 8px;
+      padding: 4px 6px 8px;
       border-bottom: 1px solid rgba(0, 240, 255, 0.25);
       position: relative;
       z-index: 10;
@@ -241,7 +264,7 @@
 
     .brand-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 900;
       letter-spacing: 0.25em;
       color: #fff;
@@ -262,29 +285,32 @@
       text-align: right;
     }
 
+    /* FLASHY HUD FLIGHT DECK CONTAINER */
     .hud-stage {
       position: relative;
-      width: 290px;
-      height: 290px;
+      width: 320px;
+      height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: auto 0;
+      margin: 4px 0;
       z-index: 10;
     }
 
     .reticle-outer {
       position: absolute;
-      inset: 0;
-      border: 1px dashed rgba(0, 240, 255, 0.25);
+      width: 240px;
+      height: 240px;
+      border: 1px dashed rgba(0, 240, 255, 0.3);
       border-radius: 50%;
       animation: spinClockwise 32s linear infinite;
     }
 
     .reticle-mid {
       position: absolute;
-      inset: 16px;
-      border: 1px solid rgba(0, 240, 255, 0.18);
+      width: 210px;
+      height: 210px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
       border-left: 2px solid var(--primary);
       border-right: 2px solid var(--primary);
       border-radius: 50%;
@@ -293,9 +319,37 @@
 
     .reticle-inner {
       position: absolute;
-      inset: 34px;
-      border: 1px dotted rgba(0, 240, 255, 0.3);
+      width: 175px;
+      height: 175px;
+      border: 1px dotted rgba(0, 240, 255, 0.4);
       border-radius: 50%;
+    }
+
+    /* Tactical Horizon Ladder lines across HUD */
+    .hud-pitch-ladder {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 10px;
+    }
+
+    .pitch-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(0, 240, 255, 0.35);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+    }
+    .pitch-line::before, .pitch-line::after {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: rgba(0, 240, 255, 0.4);
     }
 
     canvas {
@@ -306,43 +360,80 @@
       z-index: 5;
     }
 
-    .hud-readouts {
+    /* Side Telemetry Panels */
+    .hud-flank-left, .hud-flank-right {
       position: absolute;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 6px;
+      top: 25px;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(0, 240, 255, 0.55);
+      font-size: 0.62rem;
+      line-height: 1.3;
       pointer-events: none;
       z-index: 6;
     }
+    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.6); }
+    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.6); }
 
-    .hud-console {
+    /* =========================================
+       HIGH-CONTRAST SUBTITLES DECK
+       ========================================= */
+    .subtitles-card {
       width: 100%;
       max-width: 440px;
-      background: rgba(2, 12, 26, 0.82);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 14px;
-      padding: 12px 14px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.12), inset 0 0 20px rgba(0, 240, 255, 0.05);
+      background: rgba(2, 10, 22, 0.88);
+      border: 1.5px solid rgba(0, 240, 255, 0.45);
+      border-radius: 12px;
+      padding: 10px 14px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.08);
+      margin: 4px 0 8px;
       position: relative;
       z-index: 10;
     }
 
-    .hud-console::before, .hud-console::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-color: var(--primary);
-      pointer-events: none;
+    .sub-channel {
+      margin-bottom: 6px;
     }
-    .hud-console::before { top: -2px; left: -2px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
-    .hud-console::after { bottom: -2px; right: -2px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+    .sub-channel:last-child {
+      margin-bottom: 0;
+    }
+
+    .sub-tag {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      display: inline-block;
+      margin-bottom: 2px;
+    }
+    .sub-tag.user { color: var(--accent-gold); }
+    .sub-tag.jarvis { color: var(--primary); }
+
+    .sub-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+      min-height: 22px;
+    }
+    .sub-text.user { color: #ffe6aa; }
+    .sub-text.jarvis { color: #ffffff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
+
+    /* Tactical Console Container */
+    .hud-console {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(2, 12, 26, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 12px;
+      padding: 10px 12px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.12);
+      position: relative;
+      z-index: 10;
+    }
 
     .status-badge-row {
       display: flex;
@@ -353,7 +444,7 @@
 
     .state-indicator {
       font-family: 'Orbitron', monospace;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       color: var(--primary);
@@ -369,28 +460,18 @@
       animation: corePulse 1s infinite alternate;
     }
 
-    .transcript-box {
-      font-size: 0.98rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #eaf8ff;
-      min-height: 28px;
-      max-height: 60px;
-      overflow-y: auto;
-      margin-bottom: 8px;
-    }
-
+    /* 3-Line Tactical Quick Options */
     .tactical-drawer {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 5px;
-      margin-bottom: 8px;
+      gap: 4px;
+      margin-bottom: 6px;
     }
 
     .tactical-option-btn {
-      background: rgba(0, 240, 255, 0.07);
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      color: rgba(220, 245, 255, 0.85);
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.28);
+      color: rgba(225, 248, 255, 0.9);
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.72rem;
       letter-spacing: 0.12em;
@@ -405,11 +486,12 @@
     }
 
     .tactical-option-btn:active {
-      background: rgba(0, 240, 255, 0.25);
+      background: rgba(0, 240, 255, 0.28);
       border-color: var(--primary);
       transform: scale(0.98);
     }
 
+    /* Chat Input Row */
     .chat-row {
       display: flex;
       gap: 6px;
@@ -417,24 +499,25 @@
 
     .chat-input {
       flex: 1;
-      background: rgba(0, 20, 40, 0.7);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      background: rgba(0, 20, 40, 0.75);
+      border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 8px;
       color: #fff;
       font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 600;
       padding: 8px 12px;
       outline: none;
     }
 
     .chat-input::placeholder {
-      color: rgba(0, 240, 255, 0.4);
+      color: rgba(0, 240, 255, 0.45);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
     }
 
     .chat-send-btn {
-      background: rgba(0, 240, 255, 0.15);
+      background: rgba(0, 240, 255, 0.16);
       border: 1px solid var(--primary);
       color: var(--primary);
       font-family: 'Orbitron', monospace;
@@ -453,6 +536,12 @@
   </style>
 </head>
 <body>
+
+  <!-- TACTICAL CORNER BRACKETS -->
+  <div class="hud-corner tl"></div>
+  <div class="hud-corner tr"></div>
+  <div class="hud-corner bl"></div>
+  <div class="hud-corner br"></div>
 
   <!-- 15-SECOND CINEMATIC BOOT SCREEN -->
   <div id="bootScreen">
@@ -488,34 +577,60 @@
     </div>
     <div>
       <div id="hudClock" class="telemetry-time">00:00:00 ZULU</div>
-      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.5); text-align: right;">GRID // CYMRU CELL</div>
+      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.6); text-align: right;">GRID // CYMRU CELL</div>
     </div>
   </header>
 
-  <!-- HOLOGRAPHIC STAGE WITH 3D ORBITAL PARTICLE CORE -->
+  <!-- FLASHY HOLOGRAPHIC FLIGHT DECK STAGE -->
   <div class="hud-stage">
     <div class="reticle-outer"></div>
     <div class="reticle-mid"></div>
     <div class="reticle-inner"></div>
-    
-    <div class="hud-readouts">
-      <div>OUTPUT<br><span id="corePower" style="color:#fff;">100%</span></div>
-      <div style="text-align: right;">NEURAL LINK<br><span id="neuralStatus" style="color:var(--accent-green);">STABLE</span></div>
+
+    <div class="hud-pitch-ladder">
+      <div class="pitch-line"><span>+10</span><span>PITCH</span><span>+10</span></div>
+      <div class="pitch-line"><span>00</span><span>HORIZON</span><span>00</span></div>
+      <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
+    </div>
+
+    <!-- Live Left/Right Dynamic Telemetry Wings -->
+    <div class="hud-flank-left">
+      <div>PWR: <span style="color:#fff;">100%</span></div>
+      <div>FLUX: <span id="fluxReadout">432.8 GHZ</span></div>
+      <div>RPM: <span id="rpmReadout">14,200</span></div>
+      <div>TEMP: <span style="color:var(--accent-green);">32°C NOM</span></div>
+    </div>
+
+    <div class="hud-flank-right">
+      <div>NEURAL: <span style="color:var(--accent-green);">SYNCED</span></div>
+      <div>LINK: <span style="color:#fff;">STARK-SAT</span></div>
+      <div>SUB: <span style="color:var(--accent-gold);">CC ENGAGED</span></div>
+      <div>DEF: <span style="color:var(--primary);">ARMED</span></div>
     </div>
 
     <canvas id="holoCanvas"></canvas>
   </div>
 
-  <!-- CONSOLE WITH TRANSCRIPT, 3-LINE TACTICAL OPTIONS, AND INPUT -->
+  <!-- DEDICATED HIGH-CONTRAST SUBTITLES DECK -->
+  <div class="subtitles-card">
+    <div class="sub-channel">
+      <div class="sub-tag user">[ USER DIRECTIVE ]</div>
+      <div id="userSubtitle" class="sub-text user">Awaiting operational command...</div>
+    </div>
+    <div class="sub-channel">
+      <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
+      <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
+    </div>
+  </div>
+
+  <!-- CONSOLE WITH 3-LINE OPTIONS AND TRANSMIT BOX -->
   <div class="hud-console">
     <div class="status-badge-row">
       <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
       <div id="systemDot" class="system-dot"></div>
     </div>
-    
-    <div id="transcriptBox" class="transcript-box">Awaiting operational command...</div>
 
-    <!-- 3-Line Options -->
+    <!-- 3-Line Quick Options -->
     <div class="tactical-drawer">
       <button class="tactical-option-btn" onclick="triggerQuick('What is the current date and local time?')">
         <span>01 // CHRONO SCAN (LOCAL TIME & DATE)</span>
@@ -533,7 +648,7 @@
 
     <!-- Chat Box -->
     <div class="chat-row">
-      <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything: weather, time in Tokyo, science..." />
+      <input type="text" id="chatInput" class="chat-input" placeholder="Enter directive or speak 'Jarvis'..." />
       <button id="sendBtn" class="chat-send-btn">TRANSMIT</button>
     </div>
   </div>
@@ -569,13 +684,19 @@
       const now = new Date();
       const zulu = now.toTimeString().split(' ')[0] + ' LOC';
       document.getElementById('hudClock').innerText = zulu;
+
+      // Randomize telemetry slightly for authentic military HUD feel
+      const flux = (432 + Math.random() * 2).toFixed(1);
+      document.getElementById('fluxReadout').innerText = `${flux} GHZ`;
+      const rpm = Math.floor(14150 + Math.random() * 120);
+      document.getElementById('rpmReadout').innerText = `${rpm.toLocaleString()}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
     const canvas = document.getElementById('holoCanvas');
     const ctx = canvas.getContext('2d');
-    const size = 290;
+    const size = 320;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = size * dpr;
     canvas.height = size * dpr;
@@ -586,7 +707,7 @@
     let pulse = 0;
     let silenceTimer = null;
 
-    const numPoints = 190;
+    const numPoints = 200;
     const points = [];
     for (let i = 0; i < numPoints; i++) {
       const phi = Math.acos(-1 + (2 * i) / numPoints);
@@ -604,8 +725,8 @@
       const cy = size / 2;
 
       let primaryRgb = '0, 240, 255';
-      let speed = 0.011;
-      let expand = 5;
+      let speed = 0.012;
+      let expand = 6;
 
       if (state === 'AWAKE_LISTENING') {
         primaryRgb = '255, 170, 0';
@@ -620,26 +741,28 @@
       rotation += speed;
       pulse += 0.07;
 
-      const currentRadius = 82 + Math.sin(pulse) * expand;
+      const currentRadius = 78 + Math.sin(pulse) * expand;
 
+      // Outer energetic pulsing ring
       ctx.beginPath();
       ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${primaryRgb}, 0.22)`;
+      ctx.strokeStyle = `rgba(${primaryRgb}, 0.25)`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
+      // Audio waveform wings
       if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
           let barHeight = Math.sin(pulse * 2.2 + i) * 16 + 18;
-          ctx.strokeStyle = `rgba(${primaryRgb}, 0.45)`;
+          ctx.strokeStyle = `rgba(${primaryRgb}, 0.55)`;
           ctx.beginPath();
-          ctx.moveTo(cx - 100 - i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx - 100 - i * 3, cy + barHeight / 2);
+          ctx.moveTo(cx - 95 - i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx - 95 - i * 3, cy + barHeight / 2);
           ctx.stroke();
 
           ctx.beginPath();
-          ctx.moveTo(cx + 100 + i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx + 100 + i * 3, cy + barHeight / 2);
+          ctx.moveTo(cx + 95 + i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx + 95 + i * 3, cy + barHeight / 2);
           ctx.stroke();
         }
       }
@@ -659,7 +782,7 @@
 
         ctx.beginPath();
         ctx.arc(px, py, 2.2 * perspective, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${primaryRgb},${Math.max(0.15, alpha)})`;
+        ctx.fillStyle = `rgba(${primaryRgb},${Math.max(0.18, alpha)})`;
         ctx.fill();
       });
 
@@ -791,6 +914,7 @@
     function speak(text, callback) {
       state = 'SPEAKING';
       updateStatus("JARVIS RESPONDING", "var(--accent-green)");
+      document.getElementById('jarvisSubtitle').innerText = text;
       window.speechSynthesis.cancel();
 
       if (recognition) {
@@ -827,7 +951,6 @@
     function setStandby() {
       state = 'LISTENING_WAKE';
       updateStatus('STANDBY // SAY "JARVIS"', 'var(--primary)');
-      document.getElementById('transcriptBox').innerText = 'Awaiting wake word or text transmit...';
       if (recognition) {
         try { recognition.start(); } catch(e) {}
       }
@@ -838,7 +961,7 @@
 
     function initRecognition() {
       if (!SpeechRecognition) {
-        document.getElementById('transcriptBox').innerText = "Vocal recognition offline. Text interface ready.";
+        document.getElementById('userSubtitle').innerText = "Vocal recognition offline. Text interface ready.";
         return;
       }
       recognition = new SpeechRecognition();
@@ -858,20 +981,22 @@
           }
         }
 
-        const heard = (final || interim).trim().toLowerCase();
+        const heard = (final || interim).trim();
         if (!heard) return;
 
-        document.getElementById('transcriptBox').innerText = `"${heard}"`;
+        document.getElementById('userSubtitle').innerText = `"${heard}"`;
+
+        const lowerHeard = heard.toLowerCase();
 
         if (state === 'LISTENING_WAKE') {
-          if (heard.includes('jarvis') || heard.includes('hey jarvis') || heard.includes('service')) {
+          if (lowerHeard.includes('jarvis') || lowerHeard.includes('hey jarvis') || lowerHeard.includes('service')) {
             playCinematicChime();
             state = 'AWAKE_LISTENING';
             updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
             speak("At your service, sir. What are your orders?", () => {
               state = 'AWAKE_LISTENING';
               updateStatus("LISTENING TO COMMAND...", "var(--accent-gold)");
-              document.getElementById('transcriptBox').innerText = "Speak now, sir...";
+              document.getElementById('userSubtitle').innerText = "Speak now, sir...";
               try { recognition.start(); } catch(e) {}
             });
           }
@@ -896,18 +1021,15 @@
       };
     }
 
-    // LIVE ATMOSPHERIC & CHRONO TELEMETRY HELPER
     async function fetchLiveAtmosphericContext(query) {
       const q = query.toLowerCase();
       let contextInfo = "";
 
-      // 1. Current Date & Local Time Telemetry
       const now = new Date();
       const dateString = now.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
       const timeString = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       contextInfo += `[CURRENT DEVICE SENSORS: Exact Local Date: ${dateString}. Current Local Time: ${timeString}.] `;
 
-      // 2. International Time Detection (e.g. "time in Tokyo", "time in New York")
       const timeZones = [
         { name: 'tokyo', tz: 'Asia/Tokyo' },
         { name: 'japan', tz: 'Asia/Tokyo' },
@@ -928,10 +1050,8 @@
         }
       }
 
-      // 3. Live Satellite Weather Telemetry (Open-Meteo Free API)
       if (q.includes('weather') || q.includes('temperature') || q.includes('forecast') || q.includes('rain') || q.includes('radar')) {
         try {
-          // Default grid: Upper Afan Valley / Blaengwynfi (Lat 51.65, Lon -3.60)
           let lat = 51.65;
           let lon = -3.60;
           let locName = "Blaengwynfi / Afan Valley";
@@ -959,7 +1079,9 @@
     async function handleTacticalCommand(cmd) {
       clearTimeout(silenceTimer);
 
-      if (cmd.includes("sleep") || cmd.includes("standby") || cmd.includes("shut down")) {
+      document.getElementById('userSubtitle').innerText = `"${cmd}"`;
+
+      if (cmd.toLowerCase().includes("sleep") || cmd.toLowerCase().includes("standby") || cmd.toLowerCase().includes("shut down")) {
         speak("Entering passive monitoring mode. Simply say Jarvis whenever you require me, sir.", () => {
           playChime(false);
           setStandby();
@@ -970,7 +1092,6 @@
       updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
 
       try {
-        // Collect real-time telemetry before querying neural brain
         const liveSensors = await fetchLiveAtmosphericContext(cmd);
 
         const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent artificial intelligence created by Tony Stark. The user is Tony Stark (address him as 'Sir').
@@ -998,7 +1119,6 @@ Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken se
     }
 
     function triggerQuick(queryText) {
-      document.getElementById('transcriptBox').innerText = `"${queryText}"`;
       handleTacticalCommand(queryText);
     }
 
@@ -1009,7 +1129,6 @@ Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken se
       const text = chatInput.value.trim();
       if (!text) return;
       chatInput.value = '';
-      document.getElementById('transcriptBox').innerText = `"${text}"`;
       handleTacticalCommand(text);
     }
 
