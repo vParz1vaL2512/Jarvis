@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#010814">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="mobile-web-app-capable" content="yes">
   <title>JARVIS Mark VII</title>
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23010814' stroke='%2300f0ff' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='36' fill='none' stroke='%230099ff' stroke-width='2' stroke-dasharray='6,4'/%3E%3Cpolygon points='50,18 78,68 22,68' fill='none' stroke='%2300f0ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%2300f0ff' filter='drop-shadow(0 0 8px %2300f0ff)'/%3E%3C/svg%3E">
@@ -14,6 +13,9 @@
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22J.A.R.V.I.S.%20AI%20Mark%20VII%22%2C%22short_name%22%3A%22JARVIS%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23010814%22%2C%22theme_color%22%3A%22%23010814%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'46'%20fill%3D'%23010814'%20stroke%3D'%2300f0ff'%20stroke-width%3D'4'%2F%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'36'%20fill%3D'none'%20stroke%3D'%230099ff'%20stroke-width%3D'2'%20stroke-dasharray%3D'6%2C4'%2F%253E%253Cpolygon%20points%3D'50%2C18%2078%2C68%2022%2C68'%20fill%3D'none'%20stroke%3D'%2300f0ff'%20stroke-width%3D'3'%2F%253E%253Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'14'%20fill%3D'%2300f0ff'%20filter%3D'drop-shadow(0%200%208px%20%2300f0ff)'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Puter.js provides zero-key AI capabilities across models -->
+  <script src="https://js.puter.com/v2/"></script>
 
   <style>
     :root {
@@ -44,7 +46,6 @@
       position: relative;
     }
 
-    /* Ambient Holographic Matrix Grid */
     body::before {
       content: "";
       position: fixed;
@@ -57,7 +58,6 @@
       z-index: 1;
     }
 
-    /* Scanlines */
     body::after {
       content: "";
       position: fixed;
@@ -69,12 +69,10 @@
       opacity: 0.75;
     }
 
-    /* Outer HUD Tactical Corner Brackets */
     .hud-corner {
       position: fixed;
       width: 24px;
       height: 24px;
-      border-color: rgba(0, 240, 255, 0.5);
       pointer-events: none;
       z-index: 8;
     }
@@ -84,7 +82,7 @@
     .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
 
     /* =========================================
-       15-SECOND CINEMATIC BOOT SCREEN
+       CLEAN STARK BOOT SCREEN
        ========================================= */
     #bootScreen {
       position: fixed;
@@ -96,13 +94,13 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .reactor-container {
       position: relative;
-      width: 145px;
-      height: 145px;
+      width: 140px;
+      height: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -141,32 +139,32 @@
     @keyframes spinClockwise { to { transform: rotate(360deg); } }
     @keyframes spinCounter { to { transform: rotate(-360deg); } }
     @keyframes corePulse {
-      from { transform: scale(0.9); opacity: 0.85; box-shadow: 0 0 25px var(--primary-glow); }
-      to { transform: scale(1.15); opacity: 1; box-shadow: 0 0 60px #00f0ff, 0 0 25px #fff; }
+      from { transform: scale(0.92); opacity: 0.85; box-shadow: 0 0 25px var(--primary-glow); }
+      to { transform: scale(1.1); opacity: 1; box-shadow: 0 0 50px #00f0ff, 0 0 25px #fff; }
     }
 
     .boot-header {
       font-family: 'Orbitron', monospace;
       font-size: 2.2rem;
       font-weight: 900;
-      letter-spacing: 0.45em;
+      letter-spacing: 0.4em;
       color: #effaff;
       text-shadow: 0 0 24px var(--primary-glow);
-      margin-left: 0.45em;
+      margin-left: 0.4em;
     }
 
     .boot-sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.82rem;
-      letter-spacing: 0.3em;
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
       color: rgba(0, 240, 255, 0.7);
       margin-top: 6px;
       text-transform: uppercase;
     }
 
     .boot-progress-frame {
-      width: 310px;
-      margin: 20px 0 10px;
+      width: 300px;
+      margin: 18px 0 10px;
     }
 
     .boot-bar-track {
@@ -176,20 +174,19 @@
       border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 4px;
       overflow: hidden;
-      position: relative;
     }
 
     .boot-bar-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #0077ff, #00f0ff);
-      box-shadow: 0 0 18px var(--primary);
-      transition: width 0.9s ease-out;
+      box-shadow: 0 0 16px var(--primary);
+      transition: width 0.3s ease-out;
     }
 
     .boot-status-text {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       letter-spacing: 0.15em;
       color: #92ecff;
       text-align: center;
@@ -197,59 +194,42 @@
       margin-top: 10px;
     }
 
-    .boot-telemetry-feed {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(0, 240, 255, 0.55);
-      height: 38px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: 0.15em;
-      text-align: center;
-    }
-
     .init-button {
-      margin-top: 22px;
+      margin-top: 20px;
       background: rgba(0, 240, 255, 0.12);
       border: 1px solid var(--primary);
       color: var(--primary);
       font-family: 'Orbitron', monospace;
       font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.28em;
       padding: 16px 36px;
       border-radius: 40px;
       cursor: pointer;
       text-transform: uppercase;
       box-shadow: 0 0 25px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.2);
-      transition: all 0.3s ease;
     }
 
     .init-button:active {
       transform: scale(0.96);
       background: rgba(0, 240, 255, 0.3);
-      box-shadow: 0 0 45px var(--primary);
     }
 
     #installBtn {
       display: none;
       margin-top: 12px;
-      background: rgba(0, 255, 170, 0.16);
-      border: 1px solid var(--accent-green);
+      background: rgba(0, 255, 170, 0.18);
+      border: 1.5px solid var(--accent-green);
       color: var(--accent-green);
       font-family: 'Orbitron', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      padding: 9px 22px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 10px 24px;
       border-radius: 20px;
       cursor: pointer;
     }
 
-    /* =========================================
-       ACTIVE HUD INTERFACE
-       ========================================= */
     header {
       width: 100%;
       max-width: 440px;
@@ -285,7 +265,6 @@
       text-align: right;
     }
 
-    /* FLASHY HUD FLIGHT DECK CONTAINER */
     .hud-stage {
       position: relative;
       width: 320px;
@@ -325,7 +304,6 @@
       border-radius: 50%;
     }
 
-    /* Tactical Horizon Ladder lines across HUD */
     .hud-pitch-ladder {
       position: absolute;
       width: 100%;
@@ -360,7 +338,6 @@
       z-index: 5;
     }
 
-    /* Side Telemetry Panels */
     .hud-flank-left, .hud-flank-right {
       position: absolute;
       top: 25px;
@@ -373,19 +350,16 @@
     .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.6); }
     .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.6); }
 
-    /* =========================================
-       HIGH-CONTRAST SUBTITLES DECK
-       ========================================= */
     .subtitles-card {
       width: 100%;
       max-width: 440px;
-      background: rgba(2, 10, 22, 0.88);
+      background: rgba(2, 10, 22, 0.9);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
       border-radius: 12px;
       padding: 10px 14px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.08);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
       margin: 4px 0 8px;
       position: relative;
       z-index: 10;
@@ -420,7 +394,6 @@
     .sub-text.user { color: #ffe6aa; }
     .sub-text.jarvis { color: #ffffff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
 
-    /* Tactical Console Container */
     .hud-console {
       width: 100%;
       max-width: 440px;
@@ -460,7 +433,6 @@
       animation: corePulse 1s infinite alternate;
     }
 
-    /* 3-Line Tactical Quick Options */
     .tactical-drawer {
       display: grid;
       grid-template-columns: 1fr;
@@ -482,7 +454,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.2s ease;
     }
 
     .tactical-option-btn:active {
@@ -491,7 +462,6 @@
       transform: scale(0.98);
     }
 
-    /* Chat Input Row */
     .chat-row {
       display: flex;
       gap: 6px;
@@ -537,13 +507,12 @@
 </head>
 <body>
 
-  <!-- TACTICAL CORNER BRACKETS -->
   <div class="hud-corner tl"></div>
   <div class="hud-corner tr"></div>
   <div class="hud-corner bl"></div>
   <div class="hud-corner br"></div>
 
-  <!-- 15-SECOND CINEMATIC BOOT SCREEN -->
+  <!-- CLEAN STARK BOOT SCREEN -->
   <div id="bootScreen">
     <div class="reactor-container">
       <div class="reactor-ring-outer"></div>
@@ -551,18 +520,13 @@
       <div class="reactor-core"></div>
     </div>
     <div class="boot-header">J.A.R.V.I.S.</div>
-    <div class="boot-sub">MARK VII NEURAL DIAGNOSTIC BOOT</div>
+    <div class="boot-sub">STARK NEURAL OPERATING SUITE</div>
 
     <div class="boot-progress-frame">
       <div class="boot-bar-track">
         <div id="bootBar" class="boot-bar-fill"></div>
       </div>
-      <div id="bootStatus" class="boot-status-text">PRESS INITIALIZE TO ENGAGE POWER</div>
-    </div>
-
-    <div id="telemetryFeed" class="boot-telemetry-feed">
-      <div>MEM // 0x7FFE0014 UNMAPPED</div>
-      <div>CORE TEMPERATURE // COLD STANDBY</div>
+      <div id="bootStatus" class="boot-status-text">INITIALIZATION READY</div>
     </div>
 
     <button id="powerOnBtn" class="init-button">INITIALIZE SUITE</button>
@@ -581,7 +545,7 @@
     </div>
   </header>
 
-  <!-- FLASHY HOLOGRAPHIC FLIGHT DECK STAGE -->
+  <!-- HOLOGRAPHIC FLIGHT DECK -->
   <div class="hud-stage">
     <div class="reticle-outer"></div>
     <div class="reticle-mid"></div>
@@ -593,7 +557,6 @@
       <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
     </div>
 
-    <!-- Live Left/Right Dynamic Telemetry Wings -->
     <div class="hud-flank-left">
       <div>PWR: <span style="color:#fff;">100%</span></div>
       <div>FLUX: <span id="fluxReadout">432.8 GHZ</span></div>
@@ -602,9 +565,9 @@
     </div>
 
     <div class="hud-flank-right">
-      <div>NEURAL: <span style="color:var(--accent-green);">SYNCED</span></div>
+      <div>NEURAL: <span style="color:var(--accent-green);">ONLINE</span></div>
       <div>LINK: <span style="color:#fff;">STARK-SAT</span></div>
-      <div>SUB: <span style="color:var(--accent-gold);">CC ENGAGED</span></div>
+      <div>SUB: <span style="color:var(--accent-gold);">ACTIVE</span></div>
       <div>DEF: <span style="color:var(--primary);">ARMED</span></div>
     </div>
 
@@ -630,7 +593,6 @@
       <div id="systemDot" class="system-dot"></div>
     </div>
 
-    <!-- 3-Line Quick Options -->
     <div class="tactical-drawer">
       <button class="tactical-option-btn" onclick="triggerQuick('What is the current date and local time?')">
         <span>01 // CHRONO SCAN (LOCAL TIME & DATE)</span>
@@ -646,19 +608,18 @@
       </button>
     </div>
 
-    <!-- Chat Box -->
     <div class="chat-row">
-      <input type="text" id="chatInput" class="chat-input" placeholder="Enter directive or speak 'Jarvis'..." />
+      <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything: weather, time in Tokyo, science..." />
       <button id="sendBtn" class="chat-send-btn">TRANSMIT</button>
     </div>
   </div>
 
   <script>
+    // Real Service Worker Registration for PWA on Android / Pixel
     if ('serviceWorker' in navigator) {
-      const swCode = "self.addEventListener('fetch', (e) => {});";
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      const swUrl = URL.createObjectURL(blob);
-      navigator.serviceWorker.register(swUrl).catch(() => {});
+      navigator.serviceWorker.register('sw.js').catch(err => {
+        console.warn("Service worker notice:", err);
+      });
     }
 
     let deferredPrompt;
@@ -685,7 +646,6 @@
       const zulu = now.toTimeString().split(' ')[0] + ' LOC';
       document.getElementById('hudClock').innerText = zulu;
 
-      // Randomize telemetry slightly for authentic military HUD feel
       const flux = (432 + Math.random() * 2).toFixed(1);
       document.getElementById('fluxReadout').innerText = `${flux} GHZ`;
       const rpm = Math.floor(14150 + Math.random() * 120);
@@ -743,14 +703,12 @@
 
       const currentRadius = 78 + Math.sin(pulse) * expand;
 
-      // Outer energetic pulsing ring
       ctx.beginPath();
       ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(${primaryRgb}, 0.25)`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Audio waveform wings
       if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
         for (let i = 0; i < 16; i++) {
           let barHeight = Math.sin(pulse * 2.2 + i) * 16 + 18;
@@ -790,6 +748,7 @@
     }
     renderHolo();
 
+    // CLEAN IRON MAN AUDIO SUITE (Short repulsor swell + cinematic power chord)
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -797,64 +756,30 @@
       return audioCtx;
     }
 
-    function playLongReactorSpool() {
+    function playRepulsorPowerUp() {
       const actx = getAudio();
       const now = actx.currentTime;
 
-      const sub = actx.createOscillator();
-      const subGain = actx.createGain();
-      sub.type = 'sawtooth';
-      sub.frequency.setValueAtTime(42, now);
-      sub.frequency.exponentialRampToValueAtTime(140, now + 14.5);
-
-      const filter = actx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(110, now);
-      filter.frequency.exponentialRampToValueAtTime(400, now + 14.5);
-
-      subGain.gain.setValueAtTime(0.01, now);
-      subGain.gain.linearRampToValueAtTime(0.25, now + 8.0);
-      subGain.gain.exponentialRampToValueAtTime(0.001, now + 15.0);
-
-      sub.connect(filter);
-      filter.connect(subGain);
-      subGain.connect(actx.destination);
-      sub.start(now);
-      sub.stop(now + 15.0);
-
-      const whine = actx.createOscillator();
-      const whineGain = actx.createGain();
-      whine.type = 'sine';
-      whine.frequency.setValueAtTime(260, now);
-      whine.frequency.exponentialRampToValueAtTime(2600, now + 14.5);
-
-      whineGain.gain.setValueAtTime(0.001, now);
-      whineGain.gain.linearRampToValueAtTime(0.06, now + 11.0);
-      whineGain.gain.exponentialRampToValueAtTime(0.001, now + 14.8);
-
-      whine.connect(whineGain);
-      whineGain.connect(actx.destination);
-      whine.start(now);
-      whine.stop(now + 14.8);
-    }
-
-    function playTelemetryTick() {
-      const actx = getAudio();
-      const now = actx.currentTime;
+      // Clean rising whoosh
       const osc = actx.createOscillator();
       const gain = actx.createGain();
-
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(1900, now);
-      osc.frequency.exponentialRampToValueAtTime(700, now + 0.04);
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 1.2);
 
-      gain.gain.setValueAtTime(0.09, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      gain.gain.setValueAtTime(0.01, now);
+      gain.gain.linearRampToValueAtTime(0.2, now + 0.8);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.3);
 
       osc.connect(gain);
       gain.connect(actx.destination);
       osc.start(now);
-      osc.stop(now + 0.04);
+      osc.stop(now + 1.35);
+
+      // Resonant harmonic chime
+      setTimeout(() => {
+        playCinematicChime();
+      }, 1000);
     }
 
     function playCinematicChime() {
@@ -866,15 +791,15 @@
         const osc = actx.createOscillator();
         const gain = actx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+        osc.frequency.setValueAtTime(freq, now + idx * 0.05);
 
-        gain.gain.setValueAtTime(0.14, now + idx * 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.1 + idx * 0.06);
+        gain.gain.setValueAtTime(0.12, now + idx * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.0 + idx * 0.05);
 
         osc.connect(gain);
         gain.connect(actx.destination);
-        osc.start(now + idx * 0.06);
-        osc.stop(now + 1.4);
+        osc.start(now + idx * 0.05);
+        osc.stop(now + 1.2);
       });
     }
 
@@ -1076,6 +1001,7 @@
       return contextInfo;
     }
 
+    // MULTI-AI FAILSAFE CORE (Puter.js + Fallback)
     async function handleTacticalCommand(cmd) {
       clearTimeout(silenceTimer);
 
@@ -1094,27 +1020,39 @@
       try {
         const liveSensors = await fetchLiveAtmosphericContext(cmd);
 
-        const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent artificial intelligence created by Tony Stark. The user is Tony Stark (address him as 'Sir').
-You possess universal knowledge across all science, physics, history, computing, and tactical strategy.
-You have real-time live sensor feeds available: ${liveSensors}
-Use this real-time sensor data accurately when asked about current dates, current times, international timezones, and current weather.
-You also know hyper-local terrain of Blaengwynfi in the Upper Afan Valley, Wales (Rhondda Tunnel 3443 yards, River Gwynfi, River Afan, A4107 Bwlch road, Miners Hall).
-Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken sentences. Never use Markdown symbols like asterisks, bullet points, or hashes. Keep it spoken-ready.`;
+        const prompt = `System Directive: You are J.A.R.V.I.S. from Iron Man. Address the user as 'Sir'. 
+You have universal knowledge of science, history, coding, and the hyper-local geography of Blaengwynfi, Wales (Rhondda Tunnel 3,443 yds, River Gwynfi, River Afan, A4107 Bwlch route, Miners Hall).
+Live sensor data: ${liveSensors}
+Answer the user's query in 1 or 2 concise, tactical, witty spoken sentences. Never use asterisks or formatting symbols. User query: ${cmd}`;
 
-        const fullPrompt = `${systemPrompt}\n\nUser command:${cmd}`;
-        const url = `https://text.pollinations.ai/${encodeURIComponent(fullPrompt)}?model=openai`;
+        let aiReply = "";
 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Neural core error");
-        
-        let aiReply = await response.text();
+        // Primary: Puter.js Zero-Key AI (Always active, no blocked keys)
+        if (window.puter && puter.ai) {
+          try {
+            const response = await puter.ai.chat(prompt);
+            aiReply = (typeof response === 'string' ? response : (response.message ? response.message.content : JSON.stringify(response)));
+          } catch(err) {
+            console.warn("Puter engine failed, trying secondary route:", err);
+          }
+        }
+
+        // Secondary Fallback if Puter is unreachable
+        if (!aiReply) {
+          const fallbackRes = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`);
+          if (fallbackRes.ok) {
+            aiReply = await fallbackRes.text();
+          }
+        }
+
+        if (!aiReply) throw new Error("No uplink available");
+
         aiReply = aiReply.replace(/[*_#`]/g, '').trim();
-
         speak(aiReply, () => setStandby());
 
       } catch (err) {
         console.error("AI Error:", err);
-        speak("I encountered an anomaly connecting to the Stark satellite uplink, sir.", () => setStandby());
+        speak("I encountered an anomaly connecting to the satellite uplink, sir.", () => setStandby());
       }
     }
 
@@ -1138,21 +1076,10 @@ Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken se
     });
 
     const bootSteps = [
-      { text: "STAGE 01 // ARC REACTOR TURBINE INITIALIZATION", pct: "7%", hex: "0x7F002A // BUS ONLINE" },
-      { text: "STAGE 02 // SUB-BASS FLUX INVERSION STABLE", pct: "14%", hex: "CORE FLUX // 45.2 HZ" },
-      { text: "STAGE 03 // MEMORY BUS 0x7FFE0014 ALLOCATED", pct: "21%", hex: "RAM // 128 TB LIQUID" },
-      { text: "STAGE 04 // SATELLITE UPLINK STARK-SAT-07 LINKED", pct: "28%", hex: "ORBITAL AZIMUTH // 42.1" },
-      { text: "STAGE 05 // QUANTUM NEURAL SYNAPSES FIRING", pct: "35%", hex: "NEURAL CORES // NOMINAL" },
-      { text: "STAGE 06 // CYMRU / AFAN VALLEY GRID POSITIONED", pct: "42%", hex: "BLAENGWYNFI // MAPPED" },
-      { text: "STAGE 07 // RHONDDA TUNNEL TOPOLOGY COMPILED", pct: "50%", hex: "3443 YDS // VERIFIED" },
-      { text: "STAGE 08 // REPULSOR HARMONIC SWEEPS SYNCHRONIZED", pct: "57%", hex: "PLASMA CAPACITOR // 100%" },
-      { text: "STAGE 09 // FIBONACCI PROJECTION MATRIX ACTIVE", pct: "64%", hex: "HUD DELTA // 1.618" },
-      { text: "STAGE 10 // BIOMETRIC TACTICAL LINK ESTABLISHED", pct: "71%", hex: "USER // STARK T." },
-      { text: "STAGE 11 // DEFENSIVE PLATING TELEMETRY READY", pct: "78%", hex: "MARK VII // SECURE" },
-      { text: "STAGE 12 // AUDIO-TACTILE SPECTRUM CALIBRATED", pct: "85%", hex: "ACOUSTICS // HIGH DEF" },
-      { text: "STAGE 13 // ATMOSPHERIC SENSORS & CHRONO ONLINE", pct: "92%", hex: "OPEN-METEO // SYNCED" },
-      { text: "STAGE 14 // FINAL PROTOCOL OVERRIDE COMPLETED", pct: "97%", hex: "CLEARANCE // LEVEL 9" },
-      { text: "STAGE 15 // ALL SYSTEMS NOMINAL // SUITE ARMED", pct: "100%", hex: "JARVIS MK VII // ONLINE" }
+      { text: "CORE SPOOL INITIALIZED", pct: "25%" },
+      { text: "ESTABLISHING NEURAL UPLINK...", pct: "50%" },
+      { text: "ATMOSPHERIC SENSORS ONLINE", pct: "75%" },
+      { text: "ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%" }
     ];
 
     const powerBtn = document.getElementById('powerOnBtn');
@@ -1160,7 +1087,7 @@ Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken se
       powerBtn.style.display = 'none';
 
       getAudio();
-      playLongReactorSpool();
+      playRepulsorPowerUp();
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -1174,24 +1101,18 @@ Answer in 1 or 2 concise, highly intelligent, sophisticated, and witty spoken se
         if (step < bootSteps.length) {
           document.getElementById('bootStatus').innerText = bootSteps[step].text;
           document.getElementById('bootBar').style.width = bootSteps[step].pct;
-          document.getElementById('telemetryFeed').innerHTML = `
-            <div>MEM // ${bootSteps[step].hex}</div>
-            <div>VOLTAGE // 1.21 GW // OPTIMAL</div>
-          `;
-          playTelemetryTick();
           step++;
-          setTimeout(runDiagnostic, 1000);
+          setTimeout(runDiagnostic, 500);
         } else {
           setTimeout(() => {
             const bootScreen = document.getElementById('bootScreen');
             bootScreen.style.opacity = '0';
-            playCinematicChime();
             setTimeout(() => {
               bootScreen.style.display = 'none';
               setStandby();
-              speak("System boot complete. Mark Seven suit diagnostics show all systems nominal. Jarvis is online and at your service, sir.");
-            }, 1200);
-          }, 500);
+              speak("System boot complete. Jarvis is online, sir. Standing by.");
+            }, 800);
+          }, 300);
         }
       }
       runDiagnostic();
