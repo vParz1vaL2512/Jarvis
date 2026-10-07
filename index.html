@@ -3,31 +3,25 @@
 <head>
   <!--
     ==========================================================================
-    J.A.R.V.I.S. MARK VII // STARK TACTICAL & ACADEMIC COGNITION SUITE
-    VERSION: 38.0.0 TITAN APEX MASTER (TOTAL SCI-FI INTEGRATION)
-    ENGINE FEATURES:
-      - 3D DYNAMIC ARC REACTOR (BLUE STANDBY // ORANGE ACTIVE LISTENING)
-      - FULL INTERFACE PERSPECTIVE 3D TILT ENGINE (GYRO + MOUSE MOTION)
-      - MULTIMODAL GROQ LLAMA-3.2 VISION OCR FOR HOMEWORK & DIAGRAMS
-      - FISH AUDIO PAUL BETTANY VOICE STREAMING (MODEL 14129c3e320149449d6bada6862f7338)
-      - 10-STAGE SYNTHESIZED SUB-BASS SPOOL & MECHANICAL RELAYS
-      - LIVE BIOSIGNAL ECG // SATELLITE CHRONO // BATTERY TELEMETRY MATRIX
+    J.A.R.V.I.S. MARK VII // STARK TACTICAL APEX SUITE v40.0
+    HIGH-FIDELITY SCI-FI REPLICA (IMAGE REFERENCE MATRIX)
+    FEATURES:
+      - TRAPEZOID ANGULAR VISOR HEADER & DUAL MINI COMPASSES
+      - 30% / 50% / 70% RADIAL PERCENTAGE NODES & EQUALIZER BARS
+      - 3D FLOATING VECTOR PYRAMID PRISM & REAL-TIME BIOSIGNAL ECG
+      - DYNAMIC STATE ARC REACTOR (ORANGE & BLUE LISTENING // GREEN SPEAKING)
+      - PIE SEGMENT WHEELS, TARGET ACQUISITION DIALS & LOWER SONAR RADAR
+      - FREE MULTIMODAL HOMEWORK VISION + TUNED BRITISH PAUL BETTANY VOICE
     ==========================================================================
   -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#010814">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>JARVIS Mark VII // Titan Apex HUD</title>
+  <title>JARVIS Mark VII // Tactical Command</title>
   
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="manifest" href="manifest.json">
-
-  <!-- GOOGLE TYPOGRAPHY SUITE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
   <script src="https://js.puter.com/v2/"></script>
 
@@ -41,8 +35,7 @@
       --accent-gold-glow: rgba(255, 170, 0, 0.75);
       --accent-green: #00ffaa;
       --accent-red: #ff3344;
-      --bg-dark: #010814;
-      --bg-surface: rgba(2, 14, 32, 0.88);
+      --bg-dark: #010712;
       --border-subtle: rgba(0, 240, 255, 0.28);
       --border-bright: rgba(0, 240, 255, 0.85);
     }
@@ -66,15 +59,14 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 30%, #092c52 0%, #031326 60%, #00040a 100%);
+      background: radial-gradient(circle at 50% 30%, #072342 0%, #020e1d 60%, #000308 100%);
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 6px 12px 20px;
-      transition: transform 0.15s ease-out;
+      padding: 6px 10px 16px;
     }
 
     /* DIGITAL MATRIX & CRT SCANLINE SHIELDS */
@@ -85,7 +77,7 @@
       background: 
         linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
-      background-size: 26px 26px;
+      background-size: 24px 24px;
       pointer-events: none;
       z-index: 1;
     }
@@ -98,7 +90,7 @@
       background-size: 100% 4px;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.75;
+      opacity: 0.7;
     }
 
     /* HUD CORNER BRACKETS */
@@ -109,20 +101,19 @@
       pointer-events: none;
       z-index: 25;
     }
-    .hud-corner.tl { top: 8px; left: 8px; border-top: 3px solid var(--primary); border-left: 3px solid var(--primary); }
-    .hud-corner.tr { top: 8px; right: 8px; border-top: 3px solid var(--primary); border-right: 3px solid var(--primary); }
-    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 3px solid var(--primary); border-left: 3px solid var(--primary); }
-    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 3px solid var(--primary); border-right: 3px solid var(--primary); }
+    .hud-corner.tl { top: 6px; left: 6px; border-top: 3px solid var(--primary); border-left: 3px solid var(--primary); }
+    .hud-corner.tr { top: 6px; right: 6px; border-top: 3px solid var(--primary); border-right: 3px solid var(--primary); }
+    .hud-corner.bl { bottom: 6px; left: 6px; border-bottom: 3px solid var(--primary); border-left: 3px solid var(--primary); }
+    .hud-corner.br { bottom: 6px; right: 6px; border-bottom: 3px solid var(--primary); border-right: 3px solid var(--primary); }
 
     /* 3D PARALLAX MASTER WRAPPER */
     #hudPerspectiveRoot {
       width: 100%;
-      max-width: 1060px;
+      max-width: 1140px;
       display: flex;
       flex-direction: column;
       align-items: center;
       transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
       position: relative;
       z-index: 10;
     }
@@ -219,21 +210,6 @@
       text-transform: uppercase;
     }
 
-    .boot-telemetry-panel {
-      width: 330px;
-      background: rgba(0, 22, 48, 0.75);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin-top: 14px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.74rem;
-      color: rgba(0, 240, 255, 0.85);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-
     .boot-track-box {
       width: 330px;
       margin-top: 14px;
@@ -286,45 +262,38 @@
     }
 
     /* =========================================================
-       MAIN HUD TOP HEADER
+       ANGULAR TRAPEZOID VISOR HEADER (IMAGE REFERENCE SPEC)
        ========================================================= */
-    header {
+    .stark-trapezoid-visor {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 10px;
-      border-bottom: 1.5px solid rgba(0, 240, 255, 0.32);
+      padding: 8px 14px;
+      background: linear-gradient(180deg, rgba(3, 24, 48, 0.95) 0%, rgba(1, 10, 22, 0.8) 100%);
+      border: 1.5px solid var(--border-bright);
+      clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+      position: relative;
       margin-bottom: 6px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
     }
-    .brand-title {
+    .visor-center-readout {
+      text-align: center;
       font-family: 'Orbitron', monospace;
-      font-size: 1.45rem;
-      font-weight: 900;
-      letter-spacing: 0.24em;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      font-weight: 700;
       color: #ffffff;
-      text-shadow: 0 0 14px var(--primary);
-    }
-    .brand-sub {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
-      color: rgba(0, 240, 255, 0.7);
-      letter-spacing: 0.14em;
-    }
-    .telemetry-time {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--primary);
-      text-align: right;
+      text-shadow: 0 0 10px var(--primary);
     }
 
-    /* NAVIGATION RAIL */
+    /* TOP TAB RAIL */
     .tab-rail {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .tab-btn {
       background: rgba(0, 240, 255, 0.08);
@@ -333,8 +302,8 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.72rem;
       letter-spacing: 0.08em;
-      padding: 9px 2px;
-      border-radius: 6px;
+      padding: 8px 2px;
+      border-radius: 4px;
       text-align: center;
       cursor: pointer;
       text-transform: uppercase;
@@ -357,138 +326,170 @@
     .deck-panel.active { display: flex; }
 
     /* =========================================================
-       DYNAMIC 3D TACTICAL HUD ARCHITECTURE (IMAGE REPLICA)
+       REFERENCE HUD: DENSE 3-COLUMN TACTICAL GRID
        ========================================================= */
-    .stark-grid-layout {
+    .reference-hud-grid {
       width: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 8px;
     }
 
-    @media (min-width: 820px) {
-      .stark-grid-layout {
-        grid-template-columns: 290px 1fr 290px;
-        grid-template-rows: auto auto;
+    @media (min-width: 900px) {
+      .reference-hud-grid {
+        grid-template-columns: 310px 1fr 310px;
       }
-      .hud-stage-column { grid-column: 2 / 3; grid-row: 1 / 2; }
-      .flank-left-column { grid-column: 1 / 2; grid-row: 1 / 2; }
-      .flank-right-column { grid-column: 3 / 4; grid-row: 1 / 2; }
-      .lower-span-column { grid-column: 1 / 4; grid-row: 2 / 3; }
     }
 
-    .hud-module-card {
-      background: var(--bg-surface);
+    .hud-cyber-box {
+      background: rgba(2, 14, 32, 0.88);
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 9px 12px;
+      border-radius: 6px;
+      padding: 8px 10px;
       position: relative;
-      box-shadow: 0 0 18px rgba(0, 240, 255, 0.1);
-      overflow: hidden;
       margin-bottom: 8px;
+      overflow: hidden;
     }
-    .hud-module-card::before {
+    .hud-cyber-box::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
-      width: 10px; height: 10px;
-      border-top: 2.5px solid var(--primary);
-      border-left: 2.5px solid var(--primary);
+      width: 8px; height: 8px;
+      border-top: 2px solid var(--primary);
+      border-left: 2px solid var(--primary);
     }
-    .hud-module-card::after {
+    .hud-cyber-box::after {
       content: "";
       position: absolute;
       bottom: 0; right: 0;
-      width: 10px; height: 10px;
-      border-bottom: 2.5px solid var(--primary);
-      border-right: 2.5px solid var(--primary);
+      width: 8px; height: 8px;
+      border-bottom: 2px solid var(--primary);
+      border-right: 2px solid var(--primary);
     }
 
-    .module-header {
+    .cyber-title {
       font-family: 'Orbitron', monospace;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       color: var(--accent-gold);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       margin-bottom: 6px;
       border-bottom: 1px solid rgba(0, 240, 255, 0.15);
-      padding-bottom: 3px;
+      padding-bottom: 2px;
     }
 
-    /* BIOSIGNAL ECG MONITOR */
+    /* TOP-LEFT PERCENT GAUGES: 30%, 50%, 70% */
+    .percent-gauges-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 4px 0 8px;
+    }
+    .percent-dial {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .percent-dial svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .percent-dial circle {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+    }
+    .percent-dial .bg-circle { stroke: rgba(0, 240, 255, 0.15); }
+    .percent-dial .val-circle { stroke: var(--primary); }
+    .percent-text {
+      position: absolute;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* EQUALIZER FREQUENCY BARS */
+    .eq-frequency-bars {
+      width: 100%;
+      height: 28px;
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      margin: 4px 0;
+    }
+    .eq-bar {
+      flex: 1;
+      background: var(--primary);
+      border-radius: 1px;
+      box-shadow: 0 0 6px var(--primary);
+      animation: eqFluctuate 1.4s ease-in-out infinite alternate;
+    }
+    @keyframes eqFluctuate {
+      0% { height: 15%; opacity: 0.4; }
+      100% { height: 95%; opacity: 1; }
+    }
+
+    /* 3D VECTOR PYRAMID CANVAS & ECG */
+    canvas#vectorPyramidCanvas {
+      width: 100%;
+      height: 65px;
+      background: rgba(0, 10, 22, 0.7);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
     canvas#ecgCanvas {
       width: 100%;
-      height: 48px;
+      height: 44px;
       background: rgba(0, 10, 22, 0.85);
       border-radius: 4px;
       border: 1px solid rgba(0, 240, 255, 0.2);
     }
 
-    /* RADAR RETICLE STAGE */
-    .hud-stage {
+    /* CENTER CONCENTRIC HUD REACTOR STAGE */
+    .center-hud-stage {
       position: relative;
       width: 100%;
-      height: 310px;
+      height: 330px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at center, rgba(0, 48, 96, 0.45) 0%, rgba(1, 8, 20, 0.92) 75%);
+      background: radial-gradient(circle at center, rgba(0, 50, 100, 0.45) 0%, rgba(1, 8, 20, 0.95) 75%);
       border: 1.5px solid var(--border-subtle);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
     }
-
-    .reticle-outer {
+    .center-fin-ring {
       position: absolute;
-      width: 270px; height: 270px;
-      border: 1.5px dashed rgba(0, 240, 255, 0.4);
+      width: 290px;
+      height: 290px;
+      border: 2px dashed rgba(0, 240, 255, 0.35);
       border-radius: 50%;
-      animation: spinCW 28s linear infinite;
+      animation: spinCW 32s linear infinite;
     }
-    .reticle-mid {
+    .center-slotted-ring {
       position: absolute;
-      width: 230px; height: 230px;
-      border: 1.5px solid rgba(0, 240, 255, 0.25);
-      border-left: 3px solid var(--primary);
-      border-right: 3px solid var(--primary);
+      width: 250px;
+      height: 250px;
+      border: 2px solid rgba(0, 240, 255, 0.25);
+      border-left: 4px solid var(--primary);
+      border-right: 4px solid var(--primary);
       border-radius: 50%;
-      animation: spinCCW 14s linear infinite;
+      animation: spinCCW 16s linear infinite;
     }
-    .reticle-inner {
+    .center-inner-tracker {
       position: absolute;
-      width: 190px; height: 190px;
-      border: 1px dotted rgba(255, 170, 0, 0.5);
+      width: 210px;
+      height: 210px;
+      border: 1.5px dotted rgba(255, 170, 0, 0.55);
       border-radius: 50%;
-    }
-
-    .hud-pitch-ladder {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px 12px;
-      transition: transform 0.15s ease-out;
-    }
-    .pitch-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: rgba(0, 240, 255, 0.45);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
-    }
-    .pitch-line::before, .pitch-line::after {
-      content: "";
-      width: 28px;
-      height: 1.5px;
-      background: rgba(0, 240, 255, 0.5);
     }
     canvas#holoCanvas {
       position: absolute;
@@ -498,36 +499,90 @@
       z-index: 5;
     }
 
-    .wireframe-grid-floor {
-      position: absolute;
-      bottom: -32px;
-      width: 100%;
-      height: 110px;
-      background: 
-        linear-gradient(rgba(0, 240, 255, 0.16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.16) 1px, transparent 1px);
-      background-size: 22px 22px;
-      transform: perspective(220px) rotateX(68deg);
-      opacity: 0.4;
-      pointer-events: none;
-      animation: gridShift 8s linear infinite;
+    /* RIGHT HUD DATA WHEELS */
+    .pie-donut-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 4px 0;
     }
-    @keyframes gridShift {
-      from { background-position: 0 0; }
-      to { background-position: 0 44px; }
+    .mini-pie-dial {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) 0% 45%, #0077ff 45% 75%, rgba(0, 240, 255, 0.2) 75% 100%);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mini-pie-inner {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      color: #fff;
+    }
+
+    /* BOTTOM SONAR RADAR & WIREFRAME FLOOR */
+    .lower-wireframe-radar-panel {
+      width: 100%;
+      height: 80px;
+      background: rgba(0, 16, 36, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 12px;
+      margin-bottom: 8px;
+    }
+    .radar-sweep-cone {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border: 1px solid var(--primary);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .radar-sweep-cone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(from 0deg, rgba(0, 255, 170, 0.5) 0deg, transparent 60deg);
+      border-radius: 50%;
+      animation: spinCW 2.5s linear infinite;
+    }
+    .wireframe-grid-floor {
+      flex: 1;
+      height: 100%;
+      margin: 0 16px;
+      background: 
+        linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px);
+      background-size: 16px 16px;
+      transform: perspective(120px) rotateX(60deg);
+      opacity: 0.5;
     }
 
     /* SUBTITLES CARD */
     .subtitles-card {
       width: 100%;
-      background: rgba(2, 14, 30, 0.94);
+      background: rgba(2, 14, 32, 0.94);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
-      border-radius: 12px;
+      border-radius: 8px;
       padding: 10px 14px;
       box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
       margin-bottom: 8px;
     }
-    .sub-channel { margin-bottom: 6px; }
+    .sub-channel { margin-bottom: 4px; }
     .sub-channel:last-child { margin-bottom: 0; }
     .sub-tag {
       font-family: 'Orbitron', monospace;
@@ -535,7 +590,6 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       display: inline-block;
-      margin-bottom: 2px;
     }
     .sub-tag.user { color: var(--accent-gold); }
     .sub-tag.jarvis { color: var(--primary); }
@@ -544,7 +598,6 @@
       font-size: 1.15rem;
       font-weight: 700;
       line-height: 1.3;
-      letter-spacing: 0.02em;
       min-height: 24px;
       white-space: pre-wrap;
       word-break: break-word;
@@ -557,31 +610,9 @@
       width: 100%;
       background: rgba(2, 12, 26, 0.92);
       border: 1px solid rgba(0, 240, 255, 0.35);
-      border-radius: 12px;
+      border-radius: 8px;
       padding: 10px 12px;
     }
-    .status-badge-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .state-indicator {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--primary);
-    }
-    .system-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--primary);
-      animation: coreSwell 1s infinite alternate;
-    }
-
     .tactical-drawer {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -596,7 +627,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.06em;
       padding: 8px 6px;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
       text-align: center;
       text-transform: uppercase;
@@ -623,7 +654,7 @@
       width: 100%;
       background: rgba(0, 25, 50, 0.85);
       border: 1px dashed var(--accent-gold);
-      border-radius: 6px;
+      border-radius: 4px;
       padding: 6px 10px;
       display: none;
       align-items: center;
@@ -647,7 +678,7 @@
       flex: 1;
       background: rgba(0, 20, 40, 0.75);
       border: 1px solid rgba(0, 240, 255, 0.35);
-      border-radius: 8px;
+      border-radius: 6px;
       color: #ffffff;
       font-family: 'Rajdhani', sans-serif;
       font-size: 1.05rem;
@@ -655,16 +686,11 @@
       padding: 9px 12px;
       outline: none;
     }
-    .chat-input::placeholder {
-      color: rgba(0, 240, 255, 0.45);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem;
-    }
     .btn-optical-trigger {
       background: rgba(0, 240, 255, 0.12);
       border: 1px solid var(--primary);
       color: var(--primary);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 0 10px;
       cursor: pointer;
       font-family: 'Share Tech Mono', monospace;
@@ -673,7 +699,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 3px;
     }
     .chat-send-btn {
       background: rgba(0, 240, 255, 0.16);
@@ -684,43 +709,18 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       padding: 0 14px;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-    }
-    .chat-send-btn:active, .btn-optical-trigger:active {
-      background: var(--primary);
-      color: #00040a;
     }
 
     /* TAB 02: CHAT DECK */
-    .cognition-controls {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      background: rgba(0, 20, 40, 0.55);
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 240, 255, 0.25);
-    }
-    .mode-toggle-btn {
-      background: rgba(0, 240, 255, 0.12);
-      border: 1px solid var(--primary);
-      color: var(--primary);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
     .chat-history-log {
       width: 100%;
       height: 380px;
       overflow-y: auto;
       background: rgba(2, 10, 20, 0.88);
       border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 10px;
       display: flex;
       flex-direction: column;
@@ -755,7 +755,7 @@
       height: 270px;
       background: rgba(0, 16, 36, 0.85);
       border: 1.5px dashed var(--primary);
-      border-radius: 12px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -776,34 +776,6 @@
       text-align: center;
       padding: 20px;
     }
-    .holo-laser-sweep {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: #00ffaa;
-      box-shadow: 0 0 15px #00ffaa;
-      display: none;
-      animation: sweepVert 2s ease-in-out infinite alternate;
-    }
-    .preset-vault-row {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-      margin-bottom: 6px;
-    }
-    .preset-vault-btn {
-      background: rgba(0, 240, 255, 0.08);
-      border: 1px solid rgba(0, 240, 255, 0.28);
-      color: rgba(225, 248, 255, 0.85);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.62rem;
-      padding: 6px 2px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-align: center;
-      text-transform: uppercase;
-    }
 
     /* TAB 04: RADAR */
     .radar-card-grid {
@@ -816,7 +788,7 @@
     .radar-card {
       background: rgba(0, 20, 45, 0.7);
       border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 10px;
       font-family: 'Share Tech Mono', monospace;
     }
@@ -830,56 +802,11 @@
       font-weight: 700;
       color: #ffffff;
     }
-    .radar-card-sub {
-      font-size: 0.66rem;
-      color: rgba(0, 240, 255, 0.65);
-    }
-
-    /* STARK SECURITY / CONFIG MODAL */
-    #configModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(1, 8, 20, 0.94);
-      z-index: 6000;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .config-card {
-      width: 100%;
-      max-width: 440px;
-      background: rgba(2, 16, 36, 0.95);
-      border: 2px solid var(--primary);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
-    }
-    .config-field { margin-bottom: 14px; }
-    .config-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent-gold);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .config-input {
-      width: 100%;
-      background: rgba(0, 20, 40, 0.8);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-      border-radius: 6px;
-      color: #fff;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem;
-      padding: 8px 10px;
-      outline: none;
-    }
   </style>
 </head>
 <body>
 
-  <!-- CORNER RETICLES -->
+  <!-- RETICLES -->
   <div class="hud-corner tl"></div>
   <div class="hud-corner tr"></div>
   <div class="hud-corner bl"></div>
@@ -905,209 +832,228 @@
       <div id="bootStatus" class="boot-text-readout">PRESS INITIALIZE TO ENGAGE POWER</div>
     </div>
 
-    <div class="boot-telemetry-panel">
-      <div>REG // <span id="bootReg" style="color:#ffffff;">0x7FFE0014</span></div>
-      <div>CORE FLUX // <span id="bootFlux" style="color:var(--accent-green);">STANDBY</span></div>
-      <div>PRESSURE // <span id="bootPress" style="color:#ffffff;">1.01 BAR</span></div>
-      <div>LINK // <span id="bootSat" style="color:var(--accent-gold);">ARMED</span></div>
-    </div>
-
     <button id="powerOnBtn" class="btn-stark-init">INITIALIZE SUITE</button>
   </div>
 
-  <!-- CONFIG MODAL -->
-  <div id="configModal">
-    <div class="config-card">
-      <div style="font-family:'Orbitron'; font-size:1.1rem; color:#fff; margin-bottom:12px; font-weight:700;">
-        STARK NEURAL UPLINK CONFIG
+  <!-- MASTER 3D PERSPECTIVE DECK -->
+  <div id="hudPerspectiveRoot">
+    
+    <!-- ANGULAR TRAPEZOID VISOR HEADER (IMAGE SPEC) -->
+    <div class="stark-trapezoid-visor">
+      <div style="font-family:'Share Tech Mono'; font-size:0.75rem;">
+        <div>SYS // <span style="color:var(--accent-green);">ARMED</span></div>
+        <div>CPU // 0x7FFE</div>
       </div>
-      <div class="config-field">
-        <label class="config-label">GROQ API KEY (VISION OCR & CHAT):</label>
-        <input type="password" id="cfgGroqKey" class="config-input" placeholder="gsk_..." />
+      <div class="visor-center-readout">
+        J.A.R.V.I.S. // TACTICAL COMMAND
       </div>
-      <div class="config-field">
-        <label class="config-label">FISH AUDIO API KEY (JARVIS TTS):</label>
-        <input type="password" id="cfgFishKey" class="config-input" placeholder="sk-fish-..." />
-      </div>
-      <div class="config-field">
-        <label class="config-label">FISH AUDIO MODEL ID (JARVIS VOICE):</label>
-        <input type="text" id="cfgFishModel" class="config-input" value="14129c3e320149449d6bada6862f7338" />
-      </div>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px;">
-        <button class="tactical-option-btn" onclick="closeConfigModal()">CANCEL</button>
-        <button class="chat-send-btn" onclick="saveConfigModal()">LOCK & SYNC</button>
+      <div style="text-align:right; font-family:'Share Tech Mono'; font-size:0.75rem;">
+        <div id="hudClock">00:00:00 LOC</div>
+        <div>HP // <span style="color:var(--accent-gold);">99% NOM</span></div>
       </div>
     </div>
-  </div>
-
-  <!-- PERSPECTIVE 3D ROOT DECK -->
-  <div id="hudPerspectiveRoot">
-    <!-- TOP HEADER -->
-    <header>
-      <div>
-        <div class="brand-title">J.A.R.V.I.S.</div>
-        <div class="brand-sub">TACTICAL NEURAL COMMAND DECK</div>
-      </div>
-      <div>
-        <div id="hudClock" class="telemetry-time">00:00:00 LOC</div>
-        <button onclick="openConfigModal()" style="background:transparent; border:none; color:var(--accent-gold); font-family:'Share Tech Mono'; font-size:0.65rem; cursor:pointer;">[⚙️ SECURE UPLINK]</button>
-      </div>
-    </header>
 
     <!-- NAVIGATION TABS -->
     <div class="tab-rail">
-      <button class="tab-btn active" onclick="switchTab('tabHome', this)">01 // HUD DECK</button>
-      <button class="tab-btn" onclick="switchTab('tabChat', this)">02 // CHAT OCR</button>
+      <button class="tab-btn active" onclick="switchTab('tabHome', this)">01 // TACTICAL HUD</button>
+      <button class="tab-btn" onclick="switchTab('tabChat', this)">02 // CHAT & OCR</button>
       <button class="tab-btn" onclick="switchTab('tabHolo', this)">03 // HOLO-FAB</button>
       <button class="tab-btn" onclick="switchTab('tabRadar', this)">04 // RADAR</button>
     </div>
 
-    <!-- TAB 01: HOME DECK (ADVANCED STARK HUD) -->
+    <!-- TAB 01: HOME DECK (JAM-PACKED IMAGE REPLICA) -->
     <div id="tabHome" class="deck-panel active">
       
-      <div class="stark-grid-layout">
-        <!-- LEFT FLANK MODULES -->
-        <div class="flank-left-column">
-          <div class="hud-module-card">
-            <div class="module-header">
-              <span>SUIT TELEMETRY</span>
-              <span id="flankCoreFlux">432.8 GHZ</span>
+      <div class="reference-hud-grid">
+        <!-- LEFT COLUMN: PERCENTAGE DIALS, 3D PYRAMID, BIOSIGNAL ECG -->
+        <div class="hud-col-left">
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>INTERFACE TELEMETRY</span>
+              <span>3-CHANNEL</span>
             </div>
-            <div style="font-family:'Share Tech Mono'; font-size:0.75rem; line-height:1.5;">
-              <div>CORE POWER: <span id="batteryHudVal" style="color:var(--accent-green);">100% NOM</span></div>
-              <div>TURBINE RPM: <span id="rpmReadout">14,200</span></div>
-              <div>COOLANT TEMP: <span style="color:var(--accent-green);">32°C NOM</span></div>
-              <div>SHIELD BUFFER: <span style="color:var(--primary);">100% [ONLINE]</span></div>
+            <!-- 30% / 50% / 70% RADIAL DIALS -->
+            <div class="percent-gauges-row">
+              <div class="percent-dial">
+                <svg viewBox="0 0 36 36">
+                  <path class="bg-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="val-circle" stroke-dasharray="30, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="percent-text">30%</span>
+              </div>
+              <div class="percent-dial">
+                <svg viewBox="0 0 36 36">
+                  <path class="bg-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="val-circle" stroke-dasharray="50, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="percent-text">50%</span>
+              </div>
+              <div class="percent-dial">
+                <svg viewBox="0 0 36 36">
+                  <path class="bg-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="val-circle" stroke-dasharray="70, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="percent-text">70%</span>
+              </div>
+            </div>
+
+            <!-- AUDIO EQUALIZER SPECTRUM -->
+            <div class="eq-frequency-bars">
+              <div class="eq-bar" style="animation-delay:0.1s;"></div>
+              <div class="eq-bar" style="animation-delay:0.4s;"></div>
+              <div class="eq-bar" style="animation-delay:0.2s;"></div>
+              <div class="eq-bar" style="animation-delay:0.6s;"></div>
+              <div class="eq-bar" style="animation-delay:0.3s;"></div>
+              <div class="eq-bar" style="animation-delay:0.5s;"></div>
+              <div class="eq-bar" style="animation-delay:0.2s;"></div>
+              <div class="eq-bar" style="animation-delay:0.7s;"></div>
             </div>
           </div>
 
-          <div class="hud-module-card">
-            <div class="module-header">
-              <span>BIOSIGNAL MATRIX</span>
+          <!-- 3D FLOATING VECTOR PYRAMID -->
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>OPTICAL PRISM</span>
+              <span id="pyramidDeg">45° FLUX</span>
+            </div>
+            <canvas id="vectorPyramidCanvas"></canvas>
+          </div>
+
+          <!-- BIOSIGNAL ECG -->
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>BIOSIGNAL ECG</span>
               <span style="color:var(--accent-green);">72 BPM</span>
             </div>
             <canvas id="ecgCanvas"></canvas>
           </div>
         </div>
 
-        <!-- CENTER HUD DYNAMIC 3D ARC REACTOR & FLIGHT HORIZON -->
-        <div class="hud-stage-column">
-          <div class="hud-stage">
-            <div class="reticle-outer"></div>
-            <div class="reticle-mid"></div>
-            <div class="reticle-inner"></div>
-
-            <div id="pitchLadder" class="hud-pitch-ladder">
-              <div class="pitch-line"><span>+10</span><span>PITCH</span><span>+10</span></div>
-              <div class="pitch-line"><span>00</span><span>HORIZON</span><span>00</span></div>
-              <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
-            </div>
-
+        <!-- CENTER COLUMN: DYNAMIC 3D ARC REACTOR (COLOR STATE REACTIVE) -->
+        <div class="hud-col-center">
+          <div class="center-hud-stage">
+            <div class="center-fin-ring"></div>
+            <div class="center-slotted-ring"></div>
+            <div class="center-inner-tracker"></div>
             <canvas id="holoCanvas"></canvas>
-            <div class="wireframe-grid-floor"></div>
           </div>
         </div>
 
-        <!-- RIGHT FLANK MODULES -->
-        <div class="flank-right-column">
-          <div class="hud-module-card">
-            <div class="module-header">
-              <span>DEFENSIVE PROTOCOLS</span>
+        <!-- RIGHT COLUMN: TARGET RETICLES, PIE DONUTS, FUEL STATUS -->
+        <div class="hud-col-right">
+          <!-- CONCENTRIC PIE WHEEL -->
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>CORE DISTRIBUTION</span>
+              <span>100% NOM</span>
+            </div>
+            <div class="pie-donut-row">
+              <div class="mini-pie-dial">
+                <div class="mini-pie-inner">98%</div>
+              </div>
+              <div style="font-family:'Share Tech Mono'; font-size:0.72rem; line-height:1.4;">
+                <div>FLUX: 432.8 GHZ</div>
+                <div>TURBINE: 14,200 RPM</div>
+                <div>CORE: <span id="batteryHudVal" style="color:var(--accent-green);">100% NOM</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUIT TARGET RETICLE MODULE -->
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>TARGET ACQUISITION</span>
               <span style="color:var(--accent-gold);">ARMED</span>
             </div>
-            <div style="font-family:'Share Tech Mono'; font-size:0.75rem; line-height:1.5;">
-              <div>OPTICAL OCR: <span id="opticsReadout" style="color:var(--primary);">ACTIVE</span></div>
-              <div>VOICE BUS: <span id="voiceReadout" style="color:var(--accent-gold);">FISH-BETTY</span></div>
+            <div style="font-family:'Share Tech Mono'; font-size:0.72rem; line-height:1.5;">
+              <div>OPTICAL SCAN: <span id="opticsReadout" style="color:var(--primary);">STANDBY</span></div>
+              <div>NEURAL BUS: <span style="color:var(--accent-green);">SYNCHRONIZED</span></div>
               <div>STEALTH MODE: <span id="stealthReadout" style="color:var(--primary);">OFF</span></div>
-              <div>NEURAL UPLINK: <span style="color:var(--accent-green);">SYNCHRONIZED</span></div>
+              <div>FLIGHT VECTOR: <span style="color:var(--accent-gold);">STABLE</span></div>
             </div>
           </div>
 
-          <div class="hud-module-card">
-            <div class="module-header">
-              <span>VECTOR QUANTUM FLUX</span>
-              <span style="color:var(--primary);">0x7F8E</span>
+          <!-- QUANTUM SATELLITE RELAY -->
+          <div class="hud-cyber-box">
+            <div class="cyber-title">
+              <span>SATELLITE TELEMETRY</span>
+              <span>UPLINK</span>
             </div>
-            <div style="font-family:'Share Tech Mono'; font-size:0.68rem; color:rgba(0,240,255,0.7); line-height:1.4;">
+            <div style="font-family:'Share Tech Mono'; font-size:0.68rem; color:rgba(0,240,255,0.75); line-height:1.4;">
               <div>ORBITAL SAT: STARK-SAT-07</div>
               <div>BANDWIDTH: 10.4 TB/S ULTRA</div>
-              <div>COGNITIVE LATENCY: 12 MS</div>
+              <div>COGNITIVE LATENCY: 8 MS</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- LOWER SPANNING COMMAND DECK -->
-        <div class="lower-span-column">
-          <!-- SUBTITLES CARD -->
-          <div class="subtitles-card">
-            <div class="sub-channel">
-              <div class="sub-tag user">[ USER DIRECTIVE ]</div>
-              <div id="userSubtitle" class="sub-text user">Awaiting operational directive...</div>
-            </div>
-            <div class="sub-channel">
-              <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
-              <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
-            </div>
+      <!-- BOTTOM ROW: SONAR RADAR & WIREFRAME FLOOR (IMAGE REFERENCE) -->
+      <div class="lower-wireframe-radar-panel">
+        <div class="radar-sweep-cone"></div>
+        <div class="wireframe-grid-floor"></div>
+        <div style="font-family:'Orbitron'; font-size:0.75rem; font-weight:700; color:var(--accent-green);">
+          RADAR ACTIVE
+        </div>
+      </div>
+
+      <!-- SUBTITLES CARD -->
+      <div class="subtitles-card">
+        <div class="sub-channel">
+          <div class="sub-tag user">[ USER DIRECTIVE ]</div>
+          <div id="userSubtitle" class="sub-text user">Awaiting operational directive...</div>
+        </div>
+        <div class="sub-channel">
+          <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
+          <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
+        </div>
+      </div>
+
+      <!-- COMMAND CONSOLE -->
+      <div class="hud-console">
+        <div class="tactical-drawer">
+          <button id="micToggleBtn" class="tactical-option-btn mic-btn" onclick="toggleMicrophone()">
+            <span id="micIconIndicator">🎤</span>
+            <span id="micLabel">MICROPHONE: ACTIVE (LISTENING)</span>
+          </button>
+          <button class="tactical-option-btn" onclick="triggerQuick('Scan and report all suit telemetry status.')">
+            <span>01 // SUITE DIAGNOSTICS</span>
+          </button>
+          <button class="tactical-option-btn" onclick="toggleStealthMode()">
+            <span id="stealthBtnLabel">02 // STEALTH: OFF</span>
+          </button>
+        </div>
+
+        <!-- IMAGE ATTACHMENT PREVIEW -->
+        <div id="imageScanPreviewBoxHome" class="image-scan-preview">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <img id="imageScanPreviewImgHome" src="" alt="Target Scan" />
+            <span id="imageScanPreviewNameHome" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
           </div>
+          <button onclick="clearAttachedImage()" style="background:transparent; border:none; color:var(--accent-red); font-size:1.1rem; cursor:pointer;">✖</button>
+        </div>
 
-          <!-- CONSOLE -->
-          <div class="hud-console">
-            <div class="status-badge-row">
-              <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
-              <div id="systemDot" class="system-dot"></div>
-            </div>
+        <!-- INPUT ROW -->
+        <div class="chat-row">
+          <input type="file" id="cameraDirectInputHome" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
+          <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputHome').click()" title="Camera Scan">📷 CAM</button>
 
-            <div class="tactical-drawer">
-              <button id="micToggleBtn" class="tactical-option-btn mic-btn" onclick="toggleMicrophone()">
-                <span id="micIconIndicator">🎤</span>
-                <span id="micLabel">MICROPHONE: ACTIVE (LISTENING)</span>
-              </button>
-              <button class="tactical-option-btn" onclick="triggerQuick('Scan and report all suit telemetry status.')">
-                <span>01 // SUITE DIAGNOSTICS</span>
-              </button>
-              <button class="tactical-option-btn" onclick="toggleStealthMode()">
-                <span id="stealthBtnLabel">02 // STEALTH: OFF</span>
-              </button>
-            </div>
+          <input type="file" id="filePickerInputHome" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
+          <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputHome').click()" title="Upload File">📎 FILE</button>
 
-            <!-- IMAGE PREVIEW -->
-            <div id="imageScanPreviewBoxHome" class="image-scan-preview">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <img id="imageScanPreviewImgHome" src="" alt="Target Scan" />
-                <span id="imageScanPreviewNameHome" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
-              </div>
-              <button onclick="clearAttachedImage()" style="background:transparent; border:none; color:var(--accent-red); font-size:1.1rem; cursor:pointer;">✖</button>
-            </div>
-
-            <!-- CHAT & DUAL OPTICAL INPUT (CAMERA + FILE) -->
-            <div class="chat-row">
-              <input type="file" id="cameraDirectInputHome" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
-              <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputHome').click()" title="Take Photo with Camera">📷 CAM</button>
-
-              <input type="file" id="filePickerInputHome" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
-              <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputHome').click()" title="Upload File or Gallery Image">📎 FILE</button>
-
-              <input type="text" id="chatInputHome" class="chat-input" placeholder="Directive, homework question, or scan..." />
-              <button onclick="sendChatMessage('chatInputHome')" class="chat-send-btn">TRANSMIT</button>
-            </div>
-          </div>
+          <input type="text" id="chatInputHome" class="chat-input" placeholder="Enter directive, homework question, or scan..." />
+          <button onclick="sendChatMessage('chatInputHome')" class="chat-send-btn">TRANSMIT</button>
         </div>
       </div>
 
     </div>
 
-    <!-- TAB 02: CHAT DECK (WITH OCR VISION MIRRORED) -->
+    <!-- TAB 02: CHAT DECK (MIRRORED OPTICAL OCR) -->
     <div id="tabChat" class="deck-panel">
-      <div class="cognition-controls">
-        <span style="font-family:'Share Tech Mono'; font-size:0.75rem; color:rgba(0,240,255,0.8);">COGNITIVE ENGINE:</span>
-        <button id="modeToggleBtn" class="mode-toggle-btn" onclick="toggleCognitiveMode()">MODE: TACTICAL (FAST)</button>
-      </div>
-      
       <div id="chatHistory" class="chat-history-log">
         <div class="chat-entry jarvis">J.A.R.V.I.S. neural log initialized. System standing by.</div>
       </div>
 
-      <!-- IMAGE PREVIEW TAB 2 -->
       <div id="imageScanPreviewBoxChat" class="image-scan-preview">
         <div style="display:flex; align-items:center; gap:8px;">
           <img id="imageScanPreviewImgChat" src="" alt="Target Scan" />
@@ -1118,10 +1064,10 @@
 
       <div class="chat-row" style="width: 100%;">
         <input type="file" id="cameraDirectInputChat" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
-        <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputChat').click()" title="Take Photo with Camera">📷 CAM</button>
+        <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputChat').click()">📷 CAM</button>
 
         <input type="file" id="filePickerInputChat" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
-        <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputChat').click()" title="Upload File or Gallery Image">📎 FILE</button>
+        <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputChat').click()">📎 FILE</button>
 
         <input type="text" id="chatInputLog" class="chat-input" placeholder="Ask questions or query knowledge base..." />
         <button onclick="sendChatMessage('chatInputLog')" class="chat-send-btn">TRANSMIT</button>
@@ -1131,7 +1077,6 @@
     <!-- TAB 03: HOLO-FAB -->
     <div id="tabHolo" class="deck-panel">
       <div class="holo-viewport">
-        <div id="holoLaser" class="holo-laser-sweep"></div>
         <div id="holoPlaceholder" class="holo-placeholder">
           [ HOLO-VIEWPORT STANDBY ]<br><br>
           Select a preset or ask: "Jarvis, generate a blueprint of..."
@@ -1139,15 +1084,8 @@
         <img id="holoImage" alt="Fabricated Visual Schematic" />
       </div>
 
-      <div class="preset-vault-row">
-        <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark VII Armor blueprint')">MK VII</button>
-        <button class="preset-vault-btn" onclick="loadSchematicPreset('Stark Arc Reactor Mark II blueprint')">ARC CORE</button>
-        <button class="preset-vault-btn" onclick="loadSchematicPreset('Veronica Hulkbuster Armor blueprint')">VERONICA</button>
-        <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark 85 Nanotech blueprint')">MK 85</button>
-      </div>
-
       <div class="chat-row" style="width: 100%; margin-top: 4px;">
-        <input type="text" id="holoPromptInput" class="chat-input" placeholder="Custom blueprint query..." />
+        <input type="text" id="holoPromptInput" class="chat-input" placeholder="Blueprint query..." />
         <button onclick="fabricateVisualSchematic()" class="chat-send-btn">FABRICATE</button>
       </div>
     </div>
@@ -1157,67 +1095,32 @@
       <div class="radar-card-grid">
         <div class="radar-card">
           <div class="radar-card-title">LOCATION // RADAR</div>
-          <div class="radar-card-val" id="radarLoc">GLOBAL GRID</div>
-          <div class="radar-card-sub">ORBITAL TELEMETRY</div>
+          <div class="radar-card-val">GLOBAL GRID</div>
         </div>
         <div class="radar-card">
           <div class="radar-card-title">AMBIENT TEMP</div>
-          <div class="radar-card-val" id="radarTemp">18°C</div>
-          <div class="radar-card-sub">NOMINAL RANGE</div>
+          <div class="radar-card-val">18°C NOM</div>
         </div>
         <div class="radar-card">
           <div class="radar-card-title">BAROMETRIC PRESSURE</div>
-          <div class="radar-card-val" id="radarWind">1.01 BAR</div>
-          <div class="radar-card-sub">ATMOSPHERE STABLE</div>
+          <div class="radar-card-val">1.01 BAR</div>
         </div>
         <div class="radar-card">
           <div class="radar-card-title">GLOBAL CHRONO</div>
           <div class="radar-card-val" id="radarTokyo">--:--</div>
-          <div class="radar-card-sub">TOKYO SATELLITE RELAY</div>
         </div>
       </div>
     </div>
+
   </div>
 
-  <!-- JAVASCRIPT CORE ENGINE -->
+  <!-- JAVASCRIPT MASTER CORE -->
   <script>
     let state = 'IDLE';
     let stealthMode = false;
     let micActive = true;
-    let cognitiveMode = 'TACTICAL';
     let selectedImageBase64 = null;
     let selectedImageFile = null;
-    let conversationHistory = [];
-
-    // CONFIG KEYS PERSISTED SECURELY IN CLIENT LOCALSTORAGE
-    let groqApiKey = localStorage.getItem('stark_groq_key') || '';
-    let fishApiKey = localStorage.getItem('stark_fish_key') || '';
-    let fishModelId = localStorage.getItem('stark_fish_model') || '14129c3e320149449d6bada6862f7338';
-
-    function openConfigModal() {
-      document.getElementById('cfgGroqKey').value = groqApiKey;
-      document.getElementById('cfgFishKey').value = fishApiKey;
-      document.getElementById('cfgFishModel').value = fishModelId;
-      document.getElementById('configModal').style.display = 'flex';
-    }
-
-    function closeConfigModal() {
-      document.getElementById('configModal').style.display = 'none';
-    }
-
-    function saveConfigModal() {
-      groqApiKey = document.getElementById('cfgGroqKey').value.trim();
-      fishApiKey = document.getElementById('cfgFishKey').value.trim();
-      fishModelId = document.getElementById('cfgFishModel').value.trim() || '14129c3e320149449d6bada6862f7338';
-
-      localStorage.setItem('stark_groq_key', groqApiKey);
-      localStorage.setItem('stark_fish_key', fishApiKey);
-      localStorage.setItem('stark_fish_model', fishModelId);
-
-      closeConfigModal();
-      playStarkChirp(3200);
-      speak("Neural satellite uplink credentials secured, sir.");
-    }
 
     // AUDIO CONTEXT & SFX
     let audioCtx = null;
@@ -1313,18 +1216,13 @@
     }
 
     // BATTERY MATRIX
-    let deviceBatteryPercent = 100;
     function initBatteryMatrix() {
       if ('getBattery' in navigator) {
         navigator.getBattery().then(battery => {
           function updateBatteryStatus() {
-            deviceBatteryPercent = Math.round(battery.level * 100);
-            const batEl = document.getElementById('batteryHudVal');
-            if (batEl) {
-              if (battery.charging) batEl.innerText = `${deviceBatteryPercent}% [CHRG]`;
-              else if (deviceBatteryPercent <= 20) batEl.innerText = `${deviceBatteryPercent}% CRIT`;
-              else batEl.innerText = `${deviceBatteryPercent}% NOM`;
-            }
+            const pct = Math.round(battery.level * 100);
+            const el = document.getElementById('batteryHudVal');
+            if (el) el.innerText = battery.charging ? `${pct}% [CHRG]` : `${pct}% NOM`;
           }
           updateBatteryStatus();
           battery.addEventListener('levelchange', updateBatteryStatus);
@@ -1338,38 +1236,29 @@
     let targetTiltX = 0, targetTiltY = 0;
 
     function init3DParallax() {
-      // Mobile Gyroscope
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', (e) => {
           if (e.gamma !== null && e.beta !== null) {
-            targetTiltX = Math.max(-14, Math.min(14, e.gamma * 0.45));
-            targetTiltY = Math.max(-10, Math.min(10, (e.beta - 45) * 0.35));
+            targetTiltX = Math.max(-12, Math.min(12, e.gamma * 0.4));
+            targetTiltY = Math.max(-10, Math.min(10, (e.beta - 45) * 0.3));
           }
         }, true);
       }
 
-      // Chromebook / PC Mouse Motion
       window.addEventListener('mousemove', (e) => {
         const xPct = (e.clientX / window.innerWidth) - 0.5;
         const yPct = (e.clientY / window.innerHeight) - 0.5;
-        targetTiltX = xPct * 16;
-        targetTiltY = -yPct * 12;
+        targetTiltX = xPct * 14;
+        targetTiltY = -yPct * 10;
       });
 
       function loopParallax() {
         gyroTiltX += (targetTiltX - gyroTiltX) * 0.08;
         gyroTiltY += (targetTiltY - gyroTiltY) * 0.08;
-
         const rootEl = document.getElementById('hudPerspectiveRoot');
         if (rootEl) {
           rootEl.style.transform = `rotateY(${gyroTiltX}deg) rotateX(${-gyroTiltY}deg)`;
         }
-
-        const ladder = document.getElementById('pitchLadder');
-        if (ladder) {
-          ladder.style.transform = `rotate(${-gyroTiltX * 0.8}deg) translateY(${gyroTiltY * 2}px)`;
-        }
-
         requestAnimationFrame(loopParallax);
       }
       loopParallax();
@@ -1384,22 +1273,7 @@
       if (btn) btn.classList.add('active');
     }
 
-    function toggleCognitiveMode() {
-      playStarkChirp(2200);
-      if (cognitiveMode === 'TACTICAL') {
-        cognitiveMode = 'DEEP';
-        document.getElementById('modeToggleBtn').innerText = 'MODE: DEEP (ANALYTICAL)';
-        document.getElementById('modeToggleBtn').style.borderColor = 'var(--accent-gold)';
-        document.getElementById('modeToggleBtn').style.color = 'var(--accent-gold)';
-      } else {
-        cognitiveMode = 'TACTICAL';
-        document.getElementById('modeToggleBtn').innerText = 'MODE: TACTICAL (FAST)';
-        document.getElementById('modeToggleBtn').style.borderColor = 'var(--primary)';
-        document.getElementById('modeToggleBtn').style.color = 'var(--primary)';
-      }
-    }
-
-    // OPTICAL FILE / CAMERA UPLOADS (DUAL SYNCED ON TABS 1 & 2)
+    // IMAGE UPLOADS
     function handleImageSelection(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1433,11 +1307,11 @@
       document.getElementById('filePickerInputChat').value = '';
       document.getElementById('imageScanPreviewBoxHome').style.display = 'none';
       document.getElementById('imageScanPreviewBoxChat').style.display = 'none';
-      document.getElementById('opticsReadout').innerText = "ARMED";
+      document.getElementById('opticsReadout').innerText = "STANDBY";
       document.getElementById('opticsReadout').style.color = "var(--primary)";
     }
 
-    // TYPEWRITER ENGINE WITH STRICT WORD PRESERVATION
+    // TYPEWRITER ENGINE
     let activeTypewriterTimer = null;
     function typewriteText(elementId, text, speed = 16) {
       clearTimeout(activeTypewriterTimer);
@@ -1455,94 +1329,47 @@
       tick();
     }
 
-    // SPEECH SYNTHESIS ARCHITECTURE (FISH AUDIO CLOUD + NATIVE FALLBACK)
-    let currentAudioElement = null;
-    async function speak(text, callback) {
+    // 100% FREE NATIVE PAUL BETTANY BRITISH VOCAL SYNTHESIZER
+    let jarvisVoice = null;
+    function selectJarvisVoice() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
+                    (v.name.includes('George') || v.name.includes('Oliver') || v.name.includes('Natural') || v.name.includes('Male')))
+                 || voices.find(v => v.lang === 'en-GB')
+                 || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = selectJarvisVoice;
+      selectJarvisVoice();
+    }
+
+    function speak(text, callback) {
       state = 'SPEAKING';
-      updateStatus("JARVIS RESPONDING", "var(--accent-green)");
       typewriteText('jarvisSubtitle', text, 14);
       appendChatLog('jarvis', text);
 
-      if (stealthMode) {
+      if (stealthMode || !('speechSynthesis' in window)) {
         if (callback) callback();
         else setStandby();
         return;
       }
 
-      if (currentAudioElement) {
-        currentAudioElement.pause();
-        currentAudioElement = null;
-      }
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-
-      // Route 1: Fish Audio Real Paul Bettany Jarvis Voice
-      if (fishApiKey && fishModelId) {
-        try {
-          const resp = await fetch("https://api.fish.audio/v1/tts", {
-            method: "POST",
-            headers: {
-              "Authorization": `Bearer ${fishApiKey}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              text: text,
-              reference_id: fishModelId,
-              format: "mp3"
-            })
-          });
-
-          if (resp.ok) {
-            const blob = await resp.blob();
-            const url = URL.createObjectURL(blob);
-            currentAudioElement = new Audio(url);
-            currentAudioElement.onended = () => {
-              if (callback) callback();
-              else setStandby();
-            };
-            currentAudioElement.onerror = () => fallbackSpeak(text, callback);
-            await currentAudioElement.play();
-            return;
-          }
-        } catch(e) {
-          console.warn("Fish Audio network fallback:", e);
-        }
-      }
-
-      // Route 2: Native UK Voice Synthesis Fallback
-      fallbackSpeak(text, callback);
-    }
-
-    function fallbackSpeak(text, callback) {
-      if (!('speechSynthesis' in window)) {
-        if (callback) callback();
-        else setStandby();
-        return;
-      }
+      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      const voices = window.speechSynthesis.getVoices();
-      const jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
-                    (v.name.includes('Male') || v.name.includes('George') || v.name.includes('Arthur')))
-                 || voices.find(v => v.lang === 'en-GB');
+      if (!jarvisVoice) selectJarvisVoice();
       if (jarvisVoice) utterance.voice = jarvisVoice;
-      utterance.pitch = 0.88;
-      utterance.rate = 1.0;
+      utterance.pitch = 0.86;
+      utterance.rate = 1.02;
+
       utterance.onend = () => { if (callback) callback(); else setStandby(); };
       utterance.onerror = () => { if (callback) callback(); else setStandby(); };
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function updateStatus(label, color) {
-      const el = document.getElementById('stateIndicator');
-      const dot = document.getElementById('systemDot');
-      if (el) { el.innerText = label; el.style.color = color; }
-      if (dot) { dot.style.background = color; dot.style.boxShadow = `0 0 10px ${color}`; }
+      try { window.speechSynthesis.speak(utterance); } catch (e) { setStandby(); }
     }
 
     function setStandby() {
       state = 'IDLE';
-      updateStatus(micActive ? 'STANDBY // SAY "JARVIS"' : 'KEYBOARD // PTT ACTIVE', 'var(--primary)');
       if (micActive && recognition) {
         try { recognition.start(); } catch(e) {}
       }
@@ -1574,12 +1401,8 @@
       playStarkChirp(1900);
       stealthMode = !stealthMode;
       document.getElementById('stealthReadout').innerText = stealthMode ? 'ON' : 'OFF';
-      document.getElementById('stealthReadout').style.color = stealthMode ? 'var(--accent-red)' : 'var(--primary)';
       document.getElementById('stealthBtnLabel').innerText = stealthMode ? '02 // STEALTH: ON' : '02 // STEALTH: OFF';
-      if (stealthMode) {
-        if (currentAudioElement) currentAudioElement.pause();
-        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      }
+      if (stealthMode && 'speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     // SPEECH RECOGNITION
@@ -1603,18 +1426,14 @@
         typewriteText('userSubtitle', `"${heard}"`, 14);
         const lower = heard.toLowerCase();
 
-        // Speech Barge-in
         if (state === 'SPEAKING') {
-          if (currentAudioElement) currentAudioElement.pause();
           if ('speechSynthesis' in window) window.speechSynthesis.cancel();
           state = 'AWAKE_LISTENING';
-          updateStatus("LISTENING TO DIRECTIVE...", "var(--accent-gold)");
         }
 
         if (lower.includes('jarvis') || lower.includes('hey jarvis')) {
           playStarkChirp(3000);
           state = 'AWAKE_LISTENING';
-          updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
           const cleaned = heard.replace(/hey jarvis|jarvis/gi, '').trim();
           if (cleaned.length > 2) handleCommand(cleaned);
           else speak("At your service, sir. What are your orders?");
@@ -1628,64 +1447,31 @@
       };
     }
 
-    // COMPREHENSIVE KNOWLEDGE ENGINE (GROQ VISION + MULTIMODAL ROUTING)
+    // FREE MULTIMODAL KNOWLEDGE & HOMEWORK ENGINE
     async function handleCommand(cmd) {
       if (!cmd && !selectedImageBase64) return;
       typewriteText('userSubtitle', `"${cmd || 'Analyzing attached scan...'}"`, 14);
       appendChatLog('user', cmd || '[OPTICAL IMAGE SCAN]');
 
-      updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
-
-      const isDeep = (cognitiveMode === 'DEEP');
-      const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent AI assistant engineered by Tony Stark.
+      const systemPrompt = `You are J.A.R.V.I.S., Tony Stark's AI assistant. 
 Address the user as 'Sir'. 
-Operating Mode: ${isDeep ? 'Provide clear, step-by-step analytical reasoning and solve all problems thoroughly.' : 'Provide 1 to 2 sharp, articulate, spoken sentences.'}
-Capabilities: World-class knowledge across all sciences, maths, code, history, languages, and general inquiry. When inspecting an image (worksheet, handwritten problem, or diagram), solve it accurately with clear logic.
-Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
+Capabilities: World-class knowledge across mathematics, coding, science, history, and general homework tasks. 
+When an image is provided, solve or explain the content thoroughly step-by-step. Never mention Wales or local valleys unless explicitly asked.`;
 
       let reply = "";
 
-      // Route 1: Groq Vision / Chat (Direct High-Speed Multimodal Inference)
-      if (groqApiKey) {
+      // 1. Puter Vision Multi-Modal Pipeline (100% Free)
+      if (selectedImageFile && window.puter && puter.ai) {
         try {
-          let messages = [{ role: "system", content: systemPrompt }];
-          if (selectedImageBase64) {
-            messages.push({
-              role: "user",
-              content: [
-                { type: "text", text: cmd || "Analyze and solve the contents of this image in detail, sir." },
-                { type: "image_url", image_url: { url: selectedImageBase64 } }
-              ]
-            });
-          } else {
-            messages.push({ role: "user", content: cmd });
-          }
-
-          const modelName = selectedImageBase64 ? "llama-3.2-11b-vision-preview" : "llama-3.3-70b-versatile";
-          const groqResp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              "Authorization": `Bearer ${groqApiKey}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              model: modelName,
-              messages: messages,
-              temperature: 0.5,
-              max_tokens: 1024
-            })
-          });
-
-          if (groqResp.ok) {
-            const data = await groqResp.json();
-            reply = data.choices[0].message.content;
-          }
-        } catch(e) {
-          console.warn("Groq Vision uplink issue:", e);
-        }
+          const resp = await puter.ai.chat(
+            `${systemPrompt}\nDirective:${cmd || 'Solve or explain the attached homework image step-by-step.'}`,
+            { media: selectedImageFile }
+          );
+          reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
+        } catch(e) {}
       }
 
-      // Route 2: Puter AI Fallback
+      // 2. Puter Text Route
       if (!reply && window.puter && puter.ai) {
         try {
           const resp = await puter.ai.chat(`${systemPrompt}\nUser Query:${cmd}`);
@@ -1693,7 +1479,7 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
         } catch(e) {}
       }
 
-      // Route 3: Pollinations AI Route
+      // 3. Unblocked Cloud Fallback
       if (!reply) {
         try {
           const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt + " " + cmd)}`);
@@ -1701,11 +1487,8 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
         } catch(e) {}
       }
 
-      // Final Heuristic Fallback
       if (!reply) {
-        reply = selectedImageBase64 
-          ? "Target image scanned, sir. Please verify your Groq API key in the [⚙️ SECURE UPLINK] settings to complete cognitive OCR." 
-          : "Command acknowledged, sir. All suit diagnostics remain nominal.";
+        reply = "Sensors have captured the visual target, sir. Optical analysis indicates all structural readings are nominal.";
       }
 
       clearAttachedImage();
@@ -1736,11 +1519,7 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
     });
 
     // =========================================================
-    // DYNAMIC 3D SPHERICAL POINT-CLOUD ARC REACTOR ENGINE
-    // COLOR-STATE COUPLING:
-    // - IDLE: BLUE & CYAN
-    // - AWAKE_LISTENING: VIBRANT STARK ORANGE & BLUE
-    // - SPEAKING: NEON GREEN MATRIX
+    // DYNAMIC 3D SPHERICAL ARC REACTOR (ORANGE/BLUE LISTENING)
     // =========================================================
     const canvas = document.getElementById('holoCanvas');
     const ctx = canvas.getContext('2d');
@@ -1752,7 +1531,7 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
 
     let rotation = 0;
     let pulse = 0;
-    const numPoints = 230;
+    const numPoints = 220;
     const points = [];
     for (let i = 0; i < numPoints; i++) {
       const phi = Math.acos(-1 + (2 * i) / numPoints);
@@ -1769,19 +1548,18 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
       const cx = size / 2;
       const cy = size / 2;
 
-      let primaryRgb = '0, 240, 255';     // Default Cyan/Blue
+      let primaryRgb = '0, 240, 255';     // Blue Standby
       let coreColor = '#ffffff';
       let speed = 0.012;
       let expand = 6;
 
       if (state === 'AWAKE_LISTENING') {
-        // Dual Orange & Blue Dynamic Listening State
-        primaryRgb = '255, 150, 0';       // Stark Amber/Orange
+        primaryRgb = '255, 150, 0';       // Orange Listening
         coreColor = '#00f0ff';           // Blue Core Contrast
         speed = 0.038;
         expand = 18;
       } else if (state === 'SPEAKING') {
-        primaryRgb = '0, 255, 170';       // Vibrant Green
+        primaryRgb = '0, 255, 170';       // Green Speaking
         coreColor = '#ffffff';
         speed = 0.026;
         expand = 22;
@@ -1791,30 +1569,14 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
       pulse += 0.06;
       const currentRadius = 78 + Math.sin(pulse) * expand;
 
-      // Outer Glow Halo Ring
+      // Outer Halo
       ctx.beginPath();
       ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(${primaryRgb}, 0.3)`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Audio Frequency EQ Waves around reactor
-      if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
-        for (let i = 0; i < 14; i++) {
-          let barHeight = Math.sin(pulse * 2.5 + i) * 15 + (state === 'SPEAKING' ? 22 : 12);
-          ctx.strokeStyle = `rgba(${primaryRgb}, 0.75)`;
-          ctx.beginPath();
-          ctx.moveTo(cx - 96 - i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx - 96 - i * 3, cy + barHeight / 2);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(cx + 96 + i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx + 96 + i * 3, cy + barHeight / 2);
-          ctx.stroke();
-        }
-      }
-
-      // Central Plasma Discharge Core
+      // Central Core
       ctx.beginPath();
       ctx.arc(cx, cy, 26, 0, Math.PI * 2);
       ctx.fillStyle = coreColor;
@@ -1823,7 +1585,7 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // 3D Point-Cloud Rotating Nodes
+      // Rotating 3D Point Nodes
       const cosR = Math.cos(rotation);
       const sinR = Math.sin(rotation);
       points.forEach(p => {
@@ -1845,23 +1607,59 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
     }
     renderArcReactor();
 
+    // 3D FLOATING VECTOR PYRAMID (IMAGE REFERENCE)
+    const pyrCanvas = document.getElementById('vectorPyramidCanvas');
+    const pyrCtx = pyrCanvas.getContext('2d');
+    pyrCanvas.width = 280;
+    pyrCanvas.height = 65;
+    let pyrAngle = 0;
+
+    function renderPyramid() {
+      pyrCtx.clearRect(0, 0, pyrCanvas.width, pyrCanvas.height);
+      pyrAngle += 0.025;
+      const cx = pyrCanvas.width / 2;
+      const cy = pyrCanvas.height / 2 + 10;
+      const w = 45;
+      const h = 40;
+
+      const p0 = { x: cx, y: cy - h }; // Apex
+      const p1 = { x: cx + Math.cos(pyrAngle) * w, y: cy + Math.sin(pyrAngle) * (w * 0.35) };
+      const p2 = { x: cx + Math.cos(pyrAngle + 2.1) * w, y: cy + Math.sin(pyrAngle + 2.1) * (w * 0.35) };
+      const p3 = { x: cx + Math.cos(pyrAngle + 4.2) * w, y: cy + Math.sin(pyrAngle + 4.2) * (w * 0.35) };
+
+      pyrCtx.strokeStyle = '#00f0ff';
+      pyrCtx.lineWidth = 1.5;
+      pyrCtx.beginPath();
+      // Draw base
+      pyrCtx.moveTo(p1.x, p1.y); pyrCtx.lineTo(p2.x, p2.y);
+      pyrCtx.lineTo(p3.x, p3.y); pyrCtx.closePath();
+      // Draw edges to apex
+      pyrCtx.moveTo(p0.x, p0.y); pyrCtx.lineTo(p1.x, p1.y);
+      pyrCtx.moveTo(p0.x, p0.y); pyrCtx.lineTo(p2.x, p2.y);
+      pyrCtx.moveTo(p0.x, p0.y); pyrCtx.lineTo(p3.x, p3.y);
+      pyrCtx.stroke();
+
+      document.getElementById('pyramidDeg').innerText = Math.round((pyrAngle * 180 / Math.PI) % 360) + '° FLUX';
+      requestAnimationFrame(renderPyramid);
+    }
+    renderPyramid();
+
     // LIVE BIOSIGNAL ECG MONITOR
     const ecgCanvas = document.getElementById('ecgCanvas');
     const ecgCtx = ecgCanvas.getContext('2d');
-    let ecgX = 0;
-    let ecgY = 24;
-    ecgCanvas.width = 260;
-    ecgCanvas.height = 48;
+    let ecgX = 0, ecgY = 22;
+    ecgCanvas.width = 280;
+    ecgCanvas.height = 44;
 
     function renderECG() {
       ecgCtx.fillStyle = 'rgba(0, 10, 22, 0.08)';
       ecgCtx.fillRect(0, 0, ecgCanvas.width, ecgCanvas.height);
 
-      let newY = 24;
+      let newY = 22;
       if (ecgX % 50 > 38 && ecgX % 50 < 44) {
-        newY = (ecgX % 2 === 0) ? 6 : 42;
+        newY = (ecgX % 2 === 0) ? 6 : 38;
       } else {
-        newY = 24 + (Math.random() * 4 - 2);
+        newY = 22 + (Math.random() * 4 - 2);
       }
 
       ecgCtx.beginPath();
@@ -1869,8 +1667,6 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
       ecgCtx.lineTo(ecgX + 2, newY);
       ecgCtx.strokeStyle = '#00ffaa';
       ecgCtx.lineWidth = 1.5;
-      ecgCtx.shadowColor = '#00ffaa';
-      ecgCtx.shadowBlur = 6;
       ecgCtx.stroke();
 
       ecgY = newY;
@@ -1889,77 +1685,40 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
       } catch(e) {}
     }, 1000);
 
-    // HOLO-FABRICATOR
-    function loadSchematicPreset(promptText) {
-      document.getElementById('holoPromptInput').value = promptText;
-      fabricateVisualSchematic();
-    }
-
+    // HOLO FABRICATOR
     async function fabricateVisualSchematic() {
-      const promptInput = document.getElementById('holoPromptInput');
-      const query = promptInput.value.trim();
+      const query = document.getElementById('holoPromptInput').value.trim();
       if (!query) return;
-
-      switchTab('tabHolo', document.querySelectorAll('.tab-btn')[2]);
-
-      const laser = document.getElementById('holoLaser');
-      const placeholder = document.getElementById('holoPlaceholder');
+      speak(`Engaging holographic fabricator for ${query}, sir.`);
       const imgEl = document.getElementById('holoImage');
-
-      laser.style.display = 'block';
-      placeholder.style.display = 'block';
-      placeholder.innerHTML = `[ ENGAGING HOLO-FABRICATOR ]<br><br>Rendering blueprint schematics for: "${query}"...`;
-      imgEl.style.display = 'none';
-
-      speak(`Engaging holographic fabricator. Rendering visual blueprint for ${query}, sir.`);
-
-      try {
-        let imgResult = null;
-        if (window.puter && puter.ai) {
-          try {
-            imgResult = await puter.ai.txt2img(`Cinematic futuristic holographic blueprint schematic wireframe of ${query}, neon cyan on black background, Stark Industries technical style`);
-          } catch(e) {}
-        }
-
-        if (imgResult && imgResult.src) {
-          imgEl.src = imgResult.src;
-        } else {
-          imgEl.src = `https://image.pollinations.ai/prompt/${encodeURIComponent(query + ' futuristic Stark holographic blueprint tech diagram neon cyan glowing on black')}`;
-        }
-
-        imgEl.onload = () => {
-          laser.style.display = 'none';
-          placeholder.style.display = 'none';
-          imgEl.style.display = 'block';
-          playCinematicChime();
-        };
-      } catch (err) {
-        laser.style.display = 'none';
-        placeholder.innerHTML = `[ FABRICATION ANOMALY ]<br><br>Unable to synthesize visual schematic.`;
-      }
+      const placeholder = document.getElementById('holoPlaceholder');
+      imgEl.src = `https://image.pollinations.ai/prompt/${encodeURIComponent(query + ' futuristic Stark holographic blueprint tech diagram neon cyan glowing on black')}`;
+      imgEl.onload = () => {
+        placeholder.style.display = 'none';
+        imgEl.style.display = 'block';
+        playCinematicChime();
+      };
     }
 
     // 10-STAGE DIAGNOSTIC ARRAY
     const bootStages = [
-      { text: "STAGE 01 // COLD REACTOR SUB-BASS SPOOL", pct: "10%", reg: "0x7F0001", flux: "12.4 GHZ", p: "1.02 BAR" },
-      { text: "STAGE 02 // HYDRAULIC SERVO ENGAGEMENT", pct: "20%", reg: "0x7F004A", flux: "45.0 GHZ", p: "1.15 BAR" },
-      { text: "STAGE 03 // QUANTUM NEURAL REGISTERS MAPPED", pct: "30%", reg: "0x7F102B", flux: "120.8 GHZ", p: "1.42 BAR" },
-      { text: "STAGE 04 // SATELLITE ORBITAL UPLINK SYNC", pct: "40%", reg: "0x7F2210", flux: "210.3 GHZ", p: "1.80 BAR" },
-      { text: "STAGE 05 // MULTIMODAL OPTICAL MATRICES LOADED", pct: "50%", reg: "0x7F33A9", flux: "290.0 GHZ", p: "2.10 BAR" },
-      { text: "STAGE 06 // FLIGHT HORIZON & RETICLE MATRIX", pct: "60%", reg: "0x7F4812", flux: "340.5 GHZ", p: "2.40 BAR" },
-      { text: "STAGE 07 // GENERAL KNOWLEDGE COGNITION ONLINE", pct: "70%", reg: "0x7F59C4", flux: "390.2 GHZ", p: "2.75 BAR" },
-      { text: "STAGE 08 // FISH AUDIO VOICE SYNTHESIS ARMED", pct: "80%", reg: "0x7F6DF8", flux: "410.9 GHZ", p: "3.00 BAR" },
-      { text: "STAGE 09 // DEFENSIVE PLATING & CORE CHARGE", pct: "90%", reg: "0x7F7E01", flux: "432.8 GHZ", p: "3.20 BAR" },
-      { text: "STAGE 10 // ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%", reg: "0x7FFFFF", flux: "ONLINE", p: "NOMINAL" }
+      { text: "STAGE 01 // COLD REACTOR SUB-BASS SPOOL", pct: "10%" },
+      { text: "STAGE 02 // HYDRAULIC SERVO ENGAGEMENT", pct: "20%" },
+      { text: "STAGE 03 // QUANTUM NEURAL REGISTERS MAPPED", pct: "30%" },
+      { text: "STAGE 04 // SATELLITE ORBITAL UPLINK SYNC", pct: "40%" },
+      { text: "STAGE 05 // MULTIMODAL OPTICAL MATRICES LOADED", pct: "50%" },
+      { text: "STAGE 06 // FLIGHT HORIZON & RETICLE MATRIX", pct: "60%" },
+      { text: "STAGE 07 // GENERAL KNOWLEDGE COGNITION ONLINE", pct: "70%" },
+      { text: "STAGE 08 // VOCAL SYNTHESIS CALIBRATION ARMED", pct: "80%" },
+      { text: "STAGE 09 // DEFENSIVE PLATING & CORE CHARGE", pct: "90%" },
+      { text: "STAGE 10 // ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%" }
     ];
 
     const powerBtn = document.getElementById('powerOnBtn');
     function launchBootSequence() {
       powerBtn.style.display = 'none';
-
       getAudio();
       playCinematicSubBassSwell();
-
       initBatteryMatrix();
       init3DParallax();
 
@@ -1969,9 +1728,6 @@ Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
           const cur = bootStages[step];
           document.getElementById('bootStatus').innerText = cur.text;
           document.getElementById('bootBar').style.width = cur.pct;
-          document.getElementById('bootReg').innerText = cur.reg;
-          document.getElementById('bootFlux').innerText = cur.flux;
-          document.getElementById('bootPress').innerText = cur.p;
           playMechanicalRelay();
           step++;
           setTimeout(runDiagnostic, 550);
