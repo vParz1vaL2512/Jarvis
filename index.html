@@ -4,10 +4,14 @@
   <!--
     ==========================================================================
     J.A.R.V.I.S. MARK VII // STARK TACTICAL & ACADEMIC COGNITION SUITE
-    VERSION: 34.0.0 TITAN APEX MASTER
-    HARDWARE SUITE: DUAL SUB-BASS SPOOL // STARK HARMONICS // GYRO PITCH LADDER
-                    LIVE BATTERY MATRIX // MULTIMODAL OPTICAL SCAN (CAMERA + FILE)
-    COGNITION: GENERAL AI & HOMEWORK SOLVER // UNIVERSAL STARK DIALOGUE
+    VERSION: 38.0.0 TITAN APEX MASTER (TOTAL SCI-FI INTEGRATION)
+    ENGINE FEATURES:
+      - 3D DYNAMIC ARC REACTOR (BLUE STANDBY // ORANGE ACTIVE LISTENING)
+      - FULL INTERFACE PERSPECTIVE 3D TILT ENGINE (GYRO + MOUSE MOTION)
+      - MULTIMODAL GROQ LLAMA-3.2 VISION OCR FOR HOMEWORK & DIAGRAMS
+      - FISH AUDIO PAUL BETTANY VOICE STREAMING (MODEL 14129c3e320149449d6bada6862f7338)
+      - 10-STAGE SYNTHESIZED SUB-BASS SPOOL & MECHANICAL RELAYS
+      - LIVE BIOSIGNAL ECG // SATELLITE CHRONO // BATTERY TELEMETRY MATRIX
     ==========================================================================
   -->
   <meta charset="UTF-8">
@@ -15,7 +19,7 @@
   <meta name="theme-color" content="#010814">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>JARVIS Mark VII</title>
+  <title>JARVIS Mark VII // Titan Apex HUD</title>
   
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
@@ -25,26 +29,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
-  <!-- PUTER CORE SATELLITE ENGINE -->
   <script src="https://js.puter.com/v2/"></script>
 
   <style>
-    /* =========================================================
-       SYSTEM CSS DESIGN TOKENS
-       ========================================================= */
     :root {
       --primary: #00f0ff;
       --primary-dim: rgba(0, 240, 255, 0.15);
       --primary-mid: rgba(0, 240, 255, 0.45);
       --primary-glow: rgba(0, 240, 255, 0.75);
       --accent-gold: #ffaa00;
-      --accent-gold-glow: rgba(255, 170, 0, 0.65);
+      --accent-gold-glow: rgba(255, 170, 0, 0.75);
       --accent-green: #00ffaa;
       --accent-red: #ff3344;
       --bg-dark: #010814;
-      --bg-surface: rgba(2, 12, 26, 0.92);
-      --border-subtle: rgba(0, 240, 255, 0.25);
-      --border-bright: rgba(0, 240, 255, 0.75);
+      --bg-surface: rgba(2, 14, 32, 0.88);
+      --border-subtle: rgba(0, 240, 255, 0.28);
+      --border-bright: rgba(0, 240, 255, 0.85);
     }
 
     * {
@@ -62,10 +62,11 @@
       overflow-x: hidden;
       font-family: 'Rajdhani', sans-serif;
       color: var(--primary);
+      perspective: 1200px;
     }
 
     body {
-      background: radial-gradient(circle at 50% 25%, #082442 0%, #031122 60%, #00040a 100%);
+      background: radial-gradient(circle at 50% 30%, #092c52 0%, #031326 60%, #00040a 100%);
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
@@ -73,9 +74,10 @@
       align-items: center;
       justify-content: flex-start;
       padding: 6px 12px 20px;
+      transition: transform 0.15s ease-out;
     }
 
-    /* DIGITAL MATRIX OVERLAY */
+    /* DIGITAL MATRIX & CRT SCANLINE SHIELDS */
     body::before {
       content: "";
       position: fixed;
@@ -83,7 +85,7 @@
       background: 
         linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background-size: 26px 26px;
       pointer-events: none;
       z-index: 1;
     }
@@ -92,7 +94,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.35) 51%);
+      background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.38) 51%);
       background-size: 100% 4px;
       pointer-events: none;
       z-index: 2;
@@ -102,15 +104,28 @@
     /* HUD CORNER BRACKETS */
     .hud-corner {
       position: fixed;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       pointer-events: none;
-      z-index: 20;
+      z-index: 25;
     }
-    .hud-corner.tl { top: 8px; left: 8px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.tr { top: 8px; right: 8px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
-    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.tl { top: 8px; left: 8px; border-top: 3px solid var(--primary); border-left: 3px solid var(--primary); }
+    .hud-corner.tr { top: 8px; right: 8px; border-top: 3px solid var(--primary); border-right: 3px solid var(--primary); }
+    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 3px solid var(--primary); border-left: 3px solid var(--primary); }
+    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 3px solid var(--primary); border-right: 3px solid var(--primary); }
+
+    /* 3D PARALLAX MASTER WRAPPER */
+    #hudPerspectiveRoot {
+      width: 100%;
+      max-width: 1060px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      position: relative;
+      z-index: 10;
+    }
 
     /* =========================================================
        10-STAGE DIAGNOSTIC BOOT SCREEN (STARK ENGINE)
@@ -118,7 +133,7 @@
     #bootScreen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #092a4f 0%, #030d1c 65%, #000308 100%);
+      background: radial-gradient(circle at center, #0a3563 0%, #031022 65%, #000308 100%);
       z-index: 5000;
       display: flex;
       flex-direction: column;
@@ -130,9 +145,7 @@
 
     .boot-laser-horiz {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, #00f0ff, transparent);
       box-shadow: 0 0 16px #00f0ff;
@@ -158,16 +171,14 @@
 
     .boot-reactor-ring-1 {
       position: absolute;
-      width: 200px;
-      height: 200px;
+      width: 200px; height: 200px;
       border: 1.5px dashed var(--primary);
       border-radius: 50%;
       animation: spinCW 14s linear infinite;
     }
     .boot-reactor-ring-2 {
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 160px; height: 160px;
       border: 2px solid rgba(0, 240, 255, 0.3);
       border-top-color: var(--primary);
       border-bottom-color: var(--primary);
@@ -175,8 +186,7 @@
       animation: spinCCW 7s linear infinite;
     }
     .boot-reactor-core {
-      width: 76px;
-      height: 76px;
+      width: 76px; height: 76px;
       background: radial-gradient(circle, #ffffff 15%, #00f0ff 65%, rgba(0, 240, 255, 0.2) 100%);
       border-radius: 50%;
       box-shadow: 0 0 50px var(--primary-glow), inset 0 0 16px #ffffff;
@@ -280,32 +290,30 @@
        ========================================================= */
     header {
       width: 100%;
-      max-width: 520px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 4px 8px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.25);
-      position: relative;
-      z-index: 10;
+      padding: 8px 10px;
+      border-bottom: 1.5px solid rgba(0, 240, 255, 0.32);
+      margin-bottom: 6px;
     }
     .brand-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 900;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.24em;
       color: #ffffff;
-      text-shadow: 0 0 12px var(--primary);
+      text-shadow: 0 0 14px var(--primary);
     }
     .brand-sub {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.65rem;
       color: rgba(0, 240, 255, 0.7);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
     }
     .telemetry-time {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--primary);
       text-align: right;
     }
@@ -313,22 +321,19 @@
     /* NAVIGATION RAIL */
     .tab-rail {
       width: 100%;
-      max-width: 520px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
-      margin: 8px 0;
-      position: relative;
-      z-index: 10;
+      gap: 6px;
+      margin-bottom: 10px;
     }
     .tab-btn {
       background: rgba(0, 240, 255, 0.08);
       border: 1px solid rgba(0, 240, 255, 0.25);
       color: rgba(0, 240, 255, 0.75);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
-      padding: 8px 2px;
+      padding: 9px 2px;
       border-radius: 6px;
       text-align: center;
       cursor: pointer;
@@ -336,61 +341,130 @@
       transition: all 0.2s ease;
     }
     .tab-btn.active {
-      background: rgba(0, 240, 255, 0.25);
+      background: rgba(0, 240, 255, 0.26);
       border-color: var(--primary);
       color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
     }
 
     .deck-panel {
       width: 100%;
-      max-width: 520px;
       display: none;
       flex-direction: column;
       align-items: center;
-      position: relative;
-      z-index: 10;
     }
     .deck-panel.active { display: flex; }
 
     /* =========================================================
-       TAB 01: HOME DECK (ARC CORE & GYROSCOPE)
+       DYNAMIC 3D TACTICAL HUD ARCHITECTURE (IMAGE REPLICA)
        ========================================================= */
+    .stark-grid-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 820px) {
+      .stark-grid-layout {
+        grid-template-columns: 290px 1fr 290px;
+        grid-template-rows: auto auto;
+      }
+      .hud-stage-column { grid-column: 2 / 3; grid-row: 1 / 2; }
+      .flank-left-column { grid-column: 1 / 2; grid-row: 1 / 2; }
+      .flank-right-column { grid-column: 3 / 4; grid-row: 1 / 2; }
+      .lower-span-column { grid-column: 1 / 4; grid-row: 2 / 3; }
+    }
+
+    .hud-module-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 9px 12px;
+      position: relative;
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.1);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .hud-module-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 10px; height: 10px;
+      border-top: 2.5px solid var(--primary);
+      border-left: 2.5px solid var(--primary);
+    }
+    .hud-module-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 10px; height: 10px;
+      border-bottom: 2.5px solid var(--primary);
+      border-right: 2.5px solid var(--primary);
+    }
+
+    .module-header {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      padding-bottom: 3px;
+    }
+
+    /* BIOSIGNAL ECG MONITOR */
+    canvas#ecgCanvas {
+      width: 100%;
+      height: 48px;
+      background: rgba(0, 10, 22, 0.85);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    /* RADAR RETICLE STAGE */
     .hud-stage {
       position: relative;
-      width: 320px;
-      height: 240px;
+      width: 100%;
+      height: 310px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 2px 0 6px;
+      background: radial-gradient(circle at center, rgba(0, 48, 96, 0.45) 0%, rgba(1, 8, 20, 0.92) 75%);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
     }
+
     .reticle-outer {
       position: absolute;
-      width: 230px;
-      height: 230px;
-      border: 1px dashed rgba(0, 240, 255, 0.3);
+      width: 270px; height: 270px;
+      border: 1.5px dashed rgba(0, 240, 255, 0.4);
       border-radius: 50%;
-      animation: spinCW 32s linear infinite;
+      animation: spinCW 28s linear infinite;
     }
     .reticle-mid {
       position: absolute;
-      width: 200px;
-      height: 200px;
-      border: 1px solid rgba(0, 240, 255, 0.2);
-      border-left: 2px solid var(--primary);
-      border-right: 2px solid var(--primary);
+      width: 230px; height: 230px;
+      border: 1.5px solid rgba(0, 240, 255, 0.25);
+      border-left: 3px solid var(--primary);
+      border-right: 3px solid var(--primary);
       border-radius: 50%;
-      animation: spinCCW 16s linear infinite;
+      animation: spinCCW 14s linear infinite;
     }
     .reticle-inner {
       position: absolute;
-      width: 165px;
-      height: 165px;
-      border: 1px dotted rgba(0, 240, 255, 0.4);
+      width: 190px; height: 190px;
+      border: 1px dotted rgba(255, 170, 0, 0.5);
       border-radius: 50%;
     }
+
     .hud-pitch-ladder {
       position: absolute;
       width: 100%;
@@ -399,22 +473,22 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 24px 8px;
+      padding: 24px 12px;
       transition: transform 0.15s ease-out;
     }
     .pitch-line {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: rgba(0, 240, 255, 0.35);
+      color: rgba(0, 240, 255, 0.45);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.65rem;
     }
     .pitch-line::before, .pitch-line::after {
       content: "";
-      width: 24px;
-      height: 1px;
-      background: rgba(0, 240, 255, 0.4);
+      width: 28px;
+      height: 1.5px;
+      background: rgba(0, 240, 255, 0.5);
     }
     canvas#holoCanvas {
       position: absolute;
@@ -423,27 +497,35 @@
       height: 100%;
       z-index: 5;
     }
-    .hud-flank-left, .hud-flank-right {
+
+    .wireframe-grid-floor {
       position: absolute;
-      top: 18px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.64rem;
-      line-height: 1.4;
+      bottom: -32px;
+      width: 100%;
+      height: 110px;
+      background: 
+        linear-gradient(rgba(0, 240, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.16) 1px, transparent 1px);
+      background-size: 22px 22px;
+      transform: perspective(220px) rotateX(68deg);
+      opacity: 0.4;
       pointer-events: none;
-      z-index: 6;
+      animation: gridShift 8s linear infinite;
     }
-    .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.7); }
-    .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.7); }
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to { background-position: 0 44px; }
+    }
 
     /* SUBTITLES CARD */
     .subtitles-card {
       width: 100%;
-      background: rgba(2, 12, 26, 0.94);
+      background: rgba(2, 14, 30, 0.94);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
       border-radius: 12px;
       padding: 10px 14px;
       box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-      margin: 4px 0 8px;
+      margin-bottom: 8px;
     }
     .sub-channel { margin-bottom: 6px; }
     .sub-channel:last-child { margin-bottom: 0; }
@@ -500,7 +582,6 @@
       animation: coreSwell 1s infinite alternate;
     }
 
-    /* ACTION BUTTONS & DEDICATED MIC SWITCH */
     .tactical-drawer {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -538,7 +619,25 @@
       color: rgba(255, 255, 255, 0.7);
     }
 
-    /* CHAT ROW & DUAL OPTICAL INPUT (CAMERA + FILE) */
+    .image-scan-preview {
+      width: 100%;
+      background: rgba(0, 25, 50, 0.85);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .image-scan-preview img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--primary);
+    }
+
     .chat-row { 
       display: flex; 
       gap: 5px; 
@@ -591,26 +690,6 @@
     .chat-send-btn:active, .btn-optical-trigger:active {
       background: var(--primary);
       color: #00040a;
-    }
-
-    /* IMAGE SCAN THUMBNAIL PREVIEW */
-    #imageScanPreviewBox {
-      width: 100%;
-      background: rgba(0, 25, 50, 0.85);
-      border: 1px dashed var(--accent-gold);
-      border-radius: 6px;
-      padding: 6px 10px;
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-    #imageScanPreviewBox img {
-      width: 42px;
-      height: 42px;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid var(--primary);
     }
 
     /* TAB 02: CHAT DECK */
@@ -699,9 +778,7 @@
     }
     .holo-laser-sweep {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: #00ffaa;
       box-shadow: 0 0 15px #00ffaa;
@@ -757,11 +834,52 @@
       font-size: 0.66rem;
       color: rgba(0, 240, 255, 0.65);
     }
+
+    /* STARK SECURITY / CONFIG MODAL */
+    #configModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 8, 20, 0.94);
+      z-index: 6000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .config-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(2, 16, 36, 0.95);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+    }
+    .config-field { margin-bottom: 14px; }
+    .config-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .config-input {
+      width: 100%;
+      background: rgba(0, 20, 40, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 6px;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      padding: 8px 10px;
+      outline: none;
+    }
   </style>
 </head>
 <body>
 
-  <!-- RETICLES -->
+  <!-- CORNER RETICLES -->
   <div class="hud-corner tl"></div>
   <div class="hud-corner tr"></div>
   <div class="hud-corner bl"></div>
@@ -797,177 +915,271 @@
     <button id="powerOnBtn" class="btn-stark-init">INITIALIZE SUITE</button>
   </div>
 
-  <!-- TOP HEADER -->
-  <header>
-    <div>
-      <div class="brand-title">J.A.R.V.I.S.</div>
-      <div class="brand-sub">TACTICAL NEURAL OPERATING SUITE</div>
+  <!-- CONFIG MODAL -->
+  <div id="configModal">
+    <div class="config-card">
+      <div style="font-family:'Orbitron'; font-size:1.1rem; color:#fff; margin-bottom:12px; font-weight:700;">
+        STARK NEURAL UPLINK CONFIG
+      </div>
+      <div class="config-field">
+        <label class="config-label">GROQ API KEY (VISION OCR & CHAT):</label>
+        <input type="password" id="cfgGroqKey" class="config-input" placeholder="gsk_..." />
+      </div>
+      <div class="config-field">
+        <label class="config-label">FISH AUDIO API KEY (JARVIS TTS):</label>
+        <input type="password" id="cfgFishKey" class="config-input" placeholder="sk-fish-..." />
+      </div>
+      <div class="config-field">
+        <label class="config-label">FISH AUDIO MODEL ID (JARVIS VOICE):</label>
+        <input type="text" id="cfgFishModel" class="config-input" value="14129c3e320149449d6bada6862f7338" />
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px;">
+        <button class="tactical-option-btn" onclick="closeConfigModal()">CANCEL</button>
+        <button class="chat-send-btn" onclick="saveConfigModal()">LOCK & SYNC</button>
+      </div>
     </div>
-    <div>
-      <div id="hudClock" class="telemetry-time">00:00:00 LOC</div>
-      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.65); text-align: right;">STARK SATELLITE RELAY</div>
-    </div>
-  </header>
-
-  <!-- NAVIGATION TABS -->
-  <div class="tab-rail">
-    <button class="tab-btn active" onclick="switchTab('tabHome', this)">01 // HOME</button>
-    <button class="tab-btn" onclick="switchTab('tabChat', this)">02 // CHAT</button>
-    <button class="tab-btn" onclick="switchTab('tabHolo', this)">03 // HOLO-FAB</button>
-    <button class="tab-btn" onclick="switchTab('tabRadar', this)">04 // RADAR</button>
   </div>
 
-  <!-- TAB 01: HOME DECK -->
-  <div id="tabHome" class="deck-panel active">
-    <div class="hud-stage">
-      <div class="reticle-outer"></div>
-      <div class="reticle-mid"></div>
-      <div class="reticle-inner"></div>
-
-      <div id="pitchLadder" class="hud-pitch-ladder">
-        <div class="pitch-line"><span>+10</span><span>PITCH</span><span>+10</span></div>
-        <div class="pitch-line"><span>00</span><span>HORIZON</span><span>00</span></div>
-        <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
+  <!-- PERSPECTIVE 3D ROOT DECK -->
+  <div id="hudPerspectiveRoot">
+    <!-- TOP HEADER -->
+    <header>
+      <div>
+        <div class="brand-title">J.A.R.V.I.S.</div>
+        <div class="brand-sub">TACTICAL NEURAL COMMAND DECK</div>
       </div>
-
-      <div class="hud-flank-left">
-        <div>CORE: <span id="batteryHudVal" style="color:var(--accent-green);">100% NOM</span></div>
-        <div>FLUX: <span id="fluxReadout">432.8 GHZ</span></div>
-        <div>RPM: <span id="rpmReadout">14,200</span></div>
-        <div>TEMP: <span style="color:var(--accent-green);">32°C NOM</span></div>
+      <div>
+        <div id="hudClock" class="telemetry-time">00:00:00 LOC</div>
+        <button onclick="openConfigModal()" style="background:transparent; border:none; color:var(--accent-gold); font-family:'Share Tech Mono'; font-size:0.65rem; cursor:pointer;">[⚙️ SECURE UPLINK]</button>
       </div>
+    </header>
 
-      <div class="hud-flank-right">
-        <div>NEURAL: <span style="color:var(--accent-green);">ONLINE</span></div>
-        <div>OPTICS: <span id="opticsReadout" style="color:var(--primary);">ARMED</span></div>
-        <div>STEALTH: <span id="stealthReadout" style="color:var(--primary);">OFF</span></div>
-        <div>DEF: <span id="suitDefenseReadout" style="color:var(--accent-gold);">ACTIVE</span></div>
-      </div>
-
-      <canvas id="holoCanvas"></canvas>
+    <!-- NAVIGATION TABS -->
+    <div class="tab-rail">
+      <button class="tab-btn active" onclick="switchTab('tabHome', this)">01 // HUD DECK</button>
+      <button class="tab-btn" onclick="switchTab('tabChat', this)">02 // CHAT OCR</button>
+      <button class="tab-btn" onclick="switchTab('tabHolo', this)">03 // HOLO-FAB</button>
+      <button class="tab-btn" onclick="switchTab('tabRadar', this)">04 // RADAR</button>
     </div>
 
-    <!-- SUBTITLES CARD -->
-    <div class="subtitles-card">
-      <div class="sub-channel">
-        <div class="sub-tag user">[ USER DIRECTIVE ]</div>
-        <div id="userSubtitle" class="sub-text user">Awaiting operational directive...</div>
+    <!-- TAB 01: HOME DECK (ADVANCED STARK HUD) -->
+    <div id="tabHome" class="deck-panel active">
+      
+      <div class="stark-grid-layout">
+        <!-- LEFT FLANK MODULES -->
+        <div class="flank-left-column">
+          <div class="hud-module-card">
+            <div class="module-header">
+              <span>SUIT TELEMETRY</span>
+              <span id="flankCoreFlux">432.8 GHZ</span>
+            </div>
+            <div style="font-family:'Share Tech Mono'; font-size:0.75rem; line-height:1.5;">
+              <div>CORE POWER: <span id="batteryHudVal" style="color:var(--accent-green);">100% NOM</span></div>
+              <div>TURBINE RPM: <span id="rpmReadout">14,200</span></div>
+              <div>COOLANT TEMP: <span style="color:var(--accent-green);">32°C NOM</span></div>
+              <div>SHIELD BUFFER: <span style="color:var(--primary);">100% [ONLINE]</span></div>
+            </div>
+          </div>
+
+          <div class="hud-module-card">
+            <div class="module-header">
+              <span>BIOSIGNAL MATRIX</span>
+              <span style="color:var(--accent-green);">72 BPM</span>
+            </div>
+            <canvas id="ecgCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- CENTER HUD DYNAMIC 3D ARC REACTOR & FLIGHT HORIZON -->
+        <div class="hud-stage-column">
+          <div class="hud-stage">
+            <div class="reticle-outer"></div>
+            <div class="reticle-mid"></div>
+            <div class="reticle-inner"></div>
+
+            <div id="pitchLadder" class="hud-pitch-ladder">
+              <div class="pitch-line"><span>+10</span><span>PITCH</span><span>+10</span></div>
+              <div class="pitch-line"><span>00</span><span>HORIZON</span><span>00</span></div>
+              <div class="pitch-line"><span>-10</span><span>FLUX</span><span>-10</span></div>
+            </div>
+
+            <canvas id="holoCanvas"></canvas>
+            <div class="wireframe-grid-floor"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT FLANK MODULES -->
+        <div class="flank-right-column">
+          <div class="hud-module-card">
+            <div class="module-header">
+              <span>DEFENSIVE PROTOCOLS</span>
+              <span style="color:var(--accent-gold);">ARMED</span>
+            </div>
+            <div style="font-family:'Share Tech Mono'; font-size:0.75rem; line-height:1.5;">
+              <div>OPTICAL OCR: <span id="opticsReadout" style="color:var(--primary);">ACTIVE</span></div>
+              <div>VOICE BUS: <span id="voiceReadout" style="color:var(--accent-gold);">FISH-BETTY</span></div>
+              <div>STEALTH MODE: <span id="stealthReadout" style="color:var(--primary);">OFF</span></div>
+              <div>NEURAL UPLINK: <span style="color:var(--accent-green);">SYNCHRONIZED</span></div>
+            </div>
+          </div>
+
+          <div class="hud-module-card">
+            <div class="module-header">
+              <span>VECTOR QUANTUM FLUX</span>
+              <span style="color:var(--primary);">0x7F8E</span>
+            </div>
+            <div style="font-family:'Share Tech Mono'; font-size:0.68rem; color:rgba(0,240,255,0.7); line-height:1.4;">
+              <div>ORBITAL SAT: STARK-SAT-07</div>
+              <div>BANDWIDTH: 10.4 TB/S ULTRA</div>
+              <div>COGNITIVE LATENCY: 12 MS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOWER SPANNING COMMAND DECK -->
+        <div class="lower-span-column">
+          <!-- SUBTITLES CARD -->
+          <div class="subtitles-card">
+            <div class="sub-channel">
+              <div class="sub-tag user">[ USER DIRECTIVE ]</div>
+              <div id="userSubtitle" class="sub-text user">Awaiting operational directive...</div>
+            </div>
+            <div class="sub-channel">
+              <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
+              <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
+            </div>
+          </div>
+
+          <!-- CONSOLE -->
+          <div class="hud-console">
+            <div class="status-badge-row">
+              <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
+              <div id="systemDot" class="system-dot"></div>
+            </div>
+
+            <div class="tactical-drawer">
+              <button id="micToggleBtn" class="tactical-option-btn mic-btn" onclick="toggleMicrophone()">
+                <span id="micIconIndicator">🎤</span>
+                <span id="micLabel">MICROPHONE: ACTIVE (LISTENING)</span>
+              </button>
+              <button class="tactical-option-btn" onclick="triggerQuick('Scan and report all suit telemetry status.')">
+                <span>01 // SUITE DIAGNOSTICS</span>
+              </button>
+              <button class="tactical-option-btn" onclick="toggleStealthMode()">
+                <span id="stealthBtnLabel">02 // STEALTH: OFF</span>
+              </button>
+            </div>
+
+            <!-- IMAGE PREVIEW -->
+            <div id="imageScanPreviewBoxHome" class="image-scan-preview">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img id="imageScanPreviewImgHome" src="" alt="Target Scan" />
+                <span id="imageScanPreviewNameHome" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
+              </div>
+              <button onclick="clearAttachedImage()" style="background:transparent; border:none; color:var(--accent-red); font-size:1.1rem; cursor:pointer;">✖</button>
+            </div>
+
+            <!-- CHAT & DUAL OPTICAL INPUT (CAMERA + FILE) -->
+            <div class="chat-row">
+              <input type="file" id="cameraDirectInputHome" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
+              <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputHome').click()" title="Take Photo with Camera">📷 CAM</button>
+
+              <input type="file" id="filePickerInputHome" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
+              <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputHome').click()" title="Upload File or Gallery Image">📎 FILE</button>
+
+              <input type="text" id="chatInputHome" class="chat-input" placeholder="Directive, homework question, or scan..." />
+              <button onclick="sendChatMessage('chatInputHome')" class="chat-send-btn">TRANSMIT</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="sub-channel">
-        <div class="sub-tag jarvis">[ J.A.R.V.I.S. RESPONSE ]</div>
-        <div id="jarvisSubtitle" class="sub-text jarvis">Online and standing by, sir.</div>
-      </div>
+
     </div>
 
-    <!-- CONSOLE -->
-    <div class="hud-console">
-      <div class="status-badge-row">
-        <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
-        <div id="systemDot" class="system-dot"></div>
+    <!-- TAB 02: CHAT DECK (WITH OCR VISION MIRRORED) -->
+    <div id="tabChat" class="deck-panel">
+      <div class="cognition-controls">
+        <span style="font-family:'Share Tech Mono'; font-size:0.75rem; color:rgba(0,240,255,0.8);">COGNITIVE ENGINE:</span>
+        <button id="modeToggleBtn" class="mode-toggle-btn" onclick="toggleCognitiveMode()">MODE: TACTICAL (FAST)</button>
+      </div>
+      
+      <div id="chatHistory" class="chat-history-log">
+        <div class="chat-entry jarvis">J.A.R.V.I.S. neural log initialized. System standing by.</div>
       </div>
 
-      <div class="tactical-drawer">
-        <button id="micToggleBtn" class="tactical-option-btn mic-btn" onclick="toggleMicrophone()">
-          <span id="micIconIndicator">🎤</span>
-          <span id="micLabel">MICROPHONE: ACTIVE (LISTENING)</span>
-        </button>
-        <button class="tactical-option-btn" onclick="triggerQuick('Scan and report all suit telemetry status.')">
-          <span>01 // SUITE DIAGNOSTICS</span>
-        </button>
-        <button class="tactical-option-btn" onclick="toggleStealthMode()">
-          <span id="stealthBtnLabel">02 // STEALTH: OFF</span>
-        </button>
-      </div>
-
-      <!-- IMAGE PREVIEW -->
-      <div id="imageScanPreviewBox">
+      <!-- IMAGE PREVIEW TAB 2 -->
+      <div id="imageScanPreviewBoxChat" class="image-scan-preview">
         <div style="display:flex; align-items:center; gap:8px;">
-          <img id="imageScanPreviewImg" src="" alt="Scan Target" />
-          <span id="imageScanPreviewName" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
+          <img id="imageScanPreviewImgChat" src="" alt="Target Scan" />
+          <span id="imageScanPreviewNameChat" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
         </div>
         <button onclick="clearAttachedImage()" style="background:transparent; border:none; color:var(--accent-red); font-size:1.1rem; cursor:pointer;">✖</button>
       </div>
 
-      <!-- CHAT & DUAL OPTICAL INPUT (CAMERA + FILE) -->
-      <div class="chat-row">
-        <input type="file" id="cameraDirectInput" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
-        <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInput').click()" title="Take Photo with Camera">📷 CAM</button>
+      <div class="chat-row" style="width: 100%;">
+        <input type="file" id="cameraDirectInputChat" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
+        <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInputChat').click()" title="Take Photo with Camera">📷 CAM</button>
 
-        <input type="file" id="filePickerInput" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
-        <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInput').click()" title="Upload File or Gallery Image">📎 FILE</button>
+        <input type="file" id="filePickerInputChat" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
+        <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInputChat').click()" title="Upload File or Gallery Image">📎 FILE</button>
 
-        <input type="text" id="chatInputHome" class="chat-input" placeholder="Directive, homework question, or scan..." />
-        <button onclick="sendChatMessage('chatInputHome')" class="chat-send-btn">TRANSMIT</button>
+        <input type="text" id="chatInputLog" class="chat-input" placeholder="Ask questions or query knowledge base..." />
+        <button onclick="sendChatMessage('chatInputLog')" class="chat-send-btn">TRANSMIT</button>
+      </div>
+    </div>
+
+    <!-- TAB 03: HOLO-FAB -->
+    <div id="tabHolo" class="deck-panel">
+      <div class="holo-viewport">
+        <div id="holoLaser" class="holo-laser-sweep"></div>
+        <div id="holoPlaceholder" class="holo-placeholder">
+          [ HOLO-VIEWPORT STANDBY ]<br><br>
+          Select a preset or ask: "Jarvis, generate a blueprint of..."
+        </div>
+        <img id="holoImage" alt="Fabricated Visual Schematic" />
+      </div>
+
+      <div class="preset-vault-row">
+        <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark VII Armor blueprint')">MK VII</button>
+        <button class="preset-vault-btn" onclick="loadSchematicPreset('Stark Arc Reactor Mark II blueprint')">ARC CORE</button>
+        <button class="preset-vault-btn" onclick="loadSchematicPreset('Veronica Hulkbuster Armor blueprint')">VERONICA</button>
+        <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark 85 Nanotech blueprint')">MK 85</button>
+      </div>
+
+      <div class="chat-row" style="width: 100%; margin-top: 4px;">
+        <input type="text" id="holoPromptInput" class="chat-input" placeholder="Custom blueprint query..." />
+        <button onclick="fabricateVisualSchematic()" class="chat-send-btn">FABRICATE</button>
+      </div>
+    </div>
+
+    <!-- TAB 04: RADAR -->
+    <div id="tabRadar" class="deck-panel">
+      <div class="radar-card-grid">
+        <div class="radar-card">
+          <div class="radar-card-title">LOCATION // RADAR</div>
+          <div class="radar-card-val" id="radarLoc">GLOBAL GRID</div>
+          <div class="radar-card-sub">ORBITAL TELEMETRY</div>
+        </div>
+        <div class="radar-card">
+          <div class="radar-card-title">AMBIENT TEMP</div>
+          <div class="radar-card-val" id="radarTemp">18°C</div>
+          <div class="radar-card-sub">NOMINAL RANGE</div>
+        </div>
+        <div class="radar-card">
+          <div class="radar-card-title">BAROMETRIC PRESSURE</div>
+          <div class="radar-card-val" id="radarWind">1.01 BAR</div>
+          <div class="radar-card-sub">ATMOSPHERE STABLE</div>
+        </div>
+        <div class="radar-card">
+          <div class="radar-card-title">GLOBAL CHRONO</div>
+          <div class="radar-card-val" id="radarTokyo">--:--</div>
+          <div class="radar-card-sub">TOKYO SATELLITE RELAY</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- TAB 02: CHAT DECK -->
-  <div id="tabChat" class="deck-panel">
-    <div class="cognition-controls">
-      <span style="font-family:'Share Tech Mono'; font-size:0.75rem; color:rgba(0,240,255,0.8);">COGNITIVE ENGINE:</span>
-      <button id="modeToggleBtn" class="mode-toggle-btn" onclick="toggleCognitiveMode()">MODE: TACTICAL (FAST)</button>
-    </div>
-    <div id="chatHistory" class="chat-history-log">
-      <div class="chat-entry jarvis">J.A.R.V.I.S. neural log initialized. System standing by.</div>
-    </div>
-    <div class="chat-row" style="width: 100%;">
-      <input type="text" id="chatInputLog" class="chat-input" placeholder="Ask questions or query knowledge base..." />
-      <button onclick="sendChatMessage('chatInputLog')" class="chat-send-btn">TRANSMIT</button>
-    </div>
-  </div>
-
-  <!-- TAB 03: HOLO-FAB -->
-  <div id="tabHolo" class="deck-panel">
-    <div class="holo-viewport">
-      <div id="holoLaser" class="holo-laser-sweep"></div>
-      <div id="holoPlaceholder" class="holo-placeholder">
-        [ HOLO-VIEWPORT STANDBY ]<br><br>
-        Select a preset or ask: "Jarvis, generate a blueprint of..."
-      </div>
-      <img id="holoImage" alt="Fabricated Visual Schematic" />
-    </div>
-
-    <div class="preset-vault-row">
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark VII Armor blueprint')">MK VII</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Stark Arc Reactor Mark II blueprint')">ARC CORE</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Veronica Hulkbuster Armor blueprint')">VERONICA</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark 85 Nanotech blueprint')">MK 85</button>
-    </div>
-
-    <div class="chat-row" style="width: 100%; margin-top: 4px;">
-      <input type="text" id="holoPromptInput" class="chat-input" placeholder="Custom blueprint query..." />
-      <button onclick="fabricateVisualSchematic()" class="chat-send-btn">FABRICATE</button>
-    </div>
-  </div>
-
-  <!-- TAB 04: RADAR -->
-  <div id="tabRadar" class="deck-panel">
-    <div class="radar-card-grid">
-      <div class="radar-card">
-        <div class="radar-card-title">LOCATION // RADAR</div>
-        <div class="radar-card-val" id="radarLoc">GLOBAL GRID</div>
-        <div class="radar-card-sub">ORBITAL TELEMETRY</div>
-      </div>
-      <div class="radar-card">
-        <div class="radar-card-title">AMBIENT TEMP</div>
-        <div class="radar-card-val" id="radarTemp">18°C</div>
-        <div class="radar-card-sub">NOMINAL RANGE</div>
-      </div>
-      <div class="radar-card">
-        <div class="radar-card-title">BAROMETRIC PRESSURE</div>
-        <div class="radar-card-val" id="radarWind">1.01 BAR</div>
-        <div class="radar-card-sub">ATMOSPHERE STABLE</div>
-      </div>
-      <div class="radar-card">
-        <div class="radar-card-title">GLOBAL CHRONO</div>
-        <div class="radar-card-val" id="radarTokyo">--:--</div>
-        <div class="radar-card-sub">TOKYO SATELLITE RELAY</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT CORE -->
+  <!-- JAVASCRIPT CORE ENGINE -->
   <script>
     let state = 'IDLE';
     let stealthMode = false;
@@ -976,9 +1188,38 @@
     let selectedImageBase64 = null;
     let selectedImageFile = null;
     let conversationHistory = [];
-    let silenceTimer = null;
 
-    // AUDIO CONTEXT & CINEMATIC STARK SOUND FX
+    // CONFIG KEYS PERSISTED SECURELY IN CLIENT LOCALSTORAGE
+    let groqApiKey = localStorage.getItem('stark_groq_key') || '';
+    let fishApiKey = localStorage.getItem('stark_fish_key') || '';
+    let fishModelId = localStorage.getItem('stark_fish_model') || '14129c3e320149449d6bada6862f7338';
+
+    function openConfigModal() {
+      document.getElementById('cfgGroqKey').value = groqApiKey;
+      document.getElementById('cfgFishKey').value = fishApiKey;
+      document.getElementById('cfgFishModel').value = fishModelId;
+      document.getElementById('configModal').style.display = 'flex';
+    }
+
+    function closeConfigModal() {
+      document.getElementById('configModal').style.display = 'none';
+    }
+
+    function saveConfigModal() {
+      groqApiKey = document.getElementById('cfgGroqKey').value.trim();
+      fishApiKey = document.getElementById('cfgFishKey').value.trim();
+      fishModelId = document.getElementById('cfgFishModel').value.trim() || '14129c3e320149449d6bada6862f7338';
+
+      localStorage.setItem('stark_groq_key', groqApiKey);
+      localStorage.setItem('stark_fish_key', fishApiKey);
+      localStorage.setItem('stark_fish_model', fishModelId);
+
+      closeConfigModal();
+      playStarkChirp(3200);
+      speak("Neural satellite uplink credentials secured, sir.");
+    }
+
+    // AUDIO CONTEXT & SFX
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1071,7 +1312,7 @@
       } catch(e) {}
     }
 
-    // HARDWARE SUITE: NATIVE BATTERY SENSORS
+    // BATTERY MATRIX
     let deviceBatteryPercent = 100;
     function initBatteryMatrix() {
       if ('getBattery' in navigator) {
@@ -1080,45 +1321,61 @@
             deviceBatteryPercent = Math.round(battery.level * 100);
             const batEl = document.getElementById('batteryHudVal');
             if (batEl) {
-              if (battery.charging) {
-                batEl.innerText = `${deviceBatteryPercent}% [CHRG]`;
-                batEl.style.color = "var(--primary)";
-              } else if (deviceBatteryPercent <= 20) {
-                batEl.innerText = `${deviceBatteryPercent}% CRIT`;
-                batEl.style.color = "var(--accent-red)";
-              } else {
-                batEl.innerText = `${deviceBatteryPercent}% NOM`;
-                batEl.style.color = "var(--accent-green)";
-              }
+              if (battery.charging) batEl.innerText = `${deviceBatteryPercent}% [CHRG]`;
+              else if (deviceBatteryPercent <= 20) batEl.innerText = `${deviceBatteryPercent}% CRIT`;
+              else batEl.innerText = `${deviceBatteryPercent}% NOM`;
             }
           }
           updateBatteryStatus();
           battery.addEventListener('levelchange', updateBatteryStatus);
           battery.addEventListener('chargingchange', updateBatteryStatus);
-        }).catch(err => console.warn("Battery API unavailable:", err));
+        }).catch(() => {});
       }
     }
 
-    // HARDWARE SUITE: GYROSCOPE PITCH LADDER
-    let gyroTiltX = 0;
-    let gyroTiltY = 0;
-    function initGyroscopeHorizon() {
+    // CONTINUOUS 3D PERSPECTIVE PARALLAX ENGINE
+    let gyroTiltX = 0, gyroTiltY = 0;
+    let targetTiltX = 0, targetTiltY = 0;
+
+    function init3DParallax() {
+      // Mobile Gyroscope
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', (e) => {
           if (e.gamma !== null && e.beta !== null) {
-            gyroTiltX = Math.max(-25, Math.min(25, e.gamma));
-            gyroTiltY = Math.max(-20, Math.min(20, (e.beta - 45)));
-
-            const ladder = document.getElementById('pitchLadder');
-            if (ladder) {
-              ladder.style.transform = `rotate(${-gyroTiltX * 0.75}deg) translateY(${gyroTiltY * 1.5}px)`;
-            }
+            targetTiltX = Math.max(-14, Math.min(14, e.gamma * 0.45));
+            targetTiltY = Math.max(-10, Math.min(10, (e.beta - 45) * 0.35));
           }
         }, true);
       }
+
+      // Chromebook / PC Mouse Motion
+      window.addEventListener('mousemove', (e) => {
+        const xPct = (e.clientX / window.innerWidth) - 0.5;
+        const yPct = (e.clientY / window.innerHeight) - 0.5;
+        targetTiltX = xPct * 16;
+        targetTiltY = -yPct * 12;
+      });
+
+      function loopParallax() {
+        gyroTiltX += (targetTiltX - gyroTiltX) * 0.08;
+        gyroTiltY += (targetTiltY - gyroTiltY) * 0.08;
+
+        const rootEl = document.getElementById('hudPerspectiveRoot');
+        if (rootEl) {
+          rootEl.style.transform = `rotateY(${gyroTiltX}deg) rotateX(${-gyroTiltY}deg)`;
+        }
+
+        const ladder = document.getElementById('pitchLadder');
+        if (ladder) {
+          ladder.style.transform = `rotate(${-gyroTiltX * 0.8}deg) translateY(${gyroTiltY * 2}px)`;
+        }
+
+        requestAnimationFrame(loopParallax);
+      }
+      loopParallax();
     }
 
-    // TAB CONTROLLER
+    // TABS
     function switchTab(tabId, btn) {
       playStarkChirp(2800);
       document.querySelectorAll('.deck-panel').forEach(p => p.classList.remove('active'));
@@ -1142,7 +1399,7 @@
       }
     }
 
-    // OPTICAL SCAN HANDLER (CAMERA & FILES)
+    // OPTICAL FILE / CAMERA UPLOADS (DUAL SYNCED ON TABS 1 & 2)
     function handleImageSelection(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1151,9 +1408,15 @@
       const reader = new FileReader();
       reader.onload = (e) => {
         selectedImageBase64 = e.target.result;
-        document.getElementById('imageScanPreviewImg').src = selectedImageBase64;
-        document.getElementById('imageScanPreviewName').innerText = (file.name || 'Camera Scan').substring(0, 20);
-        document.getElementById('imageScanPreviewBox').style.display = 'flex';
+        
+        document.getElementById('imageScanPreviewImgHome').src = selectedImageBase64;
+        document.getElementById('imageScanPreviewNameHome').innerText = (file.name || 'Target Image').substring(0, 18);
+        document.getElementById('imageScanPreviewBoxHome').style.display = 'flex';
+
+        document.getElementById('imageScanPreviewImgChat').src = selectedImageBase64;
+        document.getElementById('imageScanPreviewNameChat').innerText = (file.name || 'Target Image').substring(0, 18);
+        document.getElementById('imageScanPreviewBoxChat').style.display = 'flex';
+
         document.getElementById('opticsReadout').innerText = "TARGET LOCKED";
         document.getElementById('opticsReadout').style.color = "var(--accent-gold)";
         playStarkChirp(3200);
@@ -1164,21 +1427,23 @@
     function clearAttachedImage() {
       selectedImageBase64 = null;
       selectedImageFile = null;
-      document.getElementById('cameraDirectInput').value = '';
-      document.getElementById('filePickerInput').value = '';
-      document.getElementById('imageScanPreviewBox').style.display = 'none';
+      document.getElementById('cameraDirectInputHome').value = '';
+      document.getElementById('filePickerInputHome').value = '';
+      document.getElementById('cameraDirectInputChat').value = '';
+      document.getElementById('filePickerInputChat').value = '';
+      document.getElementById('imageScanPreviewBoxHome').style.display = 'none';
+      document.getElementById('imageScanPreviewBoxChat').style.display = 'none';
       document.getElementById('opticsReadout').innerText = "ARMED";
       document.getElementById('opticsReadout').style.color = "var(--primary)";
     }
 
-    // TYPEWRITER ENGINE WITH STRICT WORD BOUNDARY PRESERVATION
+    // TYPEWRITER ENGINE WITH STRICT WORD PRESERVATION
     let activeTypewriterTimer = null;
     function typewriteText(elementId, text, speed = 16) {
       clearTimeout(activeTypewriterTimer);
       const el = document.getElementById(elementId);
       if (!el) return;
       el.innerText = '';
-
       let index = 0;
       function tick() {
         if (index < text.length) {
@@ -1190,55 +1455,82 @@
       tick();
     }
 
-    // SPEECH SYNTHESIS ENGINE
-    let jarvisVoice = null;
-    function loadVoices() {
-      if (!('speechSynthesis' in window)) return;
-      const voices = window.speechSynthesis.getVoices();
-      jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
-                    (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Arthur')))
-                 || voices.find(v => v.lang === 'en-GB')
-                 || voices.find(v => v.lang.startsWith('en'));
-    }
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-      loadVoices();
-    }
-
-    function speak(text, callback) {
+    // SPEECH SYNTHESIS ARCHITECTURE (FISH AUDIO CLOUD + NATIVE FALLBACK)
+    let currentAudioElement = null;
+    async function speak(text, callback) {
       state = 'SPEAKING';
       updateStatus("JARVIS RESPONDING", "var(--accent-green)");
       typewriteText('jarvisSubtitle', text, 14);
       appendChatLog('jarvis', text);
 
-      if (stealthMode || !('speechSynthesis' in window)) {
+      if (stealthMode) {
         if (callback) callback();
         else setStandby();
         return;
       }
 
-      window.speechSynthesis.cancel();
+      if (currentAudioElement) {
+        currentAudioElement.pause();
+        currentAudioElement = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+
+      // Route 1: Fish Audio Real Paul Bettany Jarvis Voice
+      if (fishApiKey && fishModelId) {
+        try {
+          const resp = await fetch("https://api.fish.audio/v1/tts", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${fishApiKey}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              text: text,
+              reference_id: fishModelId,
+              format: "mp3"
+            })
+          });
+
+          if (resp.ok) {
+            const blob = await resp.blob();
+            const url = URL.createObjectURL(blob);
+            currentAudioElement = new Audio(url);
+            currentAudioElement.onended = () => {
+              if (callback) callback();
+              else setStandby();
+            };
+            currentAudioElement.onerror = () => fallbackSpeak(text, callback);
+            await currentAudioElement.play();
+            return;
+          }
+        } catch(e) {
+          console.warn("Fish Audio network fallback:", e);
+        }
+      }
+
+      // Route 2: Native UK Voice Synthesis Fallback
+      fallbackSpeak(text, callback);
+    }
+
+    function fallbackSpeak(text, callback) {
+      if (!('speechSynthesis' in window)) {
+        if (callback) callback();
+        else setStandby();
+        return;
+      }
       const utterance = new SpeechSynthesisUtterance(text);
-      if (!jarvisVoice) loadVoices();
+      const voices = window.speechSynthesis.getVoices();
+      const jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
+                    (v.name.includes('Male') || v.name.includes('George') || v.name.includes('Arthur')))
+                 || voices.find(v => v.lang === 'en-GB');
       if (jarvisVoice) utterance.voice = jarvisVoice;
       utterance.pitch = 0.88;
       utterance.rate = 1.0;
-
-      utterance.onend = () => {
-        if (callback) callback();
-        else setStandby();
-      };
-      utterance.onerror = () => {
-        if (callback) callback();
-        else setStandby();
-      };
-
-      try {
-        window.speechSynthesis.speak(utterance);
-      } catch(e) {
-        if (callback) callback();
-        else setStandby();
-      }
+      utterance.onend = () => { if (callback) callback(); else setStandby(); };
+      utterance.onerror = () => { if (callback) callback(); else setStandby(); };
+      window.speechSynthesis.speak(utterance);
     }
 
     function updateStatus(label, color) {
@@ -1284,13 +1576,15 @@
       document.getElementById('stealthReadout').innerText = stealthMode ? 'ON' : 'OFF';
       document.getElementById('stealthReadout').style.color = stealthMode ? 'var(--accent-red)' : 'var(--primary)';
       document.getElementById('stealthBtnLabel').innerText = stealthMode ? '02 // STEALTH: ON' : '02 // STEALTH: OFF';
-      if (stealthMode && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+      if (stealthMode) {
+        if (currentAudioElement) currentAudioElement.pause();
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
     }
 
     // SPEECH RECOGNITION
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
-
     if (SpeechRecognition) {
       recognition = new SpeechRecognition();
       recognition.continuous = true;
@@ -1309,11 +1603,21 @@
         typewriteText('userSubtitle', `"${heard}"`, 14);
         const lower = heard.toLowerCase();
 
+        // Speech Barge-in
+        if (state === 'SPEAKING') {
+          if (currentAudioElement) currentAudioElement.pause();
+          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+          state = 'AWAKE_LISTENING';
+          updateStatus("LISTENING TO DIRECTIVE...", "var(--accent-gold)");
+        }
+
         if (lower.includes('jarvis') || lower.includes('hey jarvis')) {
           playStarkChirp(3000);
+          state = 'AWAKE_LISTENING';
+          updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
           const cleaned = heard.replace(/hey jarvis|jarvis/gi, '').trim();
           if (cleaned.length > 2) handleCommand(cleaned);
-          else speak("Yes, sir? Systems are listening.");
+          else speak("At your service, sir. What are your orders?");
         }
       };
 
@@ -1324,58 +1628,84 @@
       };
     }
 
-    // COMPREHENSIVE KNOWLEDGE & MULTIMODAL VISION ENGINE
+    // COMPREHENSIVE KNOWLEDGE ENGINE (GROQ VISION + MULTIMODAL ROUTING)
     async function handleCommand(cmd) {
       if (!cmd && !selectedImageBase64) return;
-      typewriteText('userSubtitle', `"${cmd || 'Analyzing visual input...'}"`, 14);
-      appendChatLog('user', cmd || '[OPTICAL IMAGE ATTACHMENT]');
+      typewriteText('userSubtitle', `"${cmd || 'Analyzing attached scan...'}"`, 14);
+      appendChatLog('user', cmd || '[OPTICAL IMAGE SCAN]');
 
       updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
 
       const isDeep = (cognitiveMode === 'DEEP');
-      const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent AI assistant created by Tony Stark.
+      const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent AI assistant engineered by Tony Stark.
 Address the user as 'Sir'. 
-Mode: ${isDeep ? 'Comprehensive analytical depth with clear step-by-step logic.' : '1 to 2 crisp, articulate, spoken sentences.'}
-Capabilities: You possess world-class knowledge across all academic disciplines, science, mathematics, coding, history, literature, and general inquiry.
-Role: Serve as an elite advisor and homework guide. Explain concepts with crystal clarity and precision when solving problems.
-Tone: Sophisticated, helpful, articulate, and confident. Never fabricate. Never mention Wales, Blaengwynfi, or local valleys unless the user explicitly asks about them.
-User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic is attached. Analyze and solve or explain the content thoroughly).' : ''}`;
+Operating Mode: ${isDeep ? 'Provide clear, step-by-step analytical reasoning and solve all problems thoroughly.' : 'Provide 1 to 2 sharp, articulate, spoken sentences.'}
+Capabilities: World-class knowledge across all sciences, maths, code, history, languages, and general inquiry. When inspecting an image (worksheet, handwritten problem, or diagram), solve it accurately with clear logic.
+Never mention Wales, Blaengwynfi, or local valleys unless explicitly asked.`;
 
       let reply = "";
 
-      // 1. Puter Vision & Chat Route
-      if (window.puter && puter.ai) {
+      // Route 1: Groq Vision / Chat (Direct High-Speed Multimodal Inference)
+      if (groqApiKey) {
         try {
-          if (selectedImageFile) {
-            // Multimodal file inspection
-            const resp = await puter.ai.chat(systemPrompt, { media: selectedImageFile }); //
-            reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
+          let messages = [{ role: "system", content: systemPrompt }];
+          if (selectedImageBase64) {
+            messages.push({
+              role: "user",
+              content: [
+                { type: "text", text: cmd || "Analyze and solve the contents of this image in detail, sir." },
+                { type: "image_url", image_url: { url: selectedImageBase64 } }
+              ]
+            });
           } else {
-            const resp = await puter.ai.chat(systemPrompt); //
-            reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
+            messages.push({ role: "user", content: cmd });
+          }
+
+          const modelName = selectedImageBase64 ? "llama-3.2-11b-vision-preview" : "llama-3.3-70b-versatile";
+          const groqResp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${groqApiKey}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              model: modelName,
+              messages: messages,
+              temperature: 0.5,
+              max_tokens: 1024
+            })
+          });
+
+          if (groqResp.ok) {
+            const data = await groqResp.json();
+            reply = data.choices[0].message.content;
           }
         } catch(e) {
-          console.warn("Puter engine route fallback:", e);
+          console.warn("Groq Vision uplink issue:", e);
         }
       }
 
-      // 2. Pollinations AI Route Fallback
+      // Route 2: Puter AI Fallback
+      if (!reply && window.puter && puter.ai) {
+        try {
+          const resp = await puter.ai.chat(`${systemPrompt}\nUser Query:${cmd}`);
+          reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
+        } catch(e) {}
+      }
+
+      // Route 3: Pollinations AI Route
       if (!reply) {
         try {
-          const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt)}`);
+          const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt + " " + cmd)}`);
           if (res.ok) reply = await res.text();
         } catch(e) {}
       }
 
-      // 3. Fallback Heuristics
+      // Final Heuristic Fallback
       if (!reply) {
-        if (selectedImageFile) {
-          reply = "Optical telemetry captured, sir. Structural and textual elements have been recorded in the session register.";
-        } else if (cmd.toLowerCase().includes("status")) {
-          reply = `All Mark Seven armor systems are running at peak efficiency, sir. Power distribution is at ${deviceBatteryPercent} percent.`;
-        } else {
-          reply = "Direct cognitive uplink confirmed, sir. All knowledge matrices are active and at your disposal.";
-        }
+        reply = selectedImageBase64 
+          ? "Target image scanned, sir. Please verify your Groq API key in the [⚙️ SECURE UPLINK] settings to complete cognitive OCR." 
+          : "Command acknowledged, sir. All suit diagnostics remain nominal.";
       }
 
       clearAttachedImage();
@@ -1405,37 +1735,149 @@ User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic 
       inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChatMessage(inp.id); });
     });
 
-    // 3D ARC CANVAS
+    // =========================================================
+    // DYNAMIC 3D SPHERICAL POINT-CLOUD ARC REACTOR ENGINE
+    // COLOR-STATE COUPLING:
+    // - IDLE: BLUE & CYAN
+    // - AWAKE_LISTENING: VIBRANT STARK ORANGE & BLUE
+    // - SPEAKING: NEON GREEN MATRIX
+    // =========================================================
     const canvas = document.getElementById('holoCanvas');
     const ctx = canvas.getContext('2d');
     const size = 320;
-    canvas.width = size;
-    canvas.height = size;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    ctx.scale(dpr, dpr);
 
-    let rot = 0;
-    function renderArc() {
+    let rotation = 0;
+    let pulse = 0;
+    const numPoints = 230;
+    const points = [];
+    for (let i = 0; i < numPoints; i++) {
+      const phi = Math.acos(-1 + (2 * i) / numPoints);
+      const theta = Math.sqrt(numPoints * Math.PI) * phi;
+      points.push({
+        x: Math.cos(theta) * Math.sin(phi),
+        y: Math.sin(theta) * Math.sin(phi),
+        z: Math.cos(phi)
+      });
+    }
+
+    function renderArcReactor() {
       ctx.clearRect(0, 0, size, size);
-      const cx = (size / 2) + (gyroTiltX * 0.4);
-      const cy = (size / 2) + (gyroTiltY * 0.4);
-      rot += 0.02;
+      const cx = size / 2;
+      const cy = size / 2;
 
-      ctx.beginPath();
-      ctx.arc(cx, cy, 65, 0, Math.PI * 2);
-      ctx.strokeStyle = state === 'SPEAKING' ? 'rgba(0, 255, 170, 0.4)' : 'rgba(0, 240, 255, 0.3)';
-      ctx.lineWidth = 2;
-      ctx.stroke();
+      let primaryRgb = '0, 240, 255';     // Default Cyan/Blue
+      let coreColor = '#ffffff';
+      let speed = 0.012;
+      let expand = 6;
 
-      for (let i = 0; i < 8; i++) {
-        let angle = rot + (i * (Math.PI / 4));
-        ctx.beginPath();
-        ctx.arc(cx + Math.cos(angle) * 58, cy + Math.sin(angle) * 58, 4, 0, Math.PI * 2);
-        ctx.fillStyle = state === 'SPEAKING' ? '#00ffaa' : '#00f0ff';
-        ctx.fill();
+      if (state === 'AWAKE_LISTENING') {
+        // Dual Orange & Blue Dynamic Listening State
+        primaryRgb = '255, 150, 0';       // Stark Amber/Orange
+        coreColor = '#00f0ff';           // Blue Core Contrast
+        speed = 0.038;
+        expand = 18;
+      } else if (state === 'SPEAKING') {
+        primaryRgb = '0, 255, 170';       // Vibrant Green
+        coreColor = '#ffffff';
+        speed = 0.026;
+        expand = 22;
       }
 
-      requestAnimationFrame(renderArc);
+      rotation += speed;
+      pulse += 0.06;
+      const currentRadius = 78 + Math.sin(pulse) * expand;
+
+      // Outer Glow Halo Ring
+      ctx.beginPath();
+      ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${primaryRgb}, 0.3)`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Audio Frequency EQ Waves around reactor
+      if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
+        for (let i = 0; i < 14; i++) {
+          let barHeight = Math.sin(pulse * 2.5 + i) * 15 + (state === 'SPEAKING' ? 22 : 12);
+          ctx.strokeStyle = `rgba(${primaryRgb}, 0.75)`;
+          ctx.beginPath();
+          ctx.moveTo(cx - 96 - i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx - 96 - i * 3, cy + barHeight / 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(cx + 96 + i * 3, cy - barHeight / 2);
+          ctx.lineTo(cx + 96 + i * 3, cy + barHeight / 2);
+          ctx.stroke();
+        }
+      }
+
+      // Central Plasma Discharge Core
+      ctx.beginPath();
+      ctx.arc(cx, cy, 26, 0, Math.PI * 2);
+      ctx.fillStyle = coreColor;
+      ctx.shadowColor = `rgba(${primaryRgb}, 0.9)`;
+      ctx.shadowBlur = 18;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // 3D Point-Cloud Rotating Nodes
+      const cosR = Math.cos(rotation);
+      const sinR = Math.sin(rotation);
+      points.forEach(p => {
+        let x1 = p.x * cosR - p.z * sinR;
+        let z1 = p.z * cosR + p.x * sinR;
+        let y1 = p.y;
+        let perspective = 200 / (240 + z1 * currentRadius);
+        let px = cx + x1 * currentRadius * perspective;
+        let py = cy + y1 * currentRadius * perspective;
+        let alpha = (z1 + 1) / 2;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 2.2 * perspective, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${primaryRgb}, ${Math.max(0.2, alpha)})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(renderArcReactor);
     }
-    renderArc();
+    renderArcReactor();
+
+    // LIVE BIOSIGNAL ECG MONITOR
+    const ecgCanvas = document.getElementById('ecgCanvas');
+    const ecgCtx = ecgCanvas.getContext('2d');
+    let ecgX = 0;
+    let ecgY = 24;
+    ecgCanvas.width = 260;
+    ecgCanvas.height = 48;
+
+    function renderECG() {
+      ecgCtx.fillStyle = 'rgba(0, 10, 22, 0.08)';
+      ecgCtx.fillRect(0, 0, ecgCanvas.width, ecgCanvas.height);
+
+      let newY = 24;
+      if (ecgX % 50 > 38 && ecgX % 50 < 44) {
+        newY = (ecgX % 2 === 0) ? 6 : 42;
+      } else {
+        newY = 24 + (Math.random() * 4 - 2);
+      }
+
+      ecgCtx.beginPath();
+      ecgCtx.moveTo(ecgX, ecgY);
+      ecgCtx.lineTo(ecgX + 2, newY);
+      ecgCtx.strokeStyle = '#00ffaa';
+      ecgCtx.lineWidth = 1.5;
+      ecgCtx.shadowColor = '#00ffaa';
+      ecgCtx.shadowBlur = 6;
+      ecgCtx.stroke();
+
+      ecgY = newY;
+      ecgX = (ecgX + 2) % ecgCanvas.width;
+      requestAnimationFrame(renderECG);
+    }
+    renderECG();
 
     // CLOCK
     setInterval(() => {
@@ -1447,7 +1889,7 @@ User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic 
       } catch(e) {}
     }, 1000);
 
-    // HOLOGRAPHIC FABRICATOR
+    // HOLO-FABRICATOR
     function loadSchematicPreset(promptText) {
       document.getElementById('holoPromptInput').value = promptText;
       fabricateVisualSchematic();
@@ -1475,7 +1917,7 @@ User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic 
         let imgResult = null;
         if (window.puter && puter.ai) {
           try {
-            imgResult = await puter.ai.txt2img(`Cinematic futuristic holographic blueprint schematic wireframe of ${query}, neon cyan on black background, Stark Industries technical style`); //
+            imgResult = await puter.ai.txt2img(`Cinematic futuristic holographic blueprint schematic wireframe of ${query}, neon cyan on black background, Stark Industries technical style`);
           } catch(e) {}
         }
 
@@ -1506,12 +1948,11 @@ User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic 
       { text: "STAGE 05 // MULTIMODAL OPTICAL MATRICES LOADED", pct: "50%", reg: "0x7F33A9", flux: "290.0 GHZ", p: "2.10 BAR" },
       { text: "STAGE 06 // FLIGHT HORIZON & RETICLE MATRIX", pct: "60%", reg: "0x7F4812", flux: "340.5 GHZ", p: "2.40 BAR" },
       { text: "STAGE 07 // GENERAL KNOWLEDGE COGNITION ONLINE", pct: "70%", reg: "0x7F59C4", flux: "390.2 GHZ", p: "2.75 BAR" },
-      { text: "STAGE 08 // HIGH-DEFINITION AUDIO BUS ONLINE", pct: "80%", reg: "0x7F6DF8", flux: "410.9 GHZ", p: "3.00 BAR" },
+      { text: "STAGE 08 // FISH AUDIO VOICE SYNTHESIS ARMED", pct: "80%", reg: "0x7F6DF8", flux: "410.9 GHZ", p: "3.00 BAR" },
       { text: "STAGE 09 // DEFENSIVE PLATING & CORE CHARGE", pct: "90%", reg: "0x7F7E01", flux: "432.8 GHZ", p: "3.20 BAR" },
       { text: "STAGE 10 // ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%", reg: "0x7FFFFF", flux: "ONLINE", p: "NOMINAL" }
     ];
 
-    // BOOT SEQUENCE HANDLER
     const powerBtn = document.getElementById('powerOnBtn');
     function launchBootSequence() {
       powerBtn.style.display = 'none';
@@ -1520,7 +1961,7 @@ User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic 
       playCinematicSubBassSwell();
 
       initBatteryMatrix();
-      initGyroscopeHorizon();
+      init3DParallax();
 
       let step = 0;
       function runDiagnostic() {
