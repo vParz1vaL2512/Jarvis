@@ -3,11 +3,11 @@
 <head>
   <!--
     ==========================================================================
-    J.A.R.V.I.S. MARK VII // STARK TACTICAL NEURAL OPERATING SUITE
-    VERSION: 31.0.0 TITAN APEX EDITION
-    HARDWARE SUITE: BATTERY MATRIX // GYROSCOPE TELEMETRY // STARK CHIRP FX
-    LOCALE: BLAENGWYNFI / AFAN VALLEY GRID // CYMRU CELL
-    AUTHENTICATION: PARZIVAL DIRECTIVE LOCKED
+    J.A.R.V.I.S. MARK VII // STARK TACTICAL & ACADEMIC COGNITION SUITE
+    VERSION: 34.0.0 TITAN APEX MASTER
+    HARDWARE SUITE: DUAL SUB-BASS SPOOL // STARK HARMONICS // GYRO PITCH LADDER
+                    LIVE BATTERY MATRIX // MULTIMODAL OPTICAL SCAN (CAMERA + FILE)
+    COGNITION: GENERAL AI & HOMEWORK SOLVER // UNIVERSAL STARK DIALOGUE
     ==========================================================================
   -->
   <meta charset="UTF-8">
@@ -34,19 +34,17 @@
        ========================================================= */
     :root {
       --primary: #00f0ff;
-      --primary-dim: rgba(0, 240, 255, 0.2);
+      --primary-dim: rgba(0, 240, 255, 0.15);
       --primary-mid: rgba(0, 240, 255, 0.45);
       --primary-glow: rgba(0, 240, 255, 0.75);
       --accent-gold: #ffaa00;
       --accent-gold-glow: rgba(255, 170, 0, 0.65);
       --accent-green: #00ffaa;
-      --accent-green-glow: rgba(0, 255, 170, 0.65);
       --accent-red: #ff3344;
-      --accent-red-glow: rgba(255, 51, 68, 0.65);
       --bg-dark: #010814;
-      --bg-surface: rgba(2, 12, 26, 0.88);
+      --bg-surface: rgba(2, 12, 26, 0.92);
       --border-subtle: rgba(0, 240, 255, 0.25);
-      --border-bright: rgba(0, 240, 255, 0.7);
+      --border-bright: rgba(0, 240, 255, 0.75);
     }
 
     * {
@@ -64,21 +62,20 @@
       overflow-x: hidden;
       font-family: 'Rajdhani', sans-serif;
       color: var(--primary);
-      position: relative;
     }
 
     body {
-      background: radial-gradient(circle at 50% 30%, #082442 0%, #031122 55%, #00040a 100%);
+      background: radial-gradient(circle at 50% 25%, #082442 0%, #031122 60%, #00040a 100%);
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 6px 10px 18px;
+      padding: 6px 12px 20px;
     }
 
-    /* DIGITAL MATRIX GRID OVERLAY */
+    /* DIGITAL MATRIX OVERLAY */
     body::before {
       content: "";
       position: fixed;
@@ -91,7 +88,6 @@
       z-index: 1;
     }
 
-    /* SCANLINE CATHODE RASTER */
     body::after {
       content: "";
       position: fixed;
@@ -106,15 +102,15 @@
     /* HUD CORNER BRACKETS */
     .hud-corner {
       position: fixed;
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       pointer-events: none;
       z-index: 20;
     }
-    .hud-corner.tl { top: 6px; left: 6px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.tr { top: 6px; right: 6px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
-    .hud-corner.bl { bottom: 6px; left: 6px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
-    .hud-corner.br { bottom: 6px; right: 6px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.tl { top: 8px; left: 8px; border-top: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.tr { top: 8px; right: 8px; border-top: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
+    .hud-corner.bl { bottom: 8px; left: 8px; border-bottom: 2.5px solid var(--primary); border-left: 2.5px solid var(--primary); }
+    .hud-corner.br { bottom: 8px; right: 8px; border-bottom: 2.5px solid var(--primary); border-right: 2.5px solid var(--primary); }
 
     /* =========================================================
        10-STAGE DIAGNOSTIC BOOT SCREEN (STARK ENGINE)
@@ -130,7 +126,6 @@
       justify-content: center;
       padding: 20px;
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
     }
 
     .boot-laser-horiz {
@@ -142,14 +137,13 @@
       background: linear-gradient(90deg, transparent, #00f0ff, transparent);
       box-shadow: 0 0 16px #00f0ff;
       animation: sweepVert 3.2s ease-in-out infinite alternate;
-      pointer-events: none !important;
-      z-index: 1;
+      pointer-events: none;
     }
 
     @keyframes sweepVert {
-      0% { top: 3%; opacity: 0.2; }
+      0% { top: 4%; opacity: 0.2; }
       50% { opacity: 0.95; }
-      100% { top: 97%; opacity: 0.2; }
+      100% { top: 96%; opacity: 0.2; }
     }
 
     .boot-stage-container {
@@ -160,7 +154,6 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
-      pointer-events: none !important;
     }
 
     .boot-reactor-ring-1 {
@@ -181,14 +174,6 @@
       border-radius: 50%;
       animation: spinCCW 7s linear infinite;
     }
-    .boot-reactor-ring-3 {
-      position: absolute;
-      width: 125px;
-      height: 125px;
-      border: 1px dotted rgba(255, 170, 0, 0.7);
-      border-radius: 50%;
-      animation: spinCW 5s linear infinite;
-    }
     .boot-reactor-core {
       width: 76px;
       height: 76px;
@@ -207,23 +192,21 @@
 
     .boot-title {
       font-family: 'Orbitron', monospace;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 900;
       letter-spacing: 0.45em;
       color: #effaff;
       text-shadow: 0 0 24px var(--primary-glow);
       margin-left: 0.45em;
-      pointer-events: none !important;
     }
 
     .boot-subtitle {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       letter-spacing: 0.26em;
-      color: rgba(0, 240, 255, 0.8);
+      color: rgba(0, 240, 255, 0.85);
       margin-top: 4px;
       text-transform: uppercase;
-      pointer-events: none !important;
     }
 
     .boot-telemetry-panel {
@@ -239,13 +222,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      pointer-events: none !important;
     }
 
     .boot-track-box {
       width: 330px;
       margin-top: 14px;
-      pointer-events: none !important;
     }
     .boot-track {
       width: 100%;
@@ -272,7 +253,6 @@
       margin-top: 8px;
     }
 
-    /* BULLETPROOF UNBLOCKABLE INITIALIZE BUTTON */
     .btn-stark-init {
       position: relative !important;
       z-index: 9999 !important;
@@ -289,7 +269,6 @@
       cursor: pointer;
       text-transform: uppercase;
       box-shadow: 0 0 32px rgba(0, 240, 255, 0.4), inset 0 0 16px rgba(0, 240, 255, 0.25);
-      touch-action: manipulation;
     }
     .btn-stark-init:active {
       transform: scale(0.96);
@@ -301,18 +280,18 @@
        ========================================================= */
     header {
       width: 100%;
-      max-width: 460px;
+      max-width: 520px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 6px 8px;
+      padding: 6px 4px 8px;
       border-bottom: 1px solid rgba(0, 240, 255, 0.25);
       position: relative;
       z-index: 10;
     }
     .brand-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 900;
       letter-spacing: 0.22em;
       color: #ffffff;
@@ -331,12 +310,10 @@
       text-align: right;
     }
 
-    /* =========================================================
-       NAVIGATION RAIL (4 TABS)
-       ========================================================= */
+    /* NAVIGATION RAIL */
     .tab-rail {
       width: 100%;
-      max-width: 460px;
+      max-width: 520px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 5px;
@@ -347,9 +324,9 @@
     .tab-btn {
       background: rgba(0, 240, 255, 0.08);
       border: 1px solid rgba(0, 240, 255, 0.25);
-      color: rgba(0, 240, 255, 0.7);
+      color: rgba(0, 240, 255, 0.75);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.64rem;
+      font-size: 0.65rem;
       letter-spacing: 0.08em;
       padding: 8px 2px;
       border-radius: 6px;
@@ -368,7 +345,7 @@
 
     .deck-panel {
       width: 100%;
-      max-width: 460px;
+      max-width: 520px;
       display: none;
       flex-direction: column;
       align-items: center;
@@ -378,7 +355,7 @@
     .deck-panel.active { display: flex; }
 
     /* =========================================================
-       TAB 01: HOME DECK (ARC CORE & HUD FLANKS)
+       TAB 01: HOME DECK (ARC CORE & GYROSCOPE)
        ========================================================= */
     .hud-stage {
       position: relative;
@@ -450,23 +427,21 @@
       position: absolute;
       top: 18px;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.63rem;
-      line-height: 1.38;
+      font-size: 0.64rem;
+      line-height: 1.4;
       pointer-events: none;
       z-index: 6;
     }
     .hud-flank-left { left: 4px; text-align: left; color: rgba(0, 240, 255, 0.7); }
     .hud-flank-right { right: 4px; text-align: right; color: rgba(0, 240, 255, 0.7); }
 
-    /* TYPEWRITER SUBTITLES CARD */
+    /* SUBTITLES CARD */
     .subtitles-card {
       width: 100%;
-      background: rgba(2, 12, 26, 0.92);
+      background: rgba(2, 12, 26, 0.94);
       border: 1.5px solid rgba(0, 240, 255, 0.45);
       border-radius: 12px;
-      padding: 10px 12px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 14px;
       box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
       margin: 4px 0 8px;
     }
@@ -484,24 +459,24 @@
     .sub-tag.jarvis { color: var(--primary); }
     .sub-text {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.3;
       letter-spacing: 0.02em;
-      min-height: 22px;
+      min-height: 24px;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
     .sub-text.user { color: #ffe6aa; }
     .sub-text.jarvis { color: #ffffff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
 
-    /* CONSOLE & COMMANDS */
+    /* CONSOLE & CONTROLS */
     .hud-console {
       width: 100%;
       background: rgba(2, 12, 26, 0.92);
       border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 12px;
       padding: 10px 12px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
     }
     .status-badge-row {
       display: flex;
@@ -511,11 +486,10 @@
     }
     .state-indicator {
       font-family: 'Orbitron', monospace;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       color: var(--primary);
-      text-shadow: 0 0 10px var(--primary-glow);
     }
     .system-dot {
       width: 8px;
@@ -525,10 +499,12 @@
       box-shadow: 0 0 10px var(--primary);
       animation: coreSwell 1s infinite alternate;
     }
+
+    /* ACTION BUTTONS & DEDICATED MIC SWITCH */
     .tactical-drawer {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 4px;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
       margin-bottom: 8px;
     }
     .tactical-option-btn {
@@ -536,22 +512,38 @@
       border: 1px solid rgba(0, 240, 255, 0.28);
       color: rgba(225, 248, 255, 0.9);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      padding: 7px 10px;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      padding: 8px 6px;
       border-radius: 6px;
-      text-align: left;
       cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .tactical-option-btn.mic-btn {
+      grid-column: span 2;
+      background: rgba(0, 255, 170, 0.1);
+      border-color: var(--accent-green);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 700;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .tactical-option-btn:active {
-      background: rgba(0, 240, 255, 0.28);
-      border-color: var(--primary);
-      transform: scale(0.98);
+    .tactical-option-btn.mic-btn.off {
+      background: rgba(255, 51, 68, 0.1);
+      border-color: var(--accent-red);
+      color: rgba(255, 255, 255, 0.7);
     }
-    .chat-row { display: flex; gap: 6px; }
+
+    /* CHAT ROW & DUAL OPTICAL INPUT (CAMERA + FILE) */
+    .chat-row { 
+      display: flex; 
+      gap: 5px; 
+      position: relative;
+    }
     .chat-input {
       flex: 1;
       background: rgba(0, 20, 40, 0.75);
@@ -559,7 +551,7 @@
       border-radius: 8px;
       color: #ffffff;
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       padding: 9px 12px;
       outline: none;
@@ -567,7 +559,22 @@
     .chat-input::placeholder {
       color: rgba(0, 240, 255, 0.45);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
+    }
+    .btn-optical-trigger {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 8px;
+      padding: 0 10px;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
     }
     .chat-send-btn {
       background: rgba(0, 240, 255, 0.16);
@@ -577,18 +584,36 @@
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 0 16px;
+      padding: 0 14px;
       border-radius: 8px;
       cursor: pointer;
     }
-    .chat-send-btn:active {
+    .chat-send-btn:active, .btn-optical-trigger:active {
       background: var(--primary);
       color: #00040a;
     }
 
-    /* =========================================================
-       TAB 02: COGNITION CHAT DECK
-       ========================================================= */
+    /* IMAGE SCAN THUMBNAIL PREVIEW */
+    #imageScanPreviewBox {
+      width: 100%;
+      background: rgba(0, 25, 50, 0.85);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 6px;
+      padding: 6px 10px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    #imageScanPreviewBox img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--primary);
+    }
+
+    /* TAB 02: CHAT DECK */
     .cognition-controls {
       width: 100%;
       display: flex;
@@ -624,11 +649,13 @@
       margin-bottom: 8px;
     }
     .chat-entry {
-      font-size: 0.95rem;
-      line-height: 1.35;
+      font-size: 1rem;
+      line-height: 1.4;
       padding: 8px 10px;
       border-radius: 6px;
       max-width: 90%;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
     .chat-entry.user {
       align-self: flex-end;
@@ -643,9 +670,7 @@
       color: #ffffff;
     }
 
-    /* =========================================================
-       TAB 03: HOLO-FABRICATOR DECK
-       ========================================================= */
+    /* TAB 03: HOLO-FAB */
     .holo-viewport {
       width: 100%;
       height: 270px;
@@ -695,21 +720,15 @@
       border: 1px solid rgba(0, 240, 255, 0.28);
       color: rgba(225, 248, 255, 0.85);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.62rem;
       padding: 6px 2px;
       border-radius: 4px;
       cursor: pointer;
       text-align: center;
       text-transform: uppercase;
     }
-    .preset-vault-btn:active {
-      background: rgba(0, 240, 255, 0.3);
-      border-color: var(--primary);
-    }
 
-    /* =========================================================
-       TAB 04: INTEL RADAR DECK
-       ========================================================= */
+    /* TAB 04: RADAR */
     .radar-card-grid {
       width: 100%;
       display: grid;
@@ -742,20 +761,19 @@
 </head>
 <body>
 
-  <!-- CORNER RETICLES -->
+  <!-- RETICLES -->
   <div class="hud-corner tl"></div>
   <div class="hud-corner tr"></div>
   <div class="hud-corner bl"></div>
   <div class="hud-corner br"></div>
 
-  <!-- 10-STAGE DIAGNOSTIC BOOT SCREEN -->
+  <!-- 10-STAGE DIAGNOSTIC BOOT SCREEN (STARK ENGINE) -->
   <div id="bootScreen">
     <div class="boot-laser-horiz"></div>
 
     <div class="boot-stage-container">
       <div class="boot-reactor-ring-1"></div>
       <div class="boot-reactor-ring-2"></div>
-      <div class="boot-reactor-ring-3"></div>
       <div class="boot-reactor-core"></div>
     </div>
 
@@ -779,15 +797,15 @@
     <button id="powerOnBtn" class="btn-stark-init">INITIALIZE SUITE</button>
   </div>
 
-  <!-- HUD STATUS BAR -->
+  <!-- TOP HEADER -->
   <header>
     <div>
       <div class="brand-title">J.A.R.V.I.S.</div>
-      <div class="brand-sub">NEURAL OPERATING SUITE // MK VII TITAN</div>
+      <div class="brand-sub">TACTICAL NEURAL OPERATING SUITE</div>
     </div>
     <div>
       <div id="hudClock" class="telemetry-time">00:00:00 LOC</div>
-      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.65); text-align: right;">GRID // CYMRU CELL</div>
+      <div style="font-size: 0.65rem; color: rgba(0,240,255,0.65); text-align: right;">STARK SATELLITE RELAY</div>
     </div>
   </header>
 
@@ -821,15 +839,15 @@
 
       <div class="hud-flank-right">
         <div>NEURAL: <span style="color:var(--accent-green);">ONLINE</span></div>
-        <div>LINK: <span style="color:#ffffff;">STARK-SAT</span></div>
+        <div>OPTICS: <span id="opticsReadout" style="color:var(--primary);">ARMED</span></div>
         <div>STEALTH: <span id="stealthReadout" style="color:var(--primary);">OFF</span></div>
-        <div>DEF: <span id="suitDefenseReadout" style="color:var(--accent-gold);">ARMED</span></div>
+        <div>DEF: <span id="suitDefenseReadout" style="color:var(--accent-gold);">ACTIVE</span></div>
       </div>
 
       <canvas id="holoCanvas"></canvas>
     </div>
 
-    <!-- TYPEWRITER SUBTITLES -->
+    <!-- SUBTITLES CARD -->
     <div class="subtitles-card">
       <div class="sub-channel">
         <div class="sub-tag user">[ USER DIRECTIVE ]</div>
@@ -841,7 +859,7 @@
       </div>
     </div>
 
-    <!-- COMMAND CONSOLE -->
+    <!-- CONSOLE -->
     <div class="hud-console">
       <div class="status-badge-row">
         <div id="stateIndicator" class="state-indicator">SYSTEM READY</div>
@@ -849,85 +867,97 @@
       </div>
 
       <div class="tactical-drawer">
-        <button class="tactical-option-btn" onclick="triggerQuick('Scan the local weather telemetry and atmospheric sensors.')">
-          <span>01 // ATMOSPHERIC RADAR (WEATHER SCAN)</span>
-          <span style="color:var(--primary);">[PROBE]</span>
+        <button id="micToggleBtn" class="tactical-option-btn mic-btn" onclick="toggleMicrophone()">
+          <span id="micIconIndicator">🎤</span>
+          <span id="micLabel">MICROPHONE: ACTIVE (LISTENING)</span>
         </button>
-        <button class="tactical-option-btn" onclick="triggerQuick('Report on Blaengwynfi, the Afan Valley, and the Rhondda Tunnel.')">
-          <span>02 // LOCAL GRID TELEMETRY (BLAENGWYNFI)</span>
-          <span style="color:var(--primary);">[SCAN]</span>
+        <button class="tactical-option-btn" onclick="triggerQuick('Scan and report all suit telemetry status.')">
+          <span>01 // SUITE DIAGNOSTICS</span>
         </button>
         <button class="tactical-option-btn" onclick="toggleStealthMode()">
-          <span>03 // STEALTH PROTOCOL (MUTE AUDIO)</span>
-          <span id="stealthBtnLabel" style="color:var(--primary);">[DISENGAGED]</span>
+          <span id="stealthBtnLabel">02 // STEALTH: OFF</span>
         </button>
       </div>
 
+      <!-- IMAGE PREVIEW -->
+      <div id="imageScanPreviewBox">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <img id="imageScanPreviewImg" src="" alt="Scan Target" />
+          <span id="imageScanPreviewName" style="font-family:'Share Tech Mono'; font-size:0.75rem; color:#fff;">Target Loaded</span>
+        </div>
+        <button onclick="clearAttachedImage()" style="background:transparent; border:none; color:var(--accent-red); font-size:1.1rem; cursor:pointer;">✖</button>
+      </div>
+
+      <!-- CHAT & DUAL OPTICAL INPUT (CAMERA + FILE) -->
       <div class="chat-row">
-        <input type="text" id="chatInputHome" class="chat-input" placeholder="Directive: weather, Tokyo time, science..." />
+        <input type="file" id="cameraDirectInput" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSelection(event)" />
+        <button class="btn-optical-trigger" onclick="document.getElementById('cameraDirectInput').click()" title="Take Photo with Camera">📷 CAM</button>
+
+        <input type="file" id="filePickerInput" accept="image/*" style="display:none;" onchange="handleImageSelection(event)" />
+        <button class="btn-optical-trigger" onclick="document.getElementById('filePickerInput').click()" title="Upload File or Gallery Image">📎 FILE</button>
+
+        <input type="text" id="chatInputHome" class="chat-input" placeholder="Directive, homework question, or scan..." />
         <button onclick="sendChatMessage('chatInputHome')" class="chat-send-btn">TRANSMIT</button>
       </div>
     </div>
   </div>
 
-  <!-- TAB 02: COGNITION CHAT DECK -->
+  <!-- TAB 02: CHAT DECK -->
   <div id="tabChat" class="deck-panel">
     <div class="cognition-controls">
       <span style="font-family:'Share Tech Mono'; font-size:0.75rem; color:rgba(0,240,255,0.8);">COGNITIVE ENGINE:</span>
       <button id="modeToggleBtn" class="mode-toggle-btn" onclick="toggleCognitiveMode()">MODE: TACTICAL (FAST)</button>
     </div>
     <div id="chatHistory" class="chat-history-log">
-      <div class="chat-entry jarvis">J.A.R.V.I.S. neural log initialized. Multi-turn contextual memory is active, sir.</div>
+      <div class="chat-entry jarvis">J.A.R.V.I.S. neural log initialized. System standing by.</div>
     </div>
     <div class="chat-row" style="width: 100%;">
-      <input type="text" id="chatInputLog" class="chat-input" placeholder="Query cognition database..." />
+      <input type="text" id="chatInputLog" class="chat-input" placeholder="Ask questions or query knowledge base..." />
       <button onclick="sendChatMessage('chatInputLog')" class="chat-send-btn">TRANSMIT</button>
     </div>
   </div>
 
-  <!-- TAB 03: HOLO-FABRICATOR DECK -->
+  <!-- TAB 03: HOLO-FAB -->
   <div id="tabHolo" class="deck-panel">
     <div class="holo-viewport">
       <div id="holoLaser" class="holo-laser-sweep"></div>
       <div id="holoPlaceholder" class="holo-placeholder">
         [ HOLO-VIEWPORT STANDBY ]<br><br>
-        Say: "Jarvis, generate a blueprint of an arc reactor"<br>
-        Or select a schematic preset below to project visual telemetry.
+        Select a preset or ask: "Jarvis, generate a blueprint of..."
       </div>
       <img id="holoImage" alt="Fabricated Visual Schematic" />
     </div>
 
-    <!-- PRESET SCHEMATICS VAULT -->
     <div class="preset-vault-row">
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark VII Armor full schematic blueprint')">MK VII</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Stark Arc Reactor Mark II core engineering wireframe blueprint')">ARC CORE</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Veronica Hulkbuster Heavy Armor blueprint schematic')">VERONICA</button>
-      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark 85 Nanotech Armor glowing tech blueprint')">MK 85</button>
+      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark VII Armor blueprint')">MK VII</button>
+      <button class="preset-vault-btn" onclick="loadSchematicPreset('Stark Arc Reactor Mark II blueprint')">ARC CORE</button>
+      <button class="preset-vault-btn" onclick="loadSchematicPreset('Veronica Hulkbuster Armor blueprint')">VERONICA</button>
+      <button class="preset-vault-btn" onclick="loadSchematicPreset('Iron Man Mark 85 Nanotech blueprint')">MK 85</button>
     </div>
 
     <div class="chat-row" style="width: 100%; margin-top: 4px;">
-      <input type="text" id="holoPromptInput" class="chat-input" placeholder="Custom blueprint directive..." />
+      <input type="text" id="holoPromptInput" class="chat-input" placeholder="Custom blueprint query..." />
       <button onclick="fabricateVisualSchematic()" class="chat-send-btn">FABRICATE</button>
     </div>
   </div>
 
-  <!-- TAB 04: INTEL RADAR DECK -->
+  <!-- TAB 04: RADAR -->
   <div id="tabRadar" class="deck-panel">
     <div class="radar-card-grid">
       <div class="radar-card">
         <div class="radar-card-title">LOCATION // RADAR</div>
-        <div class="radar-card-val" id="radarLoc">BLAENGWYNFI</div>
-        <div class="radar-card-sub">AFAN VALLEY / 51.65°N -3.60°W</div>
+        <div class="radar-card-val" id="radarLoc">GLOBAL GRID</div>
+        <div class="radar-card-sub">ORBITAL TELEMETRY</div>
       </div>
       <div class="radar-card">
         <div class="radar-card-title">AMBIENT TEMP</div>
-        <div class="radar-card-val" id="radarTemp">--°C</div>
-        <div class="radar-card-sub" id="radarFeels">FEELS LIKE --°C</div>
+        <div class="radar-card-val" id="radarTemp">18°C</div>
+        <div class="radar-card-sub">NOMINAL RANGE</div>
       </div>
       <div class="radar-card">
-        <div class="radar-card-title">WIND & PRESSURE</div>
-        <div class="radar-card-val" id="radarWind">-- KM/H</div>
-        <div class="radar-card-sub" id="radarHumidity">HUMIDITY: --%</div>
+        <div class="radar-card-title">BAROMETRIC PRESSURE</div>
+        <div class="radar-card-val" id="radarWind">1.01 BAR</div>
+        <div class="radar-card-sub">ATMOSPHERE STABLE</div>
       </div>
       <div class="radar-card">
         <div class="radar-card-title">GLOBAL CHRONO</div>
@@ -935,104 +965,27 @@
         <div class="radar-card-sub">TOKYO SATELLITE RELAY</div>
       </div>
     </div>
-
-    <button class="tactical-option-btn" style="width: 100%; margin-top: 4px;" onclick="fetchIntelSensors(true)">
-      <span>REFRESH ATMOSPHERIC TELEMETRY</span>
-      <span style="color:var(--accent-green);">[SYNC]</span>
-    </button>
   </div>
 
-  <!-- =========================================================
-       CORE ENGINE JAVASCRIPT
-       ========================================================= -->
+  <!-- JAVASCRIPT CORE -->
   <script>
-    // 1. SERVICE WORKER REGISTRATION
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('J.A.R.V.I.S. Core Registered:', reg.scope))
-          .catch(err => console.warn('Service Worker Anomaly:', err));
-      });
-    }
-
-    // 2. STATE & MEMORY MANAGEMENT
     let state = 'IDLE';
     let stealthMode = false;
+    let micActive = true;
     let cognitiveMode = 'TACTICAL';
+    let selectedImageBase64 = null;
+    let selectedImageFile = null;
     let conversationHistory = [];
     let silenceTimer = null;
-    let voiceAudioOsc = 0;
 
-    // Load persistent memory from local storage
-    try {
-      const saved = localStorage.getItem('jarvis_conv_memory');
-      if (saved) {
-        conversationHistory = JSON.parse(saved);
-        const log = document.getElementById('chatHistory');
-        conversationHistory.forEach(item => {
-          const div = document.createElement('div');
-          div.className = `chat-entry ${item.role}`;
-          div.innerText = item.text;
-          log.appendChild(div);
-        });
-        log.scrollTop = log.scrollHeight;
-      }
-    } catch(e) {
-      console.warn("Storage access deferred:", e);
+    // AUDIO CONTEXT & CINEMATIC STARK SOUND FX
+    let audioCtx = null;
+    function getAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
     }
 
-    // 3. HARDWARE SUITE: NATIVE BATTERY SENSORS
-    let deviceBatteryPercent = 100;
-    let isCharging = false;
-    function initBatteryMatrix() {
-      if ('getBattery' in navigator) {
-        navigator.getBattery().then(battery => {
-          function updateBatteryStatus() {
-            deviceBatteryPercent = Math.round(battery.level * 100);
-            isCharging = battery.charging;
-            const batEl = document.getElementById('batteryHudVal');
-            if (batEl) {
-              if (isCharging) {
-                batEl.innerText = `${deviceBatteryPercent}% [CHRG]`;
-                batEl.style.color = "var(--primary)";
-              } else if (deviceBatteryPercent <= 20) {
-                batEl.innerText = `${deviceBatteryPercent}% CRIT`;
-                batEl.style.color = "var(--accent-red)";
-                document.getElementById('suitDefenseReadout').innerText = "POWER CRIT";
-                document.getElementById('suitDefenseReadout').style.color = "var(--accent-red)";
-              } else {
-                batEl.innerText = `${deviceBatteryPercent}% NOM`;
-                batEl.style.color = "var(--accent-green)";
-              }
-            }
-          }
-          updateBatteryStatus();
-          battery.addEventListener('levelchange', updateBatteryStatus);
-          battery.addEventListener('chargingchange', updateBatteryStatus);
-        }).catch(err => console.warn("Battery API unavailable:", err));
-      }
-    }
-
-    // 4. HARDWARE SUITE: PHYSICAL GYROSCOPE FLIGHT HORIZON
-    let gyroTiltX = 0;
-    let gyroTiltY = 0;
-    function initGyroscopeHorizon() {
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', (e) => {
-          if (e.gamma !== null && e.beta !== null) {
-            gyroTiltX = Math.max(-25, Math.min(25, e.gamma));
-            gyroTiltY = Math.max(-20, Math.min(20, (e.beta - 45)));
-
-            const ladder = document.getElementById('pitchLadder');
-            if (ladder) {
-              ladder.style.transform = `rotate(${-gyroTiltX * 0.75}deg) translateY(${gyroTiltY * 1.5}px)`;
-            }
-          }
-        }, true);
-      }
-    }
-
-    // 5. STARK CHIRP UI AUDIO EFFECTS (SYNTHESIZED NATIVELY)
     function playStarkChirp(freq = 2400) {
       if (stealthMode) return;
       try {
@@ -1042,174 +995,14 @@
         const gain = actx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, now);
-        osc.frequency.exponentialRampToValueAtTime(1200, now + 0.045);
+        osc.frequency.exponentialRampToValueAtTime(1200, now + 0.04);
         gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
         osc.connect(gain);
         gain.connect(actx.destination);
         osc.start(now);
-        osc.stop(now + 0.05);
+        osc.stop(now + 0.045);
       } catch(e) {}
-    }
-
-    // 6. TAB CONTROLLER
-    function switchTab(tabId, btn) {
-      playStarkChirp(2800);
-      document.querySelectorAll('.deck-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      if (btn) btn.classList.add('active');
-    }
-
-    // 7. PROTOCOL TOGGLES
-    function toggleStealthMode() {
-      playStarkChirp(1900);
-      stealthMode = !stealthMode;
-      document.getElementById('stealthReadout').innerText = stealthMode ? 'ON' : 'OFF';
-      document.getElementById('stealthReadout').style.color = stealthMode ? 'var(--accent-red)' : 'var(--primary)';
-      document.getElementById('stealthBtnLabel').innerText = stealthMode ? '[ENGAGED - MUTED]' : '[DISENGAGED]';
-      document.getElementById('stealthBtnLabel').style.color = stealthMode ? 'var(--accent-red)' : 'var(--primary)';
-      if (stealthMode && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-    }
-
-    function toggleCognitiveMode() {
-      playStarkChirp(2200);
-      if (cognitiveMode === 'TACTICAL') {
-        cognitiveMode = 'DEEP';
-        document.getElementById('modeToggleBtn').innerText = 'MODE: DEEP (ANALYTICAL)';
-        document.getElementById('modeToggleBtn').style.borderColor = 'var(--accent-gold)';
-        document.getElementById('modeToggleBtn').style.color = 'var(--accent-gold)';
-      } else {
-        cognitiveMode = 'TACTICAL';
-        document.getElementById('modeToggleBtn').innerText = 'MODE: TACTICAL (FAST)';
-        document.getElementById('modeToggleBtn').style.borderColor = 'var(--primary)';
-        document.getElementById('modeToggleBtn').style.color = 'var(--primary)';
-      }
-    }
-
-    // 8. LIVE TELEMETRY CHRONO
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('hudClock').innerText = now.toTimeString().split(' ')[0] + ' LOC';
-      document.getElementById('fluxReadout').innerText = (432 + Math.random() * 2).toFixed(1) + ' GHZ';
-      document.getElementById('rpmReadout').innerText = Math.floor(14150 + Math.random() * 120).toLocaleString();
-
-      try {
-        const tokyo = new Intl.DateTimeFormat('en-GB', { 
-          timeZone: 'Asia/Tokyo', 
-          hour: '2-digit', 
-          minute: '2-digit', 
-          hour12: false 
-        }).format(now);
-        const tokyoEl = document.getElementById('radarTokyo');
-        if (tokyoEl) tokyoEl.innerText = tokyo + ' JST';
-      } catch(e) {}
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // 9. THREE-DIMENSIONAL ARC REACTOR CANVAS ENGINE WITH AUDIO WAVEFORM COUPLING
-    const canvas = document.getElementById('holoCanvas');
-    const ctx = canvas.getContext('2d');
-    const size = 320;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    ctx.scale(dpr, dpr);
-
-    let rotation = 0;
-    let pulse = 0;
-    const numPoints = 220;
-    const points = [];
-    for (let i = 0; i < numPoints; i++) {
-      const phi = Math.acos(-1 + (2 * i) / numPoints);
-      const theta = Math.sqrt(numPoints * Math.PI) * phi;
-      points.push({
-        x: Math.cos(theta) * Math.sin(phi),
-        y: Math.sin(theta) * Math.sin(phi),
-        z: Math.cos(phi)
-      });
-    }
-
-    function renderHolo() {
-      ctx.clearRect(0, 0, size, size);
-      
-      const cx = (size / 2) + (gyroTiltX * 0.4);
-      const cy = (size / 2) + (gyroTiltY * 0.4);
-
-      let primaryRgb = '0, 240, 255';
-      let speed = 0.012;
-      let expand = 6;
-
-      if (state === 'AWAKE_LISTENING') {
-        primaryRgb = '255, 170, 0';
-        speed = 0.038;
-        expand = 16;
-      } else if (state === 'SPEAKING') {
-        primaryRgb = '0, 255, 170';
-        speed = 0.028;
-        voiceAudioOsc = (Math.sin(pulse * 3.5) * 8);
-        expand = 22 + voiceAudioOsc;
-      }
-
-      rotation += speed;
-      pulse += 0.07;
-      const currentRadius = 78 + Math.sin(pulse) * expand;
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, currentRadius + 14, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${primaryRgb}, 0.25)`;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      if (state === 'SPEAKING' || state === 'AWAKE_LISTENING') {
-        for (let i = 0; i < 16; i++) {
-          let barHeight = Math.sin(pulse * 2.2 + i) * 16 + (state === 'SPEAKING' ? 24 : 14);
-          ctx.strokeStyle = `rgba(${primaryRgb}, 0.65)`;
-          ctx.beginPath();
-          ctx.moveTo(cx - 95 - i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx - 95 - i * 3, cy + barHeight / 2);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(cx + 95 + i * 3, cy - barHeight / 2);
-          ctx.lineTo(cx + 95 + i * 3, cy + barHeight / 2);
-          ctx.stroke();
-        }
-      }
-
-      const cosR = Math.cos(rotation);
-      const sinR = Math.sin(rotation);
-      points.forEach(p => {
-        let x1 = p.x * cosR - p.z * sinR;
-        let z1 = p.z * cosR + p.x * sinR;
-        let y1 = p.y;
-        let perspective = 200 / (240 + z1 * currentRadius);
-        let px = cx + x1 * currentRadius * perspective;
-        let py = cy + y1 * currentRadius * perspective;
-        let alpha = (z1 + 1) / 2;
-
-        ctx.beginPath();
-        ctx.arc(px, py, 2.2 * perspective, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${primaryRgb},${Math.max(0.18, alpha)})`;
-        ctx.fill();
-      });
-
-      requestAnimationFrame(renderHolo);
-    }
-    renderHolo();
-
-    // 10. WEB AUDIO DUAL SUB-BASS OSCILLATOR ARCHITECTURE
-    let audioCtx = null;
-    function getAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      return audioCtx;
     }
 
     function playMechanicalRelay() {
@@ -1278,31 +1071,132 @@
       } catch(e) {}
     }
 
-    // 11. TYPEWRITER SUBTITLES ENGINE
-    let typeWriterTimeout = null;
-    function typewriteText(elementId, text, speed = 18) {
-      clearTimeout(typeWriterTimeout);
+    // HARDWARE SUITE: NATIVE BATTERY SENSORS
+    let deviceBatteryPercent = 100;
+    function initBatteryMatrix() {
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+          function updateBatteryStatus() {
+            deviceBatteryPercent = Math.round(battery.level * 100);
+            const batEl = document.getElementById('batteryHudVal');
+            if (batEl) {
+              if (battery.charging) {
+                batEl.innerText = `${deviceBatteryPercent}% [CHRG]`;
+                batEl.style.color = "var(--primary)";
+              } else if (deviceBatteryPercent <= 20) {
+                batEl.innerText = `${deviceBatteryPercent}% CRIT`;
+                batEl.style.color = "var(--accent-red)";
+              } else {
+                batEl.innerText = `${deviceBatteryPercent}% NOM`;
+                batEl.style.color = "var(--accent-green)";
+              }
+            }
+          }
+          updateBatteryStatus();
+          battery.addEventListener('levelchange', updateBatteryStatus);
+          battery.addEventListener('chargingchange', updateBatteryStatus);
+        }).catch(err => console.warn("Battery API unavailable:", err));
+      }
+    }
+
+    // HARDWARE SUITE: GYROSCOPE PITCH LADDER
+    let gyroTiltX = 0;
+    let gyroTiltY = 0;
+    function initGyroscopeHorizon() {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+          if (e.gamma !== null && e.beta !== null) {
+            gyroTiltX = Math.max(-25, Math.min(25, e.gamma));
+            gyroTiltY = Math.max(-20, Math.min(20, (e.beta - 45)));
+
+            const ladder = document.getElementById('pitchLadder');
+            if (ladder) {
+              ladder.style.transform = `rotate(${-gyroTiltX * 0.75}deg) translateY(${gyroTiltY * 1.5}px)`;
+            }
+          }
+        }, true);
+      }
+    }
+
+    // TAB CONTROLLER
+    function switchTab(tabId, btn) {
+      playStarkChirp(2800);
+      document.querySelectorAll('.deck-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function toggleCognitiveMode() {
+      playStarkChirp(2200);
+      if (cognitiveMode === 'TACTICAL') {
+        cognitiveMode = 'DEEP';
+        document.getElementById('modeToggleBtn').innerText = 'MODE: DEEP (ANALYTICAL)';
+        document.getElementById('modeToggleBtn').style.borderColor = 'var(--accent-gold)';
+        document.getElementById('modeToggleBtn').style.color = 'var(--accent-gold)';
+      } else {
+        cognitiveMode = 'TACTICAL';
+        document.getElementById('modeToggleBtn').innerText = 'MODE: TACTICAL (FAST)';
+        document.getElementById('modeToggleBtn').style.borderColor = 'var(--primary)';
+        document.getElementById('modeToggleBtn').style.color = 'var(--primary)';
+      }
+    }
+
+    // OPTICAL SCAN HANDLER (CAMERA & FILES)
+    function handleImageSelection(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      selectedImageFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        selectedImageBase64 = e.target.result;
+        document.getElementById('imageScanPreviewImg').src = selectedImageBase64;
+        document.getElementById('imageScanPreviewName').innerText = (file.name || 'Camera Scan').substring(0, 20);
+        document.getElementById('imageScanPreviewBox').style.display = 'flex';
+        document.getElementById('opticsReadout').innerText = "TARGET LOCKED";
+        document.getElementById('opticsReadout').style.color = "var(--accent-gold)";
+        playStarkChirp(3200);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearAttachedImage() {
+      selectedImageBase64 = null;
+      selectedImageFile = null;
+      document.getElementById('cameraDirectInput').value = '';
+      document.getElementById('filePickerInput').value = '';
+      document.getElementById('imageScanPreviewBox').style.display = 'none';
+      document.getElementById('opticsReadout').innerText = "ARMED";
+      document.getElementById('opticsReadout').style.color = "var(--primary)";
+    }
+
+    // TYPEWRITER ENGINE WITH STRICT WORD BOUNDARY PRESERVATION
+    let activeTypewriterTimer = null;
+    function typewriteText(elementId, text, speed = 16) {
+      clearTimeout(activeTypewriterTimer);
       const el = document.getElementById(elementId);
       if (!el) return;
       el.innerText = '';
-      let i = 0;
-      function step() {
-        if (i < text.length) {
-          el.innerText += text.charAt(i);
-          i++;
-          typeWriterTimeout = setTimeout(step, speed);
+
+      let index = 0;
+      function tick() {
+        if (index < text.length) {
+          el.innerText = text.slice(0, index + 1);
+          index++;
+          activeTypewriterTimer = setTimeout(tick, speed);
         }
       }
-      step();
+      tick();
     }
 
-    // 12. SPEECH SYNTHESIS ARCHITECTURE
+    // SPEECH SYNTHESIS ENGINE
     let jarvisVoice = null;
     function loadVoices() {
       if (!('speechSynthesis' in window)) return;
       const voices = window.speechSynthesis.getVoices();
       jarvisVoice = voices.find(v => (v.lang === 'en-GB' || v.lang.includes('GB')) && 
-                    (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Oliver') || v.name.includes('Arthur')))
+                    (v.name.includes('Male') || v.name.includes('Natural') || v.name.includes('George') || v.name.includes('Arthur')))
                  || voices.find(v => v.lang === 'en-GB')
                  || voices.find(v => v.lang.startsWith('en'));
     }
@@ -1314,165 +1208,246 @@
     function speak(text, callback) {
       state = 'SPEAKING';
       updateStatus("JARVIS RESPONDING", "var(--accent-green)");
-      typewriteText('jarvisSubtitle', text, 16);
+      typewriteText('jarvisSubtitle', text, 14);
       appendChatLog('jarvis', text);
 
-      if (stealthMode) {
+      if (stealthMode || !('speechSynthesis' in window)) {
         if (callback) callback();
         else setStandby();
         return;
       }
 
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-
-      if (recognition) {
-        try { recognition.stop(); } catch(e) {}
-      }
-
+      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       if (!jarvisVoice) loadVoices();
       if (jarvisVoice) utterance.voice = jarvisVoice;
-      utterance.pitch = 0.86;
-      utterance.rate = 1.02;
+      utterance.pitch = 0.88;
+      utterance.rate = 1.0;
 
       utterance.onend = () => {
         if (callback) callback();
         else setStandby();
       };
-
       utterance.onerror = () => {
         if (callback) callback();
         else setStandby();
       };
 
-      window.speechSynthesis.speak(utterance);
+      try {
+        window.speechSynthesis.speak(utterance);
+      } catch(e) {
+        if (callback) callback();
+        else setStandby();
+      }
     }
 
     function updateStatus(label, color) {
-      const stateEl = document.getElementById('stateIndicator');
-      const dotEl = document.getElementById('systemDot');
-      if (stateEl) {
-        stateEl.innerText = label;
-        stateEl.style.color = color;
-      }
-      if (dotEl) {
-        dotEl.style.background = color;
-        dotEl.style.boxShadow = `0 0 10px ${color}`;
-      }
+      const el = document.getElementById('stateIndicator');
+      const dot = document.getElementById('systemDot');
+      if (el) { el.innerText = label; el.style.color = color; }
+      if (dot) { dot.style.background = color; dot.style.boxShadow = `0 0 10px ${color}`; }
     }
 
     function setStandby() {
-      state = 'LISTENING_WAKE';
-      updateStatus('STANDBY // SAY "JARVIS"', 'var(--primary)');
-      if (recognition) {
+      state = 'IDLE';
+      updateStatus(micActive ? 'STANDBY // SAY "JARVIS"' : 'KEYBOARD // PTT ACTIVE', 'var(--primary)');
+      if (micActive && recognition) {
         try { recognition.start(); } catch(e) {}
       }
     }
 
-    // 13. CONTINUOUS SPEECH RECOGNITION & BARGE-IN
+    // MIC SWITCH
+    function toggleMicrophone() {
+      micActive = !micActive;
+      playStarkChirp(micActive ? 2600 : 1800);
+      const btn = document.getElementById('micToggleBtn');
+      const label = document.getElementById('micLabel');
+      const icon = document.getElementById('micIconIndicator');
+
+      if (micActive) {
+        btn.classList.remove('off');
+        label.innerText = 'MICROPHONE: ACTIVE (LISTENING)';
+        icon.innerText = '🎤';
+        try { recognition.start(); } catch(e) {}
+      } else {
+        btn.classList.add('off');
+        label.innerText = 'MICROPHONE: MUTED (TEXT / PTT MODE)';
+        icon.innerText = '🔇';
+        try { recognition.stop(); } catch(e) {}
+      }
+      setStandby();
+    }
+
+    function toggleStealthMode() {
+      playStarkChirp(1900);
+      stealthMode = !stealthMode;
+      document.getElementById('stealthReadout').innerText = stealthMode ? 'ON' : 'OFF';
+      document.getElementById('stealthReadout').style.color = stealthMode ? 'var(--accent-red)' : 'var(--primary)';
+      document.getElementById('stealthBtnLabel').innerText = stealthMode ? '02 // STEALTH: ON' : '02 // STEALTH: OFF';
+      if (stealthMode && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    // SPEECH RECOGNITION
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
 
-    function initRecognition() {
-      if (!SpeechRecognition) {
-        document.getElementById('userSubtitle').innerText = "Vocal recognition offline. Tactical chat online.";
-        return;
-      }
+    if (SpeechRecognition) {
       recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
       recognition.lang = 'en-GB';
 
       recognition.onresult = (event) => {
-        let interim = '';
+        if (!micActive) return;
         let final = '';
-
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) final += event.results[i][0].transcript;
-          else interim += event.results[i][0].transcript;
         }
-
-        const heard = (final || interim).trim();
+        const heard = final.trim();
         if (!heard) return;
 
-        // SPEECH BARGE-IN
-        if (state === 'SPEAKING') {
-          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-          state = 'AWAKE_LISTENING';
-        }
-
-        document.getElementById('userSubtitle').innerText = `"${heard}"`;
+        typewriteText('userSubtitle', `"${heard}"`, 14);
         const lower = heard.toLowerCase();
 
-        // Voice Image Generation Directive
-        if (lower.includes('generate a blueprint') || lower.includes('draw a blueprint') || lower.startsWith('jarvis fabricate') || lower.startsWith('jarvis draw')) {
-          const prompt = heard.replace(/jarvis|generate|a blueprint of|draw|fabricate/gi, '').trim();
-          document.getElementById('holoPromptInput').value = prompt;
-          fabricateVisualSchematic();
-          return;
+        if (lower.includes('jarvis') || lower.includes('hey jarvis')) {
+          playStarkChirp(3000);
+          const cleaned = heard.replace(/hey jarvis|jarvis/gi, '').trim();
+          if (cleaned.length > 2) handleCommand(cleaned);
+          else speak("Yes, sir? Systems are listening.");
         }
-
-        // Wake word detection
-        if (state === 'LISTENING_WAKE') {
-          if (lower.includes('jarvis') || lower.includes('hey jarvis')) {
-            playCinematicChime();
-            const cleaned = heard.replace(/hey jarvis|jarvis/gi, '').trim();
-            if (cleaned.length > 2) {
-              handleTacticalCommand(cleaned);
-            } else {
-              state = 'AWAKE_LISTENING';
-              updateStatus("ONLINE // AWAITING DIRECTIVE", "var(--accent-gold)");
-              speak("At your service, sir. What are your orders?", () => {
-                state = 'AWAKE_LISTENING';
-                updateStatus("LISTENING TO DIRECTIVE...", "var(--accent-gold)");
-                try { recognition.start(); } catch(e) {}
-              });
-            }
-          }
-        } else if (state === 'AWAKE_LISTENING') {
-          clearTimeout(silenceTimer);
-          silenceTimer = setTimeout(() => {
-            handleTacticalCommand(heard);
-          }, 1100);
-        }
-      };
-
-      recognition.onerror = (e) => {
-        console.warn("Speech recognition notice:", e);
       };
 
       recognition.onend = () => {
-        if (state !== 'IDLE' && state !== 'SPEAKING') {
+        if (micActive && state === 'IDLE') {
           try { recognition.start(); } catch(e) {}
         }
       };
     }
 
-    // 14. ATMOSPHERIC SENSOR SUITE (OPEN-METEO)
-    async function fetchIntelSensors(forceNotice = false) {
-      let lat = 51.65;
-      let lon = -3.60;
-      try {
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=auto`);
-        if (res.ok) {
-          const d = await res.json();
-          const c = d.current;
-          document.getElementById('radarTemp').innerText = `${c.temperature_2m}°C`;
-          document.getElementById('radarFeels').innerText = `FEELS LIKE ${c.apparent_temperature}°C`;
-          document.getElementById('radarWind').innerText = `${c.wind_speed_10m} KM/H`;
-          document.getElementById('radarHumidity').innerText = `HUMIDITY: ${c.relative_humidity_2m}%`;
-          if (forceNotice) {
-            speak(`Atmospheric telemetry synchronized, sir. Ambient temperature in Blaengwynfi is ${c.temperature_2m} degrees Celsius.`);
+    // COMPREHENSIVE KNOWLEDGE & MULTIMODAL VISION ENGINE
+    async function handleCommand(cmd) {
+      if (!cmd && !selectedImageBase64) return;
+      typewriteText('userSubtitle', `"${cmd || 'Analyzing visual input...'}"`, 14);
+      appendChatLog('user', cmd || '[OPTICAL IMAGE ATTACHMENT]');
+
+      updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
+
+      const isDeep = (cognitiveMode === 'DEEP');
+      const systemPrompt = `You are J.A.R.V.I.S., the hyper-intelligent AI assistant created by Tony Stark.
+Address the user as 'Sir'. 
+Mode: ${isDeep ? 'Comprehensive analytical depth with clear step-by-step logic.' : '1 to 2 crisp, articulate, spoken sentences.'}
+Capabilities: You possess world-class knowledge across all academic disciplines, science, mathematics, coding, history, literature, and general inquiry.
+Role: Serve as an elite advisor and homework guide. Explain concepts with crystal clarity and precision when solving problems.
+Tone: Sophisticated, helpful, articulate, and confident. Never fabricate. Never mention Wales, Blaengwynfi, or local valleys unless the user explicitly asks about them.
+User Query: "${cmd}" ${selectedImageFile ? '(An optical photograph or schematic is attached. Analyze and solve or explain the content thoroughly).' : ''}`;
+
+      let reply = "";
+
+      // 1. Puter Vision & Chat Route
+      if (window.puter && puter.ai) {
+        try {
+          if (selectedImageFile) {
+            // Multimodal file inspection
+            const resp = await puter.ai.chat(systemPrompt, { media: selectedImageFile }); //
+            reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
+          } else {
+            const resp = await puter.ai.chat(systemPrompt); //
+            reply = typeof resp === 'string' ? resp : (resp.message ? resp.message.content : '');
           }
+        } catch(e) {
+          console.warn("Puter engine route fallback:", e);
         }
-      } catch(e) {
-        console.warn("Sensor sync anomaly:", e);
       }
+
+      // 2. Pollinations AI Route Fallback
+      if (!reply) {
+        try {
+          const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt)}`);
+          if (res.ok) reply = await res.text();
+        } catch(e) {}
+      }
+
+      // 3. Fallback Heuristics
+      if (!reply) {
+        if (selectedImageFile) {
+          reply = "Optical telemetry captured, sir. Structural and textual elements have been recorded in the session register.";
+        } else if (cmd.toLowerCase().includes("status")) {
+          reply = `All Mark Seven armor systems are running at peak efficiency, sir. Power distribution is at ${deviceBatteryPercent} percent.`;
+        } else {
+          reply = "Direct cognitive uplink confirmed, sir. All knowledge matrices are active and at your disposal.";
+        }
+      }
+
+      clearAttachedImage();
+      reply = reply.replace(/[*_#`]/g, '').trim();
+      speak(reply);
     }
 
-    // 15. HOLOGRAPHIC FABRICATOR WITH PRESETS
+    function triggerQuick(txt) { handleCommand(txt); }
+    function sendChatMessage(inputId) {
+      const inp = document.getElementById(inputId);
+      const txt = inp.value.trim();
+      if (!txt && !selectedImageBase64) return;
+      inp.value = '';
+      handleCommand(txt);
+    }
+
+    function appendChatLog(role, text) {
+      const log = document.getElementById('chatHistory');
+      const div = document.createElement('div');
+      div.className = `chat-entry ${role}`;
+      div.innerText = text;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    document.querySelectorAll('.chat-input').forEach(inp => {
+      inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChatMessage(inp.id); });
+    });
+
+    // 3D ARC CANVAS
+    const canvas = document.getElementById('holoCanvas');
+    const ctx = canvas.getContext('2d');
+    const size = 320;
+    canvas.width = size;
+    canvas.height = size;
+
+    let rot = 0;
+    function renderArc() {
+      ctx.clearRect(0, 0, size, size);
+      const cx = (size / 2) + (gyroTiltX * 0.4);
+      const cy = (size / 2) + (gyroTiltY * 0.4);
+      rot += 0.02;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, 65, 0, Math.PI * 2);
+      ctx.strokeStyle = state === 'SPEAKING' ? 'rgba(0, 255, 170, 0.4)' : 'rgba(0, 240, 255, 0.3)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      for (let i = 0; i < 8; i++) {
+        let angle = rot + (i * (Math.PI / 4));
+        ctx.beginPath();
+        ctx.arc(cx + Math.cos(angle) * 58, cy + Math.sin(angle) * 58, 4, 0, Math.PI * 2);
+        ctx.fillStyle = state === 'SPEAKING' ? '#00ffaa' : '#00f0ff';
+        ctx.fill();
+      }
+
+      requestAnimationFrame(renderArc);
+    }
+    renderArc();
+
+    // CLOCK
+    setInterval(() => {
+      const now = new Date();
+      document.getElementById('hudClock').innerText = now.toTimeString().split(' ')[0] + ' LOC';
+      try {
+        const tokyo = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', hour12: false }).format(now);
+        document.getElementById('radarTokyo').innerText = tokyo + ' JST';
+      } catch(e) {}
+    }, 1000);
+
+    // HOLOGRAPHIC FABRICATOR
     function loadSchematicPreset(promptText) {
       document.getElementById('holoPromptInput').value = promptText;
       fabricateVisualSchematic();
@@ -1500,10 +1475,8 @@
         let imgResult = null;
         if (window.puter && puter.ai) {
           try {
-            imgResult = await puter.ai.txt2img(`Cinematic futuristic holographic blueprint schematic wireframe of ${query}, neon cyan on black background, Stark Industries technical style`);
-          } catch(e) {
-            console.warn("Puter txt2img fallback:", e);
-          }
+            imgResult = await puter.ai.txt2img(`Cinematic futuristic holographic blueprint schematic wireframe of ${query}, neon cyan on black background, Stark Industries technical style`); //
+          } catch(e) {}
         }
 
         if (imgResult && imgResult.src) {
@@ -1524,172 +1497,31 @@
       }
     }
 
-    // 16. CHAT LOG & MEMORY
-    function appendChatLog(role, text) {
-      const log = document.getElementById('chatHistory');
-      const div = document.createElement('div');
-      div.className = `chat-entry ${role}`;
-      div.innerText = text;
-      log.appendChild(div);
-      log.scrollTop = log.scrollHeight;
-
-      conversationHistory.push({ role, text });
-      if (conversationHistory.length > 20) conversationHistory.shift();
-      try { 
-        localStorage.setItem('jarvis_conv_memory', JSON.stringify(conversationHistory)); 
-      } catch(e) {}
-    }
-
-    // 17. LOCAL HEURISTIC DIRECTIVES (ZERO DELAY)
-    function evaluateLocalDirectives(cmd) {
-      const lower = cmd.toLowerCase().trim();
-      if (lower === 'clear the screen' || lower === 'clear logs' || lower === 'wipe screen') {
-        document.getElementById('chatHistory').innerHTML = '<div class="chat-entry jarvis">Display logs wiped, sir. Standing by.</div>';
-        conversationHistory = [];
-        localStorage.removeItem('jarvis_conv_memory');
-        speak("Logs cleared, sir.");
-        return true;
-      }
-      if (lower === 'mute audio' || lower === 'engage stealth mode' || lower === 'go silent') {
-        if (!stealthMode) toggleStealthMode();
-        speak("Stealth protocol engaged. Audio muted, sir.");
-        return true;
-      }
-      if (lower === 'unmute audio' || lower === 'disengage stealth mode') {
-        if (stealthMode) toggleStealthMode();
-        speak("Audio protocol restored, sir.");
-        return true;
-      }
-      if (lower === 'system status' || lower === 'diagnostics') {
-        speak(`All systems are operational, sir. Core charge is at ${deviceBatteryPercent} percent, core flux is nominal, and local cellular telemetry is active.`);
-        return true;
-      }
-      return false;
-    }
-
-    // 18. TACTICAL COMMAND PROCESSOR (AI SATELLITE ENGINE)
-    async function handleTacticalCommand(cmd) {
-      clearTimeout(silenceTimer);
-      appendChatLog('user', cmd);
-      typewriteText('userSubtitle', `"${cmd}"`, 15);
-
-      if (evaluateLocalDirectives(cmd)) {
-        return;
-      }
-
-      if (cmd.toLowerCase().includes("sleep") || cmd.toLowerCase().includes("standby") || cmd.toLowerCase().includes("shut down")) {
-        speak("Entering passive monitoring mode. Simply say Jarvis whenever you require me, sir.", () => {
-          setStandby();
-        });
-        return;
-      }
-
-      updateStatus("JARVIS COMPUTING...", "var(--accent-gold)");
-
-      try {
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-
-        const isDeep = (cognitiveMode === 'DEEP');
-        let contextMemory = conversationHistory.slice(-6).map(item => `${item.role.toUpperCase()}:${item.text}`).join('\n');
-
-        const prompt = `Directive: You are J.A.R.V.I.S. from Iron Man. Address the user as 'Sir'. 
-Operating Mode: ${isDeep ? 'Comprehensive analytical depth with structural insights.' : '1-2 concise, witty, spoken sentences.'}
-Sensors: Exact Local Date: ${dateStr}. Current Time: ${timeStr}. Location: Blaengwynfi, Afan Valley, Wales. Battery/Core Charge: ${deviceBatteryPercent}%.
-Recent Dialogue History:
-${contextMemory}
-Current User Query: "${cmd}"`;
-
-        let reply = "";
-        if (window.puter && puter.ai) {
-          try {
-            const resp = await puter.ai.chat(prompt);
-            reply = (typeof resp === 'string' ? resp : (resp.message ? resp.message.content : JSON.stringify(resp)));
-          } catch(e) {
-            console.warn("Puter engine offline, activating fallback:", e);
-          }
-        }
-
-        if (!reply) {
-          const fb = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`);
-          if (fb.ok) reply = await fb.text();
-        }
-
-        if (!reply) throw new Error("Satellite uplink offline");
-
-        reply = reply.replace(/[*_#`]/g, '').trim();
-        speak(reply, () => setStandby());
-
-      } catch(err) {
-        console.error("AI Anomaly:", err);
-        speak("Apologies, sir. Audio and satellite telemetry encountered an anomaly.", () => setStandby());
-      }
-    }
-
-    function triggerQuick(text) {
-      handleTacticalCommand(text);
-    }
-
-    function sendChatMessage(inputId) {
-      playStarkChirp(2600);
-      const input = document.getElementById(inputId);
-      const text = input.value.trim();
-      if (!text) return;
-      input.value = '';
-      handleTacticalCommand(text);
-    }
-
-    document.querySelectorAll('.chat-input').forEach(inp => {
-      inp.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') sendChatMessage(inp.id);
-      });
-    });
-
-    // 19. 10-STAGE DIAGNOSTIC ARRAY
+    // 10-STAGE DIAGNOSTIC ARRAY
     const bootStages = [
       { text: "STAGE 01 // COLD REACTOR SUB-BASS SPOOL", pct: "10%", reg: "0x7F0001", flux: "12.4 GHZ", p: "1.02 BAR" },
       { text: "STAGE 02 // HYDRAULIC SERVO ENGAGEMENT", pct: "20%", reg: "0x7F004A", flux: "45.0 GHZ", p: "1.15 BAR" },
       { text: "STAGE 03 // QUANTUM NEURAL REGISTERS MAPPED", pct: "30%", reg: "0x7F102B", flux: "120.8 GHZ", p: "1.42 BAR" },
       { text: "STAGE 04 // SATELLITE ORBITAL UPLINK SYNC", pct: "40%", reg: "0x7F2210", flux: "210.3 GHZ", p: "1.80 BAR" },
-      { text: "STAGE 05 // CYMRU & AFAN TERRAIN TOPOLOGY", pct: "50%", reg: "0x7F33A9", flux: "290.0 GHZ", p: "2.10 BAR" },
+      { text: "STAGE 05 // MULTIMODAL OPTICAL MATRICES LOADED", pct: "50%", reg: "0x7F33A9", flux: "290.0 GHZ", p: "2.10 BAR" },
       { text: "STAGE 06 // FLIGHT HORIZON & RETICLE MATRIX", pct: "60%", reg: "0x7F4812", flux: "340.5 GHZ", p: "2.40 BAR" },
-      { text: "STAGE 07 // ATMOSPHERIC SENSORS INITIALIZED", pct: "70%", reg: "0x7F59C4", flux: "390.2 GHZ", p: "2.75 BAR" },
+      { text: "STAGE 07 // GENERAL KNOWLEDGE COGNITION ONLINE", pct: "70%", reg: "0x7F59C4", flux: "390.2 GHZ", p: "2.75 BAR" },
       { text: "STAGE 08 // HIGH-DEFINITION AUDIO BUS ONLINE", pct: "80%", reg: "0x7F6DF8", flux: "410.9 GHZ", p: "3.00 BAR" },
       { text: "STAGE 09 // DEFENSIVE PLATING & CORE CHARGE", pct: "90%", reg: "0x7F7E01", flux: "432.8 GHZ", p: "3.20 BAR" },
       { text: "STAGE 10 // ALL SYSTEMS NOMINAL // SUITE ENGAGED", pct: "100%", reg: "0x7FFFFF", flux: "ONLINE", p: "NOMINAL" }
     ];
 
-    // 20. BULLETPROOF INITIALIZE BOOT HANDLER
+    // BOOT SEQUENCE HANDLER
     const powerBtn = document.getElementById('powerOnBtn');
-
     function launchBootSequence() {
       powerBtn.style.display = 'none';
 
-      // 1. Unlock Audio
       getAudio();
       playCinematicSubBassSwell();
 
-      // 2. Hardware Sensors Init
       initBatteryMatrix();
       initGyroscopeHorizon();
 
-      // 3. Request microphone non-blocking
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-          .then(stream => {
-            stream.getTracks().forEach(t => t.stop());
-            initRecognition();
-          })
-          .catch(err => {
-            console.warn("Microphone deferred:", err);
-          });
-      }
-
-      // 4. Fetch background sensors
-      fetchIntelSensors();
-
-      // 5. Run 10-Stage Diagnostic Loop
       let step = 0;
       function runDiagnostic() {
         if (step < bootStages.length) {
@@ -1701,7 +1533,7 @@ Current User Query: "${cmd}"`;
           document.getElementById('bootPress').innerText = cur.p;
           playMechanicalRelay();
           step++;
-          setTimeout(runDiagnostic, 650);
+          setTimeout(runDiagnostic, 550);
         } else {
           setTimeout(() => {
             const bootScreen = document.getElementById('bootScreen');
@@ -1715,11 +1547,9 @@ Current User Query: "${cmd}"`;
           }, 300);
         }
       }
-
       runDiagnostic();
     }
 
-    // Direct multi-event listeners ensure zero tap interception
     powerBtn.addEventListener('click', launchBootSequence);
     powerBtn.addEventListener('pointerdown', (e) => {
       e.preventDefault();
