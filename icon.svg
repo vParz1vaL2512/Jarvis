@@ -1,7 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="arcGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#00f0ff" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#0066aa" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#010814" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffcc00"/>
+      <stop offset="100%" stop-color="#ff7700"/>
+    </linearGradient>
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
   <rect width="512" height="512" fill="#010814"/>
-  <circle cx="256" cy="256" r="220" fill="none" stroke="#00f0ff" stroke-width="12"/>
-  <circle cx="256" cy="256" r="170" fill="none" stroke="#0099ff" stroke-width="6" stroke-dasharray="24 16"/>
-  <polygon points="256,110 380,330 132,330" fill="none" stroke="#00f0ff" stroke-width="12"/>
-  <circle cx="256" cy="256" r="60" fill="#00f0ff"/>
+
+  <!-- Outer HUD Ring & Reticle Markers -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="#00f0ff" stroke-width="2" stroke-opacity="0.25"/>
+  <circle cx="256" cy="256" r="218" fill="none" stroke="#00f0ff" stroke-width="3" stroke-dasharray="16 12" stroke-opacity="0.5"/>
+  <circle cx="256" cy="256" r="185" fill="none" stroke="url(#goldAcc)" stroke-width="2" stroke-dasharray="8 8" stroke-opacity="0.6"/>
+
+  <!-- Circuit Ring Nodes -->
+  <g stroke="#00f0ff" stroke-width="3" stroke-linecap="round" opacity="0.75">
+    <line x1="256" y1="20" x2="256" y2="46"/>
+    <line x1="256" y1="466" x2="256" y2="492"/>
+    <line x1="20" y1="256" x2="46" y2="256"/>
+    <line x1="466" y1="256" x2="492" y2="256"/>
+    <line x1="89" y1="89" x2="108" y2="108"/>
+    <line x1="404" y1="108" x2="423" y2="89"/>
+    <line x1="89" y1="423" x2="108" y2="404"/>
+    <line x1="404" y1="404" x2="423" y2="423"/>
+  </g>
+
+  <!-- Core Reactor Coils -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#00f0ff" stroke-width="8" filter="url(#neon)"/>
+  <circle cx="256" cy="256" r="110" fill="none" stroke="#ffaa00" stroke-width="3" stroke-dasharray="24 10"/>
+  <circle cx="256" cy="256" r="80" fill="none" stroke="#00f0ff" stroke-width="4" stroke-dasharray="6 6"/>
+
+  <!-- Center Plasma Discharge -->
+  <circle cx="256" cy="256" r="120" fill="url(#arcGlow)"/>
+  <circle cx="256" cy="256" r="42" fill="#ffffff" filter="url(#neon)"/>
 </svg>
